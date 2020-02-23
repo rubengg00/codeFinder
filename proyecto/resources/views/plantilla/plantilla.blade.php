@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('node_modules/animate.css/animate.min.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:500&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{asset('img/code.png')}}" sizes="64x64">
     <script type="text/javascript" src="{{asset('sticker.min.js')}}"></script>
     <title>@yield('titulo')</title>
 </head>
