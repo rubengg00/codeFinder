@@ -38,7 +38,7 @@
 
                 <form class="form-inline ml-auto">
                     <div class="form-group no-border">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Busca código">
                     </div>
                     <button type="submit" class="btn btn-white btn-just-icon btn-round">
                         <i class="material-icons">search</i>
@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <div class="brand text-center animated tada">
+                    <div class="brand text-center animated tada delay-1s">
                         <img src="{{asset('img/code.png')}}" width="100px" height="100px">
                         <h1 id="titulo">CodeFinder</h1>
                         <h3 class="title text-center" id="titulo" style="font-style: italic">Tu biblioteca de código</h3>
@@ -77,6 +77,7 @@
             </div>
         </div>
     </div>
+    
 
     <footer class="footer footer-default">
         <div class="container">
@@ -98,9 +99,4 @@
             </div>
         </div>
     </footer>
-    <script>
-        window.onload = function () {
-            Sticker.init('.sticker');
-        }
-    </script>
 @endsection
