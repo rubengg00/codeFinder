@@ -19,10 +19,18 @@ class CreatePostsTable extends Migration
             $table->text('descripcion',200);
             $table->text('contenido');
             $table->integer('visitas')->default(0);
+
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
+                
+            $table->bigInteger('categoria_id')->unsigned()->nullable();
+            $table->foreign('categoria_id')
+                ->references('id')
+                ->on('categorias')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
             $table->timestamps();
