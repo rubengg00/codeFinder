@@ -28,9 +28,17 @@ class User extends Authenticatable
 
     //Relacion N:M entre Posts y Users --> A la hora de guardar como favoritos
     //Ya que un post puede ser guardado por muchas personas y una persona puede guardar, a su vez, muchos posts como favoritos.
-    public function posts1(){
+    public function postsGuardados(){
         return $this->belongsToMany('App\Post')->withPivot('user_id','post_id')->withTimestamps();
     }
+
+    //Relación 1:N entre Users y Comments
+    //Un usuario podrá crear uno o varios comentarios.
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
