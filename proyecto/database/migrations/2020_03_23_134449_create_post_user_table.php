@@ -15,18 +15,18 @@ class CreatePostUserTable extends Migration
     {
         Schema::create('post_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->bigInteger('post_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('post_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->foreign('post_id')
                 ->references('id')
                 ->on('posts')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->timestamps();

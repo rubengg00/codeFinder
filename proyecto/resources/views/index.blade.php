@@ -69,8 +69,6 @@
                     </blockquote>
                     <br>
                     <h5></h5>
-                    
-
             </div>
         </div>
     </div>

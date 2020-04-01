@@ -15,7 +15,7 @@ class Post extends Model
 
     //Relación 1:N entre Posts y Users --> A la hora de publicar un post
     //El post será creado por un único usuario
-    protected function user(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
