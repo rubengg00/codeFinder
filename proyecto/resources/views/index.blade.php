@@ -3,7 +3,7 @@
     CodeFinder
 @endsection
 @section('contenido')
-    <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top " role="navigation-demo">
+    <nav id="navbarHome" class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top " role="navigation-demo">
             <div class="container">
               <a class="navbar-brand">
                     <div class="logo-small">
@@ -31,9 +31,6 @@
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{route('register')}}">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -74,14 +71,13 @@
     </div>
     
 
-    <footer class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <footer  class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="container">
             <div class="copyright float-right">
                 &copy;
                 <script>
                     document.write(new Date().getFullYear())
-                </script>, hecho con <i class="material-icons">favorite</i> por
-                <a href="https://github.com/RubenGarciaGonzalez" target="blank">Ruben Garcia</a>.
+                </script> CodeFinder, Inc.
             </div>
         </div>
     </footer>

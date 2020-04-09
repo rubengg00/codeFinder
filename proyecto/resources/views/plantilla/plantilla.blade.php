@@ -28,5 +28,6 @@
     <script src="{{asset('material/assets/js/plugins/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/material-kit.js')}}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 </body>
 </html>

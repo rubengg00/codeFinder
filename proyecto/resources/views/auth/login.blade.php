@@ -32,9 +32,6 @@
             <li class="nav-item active mx-2">
                 <a class="nav-link" href="#">Iniciar Sesión <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{route('register')}}">Registrarse</a>
-            </li>
         </ul>
     </div>
     </div>
@@ -42,7 +39,7 @@
   <div class="page-header header-filter" style="background-image: url('img/background.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+        <div class="col-lg-4 col-md-6 col-xs-12 ml-auto mr-auto">
           <div class="card card-login" style="background-color:#212121">
             <form class="form" method="POST" action="{{ route('login')}}">
             @csrf
@@ -57,11 +54,11 @@
                     </span>
                   </div>
                   <input id="email" name="email" type="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="E-Mail..." autocomplete="email" required>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                  @error('email')
+                  <span class="invalid-feedback text-center" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">

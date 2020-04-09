@@ -18,7 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
             </button>
-          <div class="collapse navbar-collapse text-center">
+          <div class="collapse navbar-collapse text-center" >
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active mx-2">
                     <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
@@ -32,10 +32,10 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a> 
                 </li>
-              <li class="dropdown nav-item">
+              <li class="dropdown nav-item inline-block">
                 <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="profile-photo-small">
-                    <img src="{{asset('img/fotoUsuarios/default.jpg')}}" class="img-fluid rounded" width="50px" height="60px">
+                    <img src="{{asset('img/fotoUsuarios/default.jpg')}}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
                 </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -53,52 +53,29 @@
                 </div>
               </li>
             </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-->
+          </div>
+        </div>
       </nav>
+      <br><br><br>
+      <div class="d-flex" id="wrapper">
 
-      <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/background.jpg')}}')">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
-                    <div class="brand text-center animated tada delay-1s">
-                        <img src="{{asset('img/ideaLogo.png')}}" width="270px" height="210px">
-                        <h1 id="titulo">CodeFinder</h1>
-                        <h3 class="title text-center" id="titulo" style="font-style: italic">Tu biblioteca de código</h3>
-                    </div>
+    <div class="container-fluid text-center">
+            <h1 class="mt-4">Simple Sidebar</h1>
+            <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+          </div>
+        </div>
+      
+      
+
+      <footer id="footer" class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="container">
+                <div class="copyright float-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> CodeFinder, Inc.
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="main main-raised ">
-        <div class="container">
-            <div class="flow-lg-row" id="textoIndex">
-                    <br>
-                    <p class="h1 text-center my-2 font-italic">Busca. Pregunta. Guarda</p>
-                    <blockquote class="blockquote text-center">
-                        <p class="mb-0">
-                            CodeFinder es un portal web creado y diseñado para los programadores. Aquí, podrás buscar
-                            códigos de aplicaciones de usuarios, para poder implementarlos en tus proyectos, e incluso
-                            guardarlos como favoritos, para acceder a ellos de una forma más sencilla. 
-                        </p>
-                    </blockquote>
-                    <br>
-                    <h5></h5>
-            </div>
-        </div>
-    </div>
-    
-
-    <footer class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="container">
-            <div class="copyright float-right">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>, hecho con <i class="material-icons">favorite</i> por
-                <a href="https://github.com/RubenGarciaGonzalez" target="blank">Ruben Garcia</a>.
-            </div>
-        </div>
-    </footer>
+        </footer>
 @endsection
