@@ -19,3 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('posts', 'PostController');
+
+//Rutas unicamente para los administradores
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('home/admin/panel', 'UserController@adminPanel')->name('admin.panel');
+});

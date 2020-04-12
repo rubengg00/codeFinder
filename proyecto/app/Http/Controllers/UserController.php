@@ -82,4 +82,11 @@ class UserController extends Controller
     {
         //
     }
+
+    //-------------------Métodos para Administrador------------------------
+
+    public function adminPanel()
+    {
+        return view ('admin.index');
+    }
 }

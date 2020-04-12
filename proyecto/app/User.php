@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 use App\Post;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -24,12 +26,6 @@ class User extends Authenticatable
     //Ya que un usuario podrá crear varios posts
     public function posts(){
         return $this->hasMany(Post::class);
-    }
-
-    //Relacion N:M entre Posts y Users --> A la hora de guardar como favoritos
-    //Ya que un post puede ser guardado por muchas personas y una persona puede guardar, a su vez, muchos posts como favoritos.
-    public function postsGuardados(){
-        return $this->belongsToMany('App\Post')->withPivot('user_id','post_id')->withTimestamps();
     }
 
     //Relación 1:N entre Users y Comments

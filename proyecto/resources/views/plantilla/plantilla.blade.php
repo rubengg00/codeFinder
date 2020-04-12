@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:500&display=swap" rel="stylesheet">
     <link rel="icon" href="{{asset('img/icon.png')}}" sizes="80x80">
     <link href="https://fonts.googleapis.com/css?family=Poppins:500&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="{{asset('sticker.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <title>@yield('titulo')</title>
 </head>
@@ -29,5 +29,10 @@
     <script src="{{asset('material/assets/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/material-kit.js')}}" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    {{-- Scripts para carrusel de imagenes --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.6/typed.min.js"></script>
+
 </body>
 </html>

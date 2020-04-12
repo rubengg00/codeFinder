@@ -7,7 +7,7 @@ use App\Post;
 
 class Categoria extends Model
 {
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre','logo'];
 
     //Relacion 1:N entre Posts y Categorias
     //Ya que dentro de cada categoria, puede haber 1 o varios posts
