@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-CodeFinder
+Home
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -65,23 +65,27 @@ CodeFinder
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            {{-- <div class="card border-0 shadow mb-4 d-lg-none">
-                <div class="card-body">
-                    <h5>ME CAGO EN DIOS</h5>
+            @if($texto=Session::get('correcto'))
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <p class="alert alert-success my-3 rounded">{{$texto}}</p>
+                    </div>
                 </div>
-            </div> --}}
-
-            <div class="card border-0 shadow mb-4">
+            @endif
+            
+            <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <h3 class="mx-auto font-weight-bold " style="width: 100px;">Posts</h3>
                     <hr>
-                    Aquí irán los posts y demás
+                    @foreach ($posts as $item)
+                        <h4>{{ $item->titulo }} <small class="text-muted">Creado por <span class="font-italic">{{ $item->user->username }}</span> </small></h4>
+                    @endforeach
                 </div>
             </div>
 
             {{-- <div class="native-standard"></div> --}}
 
-            <div class="card border-0 shadow mb-4">
+            <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <h5 class="m-0">Más Cosas</h5>
                     <hr>
@@ -100,7 +104,7 @@ CodeFinder
         </div>
 
         <div class="col-lg-4">
-            <div class="card border-0 shadow mb-4 d-lg-block">
+            <div id="divPerfil" class="card border-0 shadow mb-4 d-lg-block">
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
@@ -108,7 +112,7 @@ CodeFinder
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
-                        <p><b>Mis posts:</b></p>
+                        <p><b>Mis posts:</b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
                             <div class="input-group" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
@@ -119,7 +123,7 @@ CodeFinder
                 </div>
             </div>
 
-            <div class="card border-0 shadow mb-4 text-center">
+            <div id="divExtra" class="card border-0 shadow mb-4 text-center">
                 <div class="card-body">
                     <div class="small mb-2 font-weight-bold">Sigue los proyectos nuevos del creador del sitio!</div>
                     <a href="https://github.com/RubenGarciaGonzalez" class="btn btn-sm btn-block">
@@ -132,7 +136,7 @@ CodeFinder
                 </div>
             </div>
 
-            <div class="card border-0 shadow mb-4">
+            <div id="divCarousel" class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <div class="text-center small">
                         <h5>Busca códigos por lenguajes</h5>
@@ -173,21 +177,7 @@ CodeFinder
         </div>
     </div>
 </div>
-
-
-<div class="footer-social my-5">
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <a class="footer-social-link d-inline-flex mx-3 justify-content-center align-items-center text-white rounded-circle shadow btn btn-github" href=https://github.com/RubenGarciaGonzalez>
-                <i class="fa fa-github"></i>
-            </a>
-
-            {{-- <a class="footer-social-link d-inline-flex mx-3 justify-content-center align-items-center text-white rounded-circle shadow btn btn-twitter" href="#">
-                <i class="fa fa-linkedin"></i>
-            </a> --}}
-        </div>
-    </div>
-</div>
+<br><br>
 <div class="footer-main bg-dark py-5 small">
     <div class="container">
         Proyecto hecho con el Kit de UI 

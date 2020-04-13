@@ -34,6 +34,14 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function totalPosts(){
+        $sum = 0;
+        foreach ($this->posts as $item) {
+            $sum++;
+        }
+        return $sum;
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

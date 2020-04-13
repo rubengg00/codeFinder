@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Categoria;
+use App\User;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +32,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $categorias = Categoria::orderBy('nombre')->get();
+
+        return view ('posts.create', compact('categorias'));
     }
 
     /**
@@ -33,9 +44,23 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        //Usuario
+        $user = auth()->user();
+        //Recogida de datos
+        $datos = $request->validated();
+        $post = new Post();
+        $post->titulo = \ucwords($datos['titulo']);
+        $post->descripcion = $datos['descripcion'];
+        $post->contenido = $datos['contenido'];
+        $post->categoria_id=$datos['categoria_id'];
+        $post->user_id=$user->id;
+
+        $post->save();
+
+        return redirect()->route('home')->with('correcto', "Has creado correctamente el post $user->nombre");
+
     }
 
     /**

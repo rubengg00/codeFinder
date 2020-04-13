@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:500&display=swap" rel="stylesheet">
     <script type="text/javascript" src="{{asset('sticker.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    {{-- HighLigher --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
     <title>@yield('titulo')</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -33,5 +35,7 @@
     <script src="{{asset('material/assets/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/material-kit.js')}}" type="text/javascript"></script>
     <script src="{{ asset('alertas/ohsnap.js') }}"></script>
+    {{-- HighLighter Script --}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 </body>
 </html>
