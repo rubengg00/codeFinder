@@ -1,4 +1,4 @@
-<p align="center"><img src="public/img/ideaLogo.png" width="400" height="250"></p>
+<p align="center"><img src="public/img/boceto_copia.png" width="350px" height="380px"></p>
 
 
 # Sobre CodeFinder
