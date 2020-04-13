@@ -31,7 +31,7 @@ Home
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
                 </li>
-                <li class="dropdown nav-item inline-block">
+                <li class="dropdown nav-item inline-block" id="lista">
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="profile-photo-small">
                             <img src="{{ asset('img/fotoUsuarios/default.jpg') }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
@@ -75,11 +75,27 @@ Home
             
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h3 class="mx-auto font-weight-bold " style="width: 100px;">Posts</h3>
-                    <hr>
+                    <h3 class="mx-auto font-weight-bold text-center">Últimos posts</h3>
                     @foreach ($posts as $item)
-                        <h4>{{ $item->titulo }} <small class="text-muted">Creado por <span class="font-italic">{{ $item->user->username }}</span> </small></h4>
+                        <div class="container">
+                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                                <div class="col">
+                                    <h5>
+                                        <span class="font-weight-bold"><a href="#" class="text-dark">{{ $item->titulo }}</a></span>
+                                        <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                    </h5>
+                                    <p class="font-italic">{{ $item->descripcion }}</p>
+                                    <br>
+                                    <p>
+                                        <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
+                                        {{ $item->user->name }}
+                                        <span id="fecha" class="float-right font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
+                    {{$posts->appends(Request::except('page'))->links()}}
                 </div>
             </div>
 

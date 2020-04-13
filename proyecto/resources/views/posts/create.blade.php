@@ -107,7 +107,7 @@ Creando Post
                                 </textarea>
                             </div>
                             <div class="form-group pt-2 text-center">
-                                <input class="btn btn-info" type="submit" value="Submit">
+                                <input class="btn btn-info" type="submit" value="Crear">
                                 <a href="{{ route('home') }}" class="btn btn-dark">Volver</a>
                             </div>
                         </form>

@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="brand text-center animated tada delay-1s">
-                        <img src="{{asset('img/ideaLogo.png')}}" width="270px" height="210px">
+                        <img src="{{asset('img/boceto_copia.png')}}" width="320px" height="380px">
                         <h1 id="titulo">CodeFinder</h1>
                         <h3 class="title text-center" id="titulo" style="font-style: italic">Tu biblioteca de código</h3>
                     </div>
