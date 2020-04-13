@@ -80,6 +80,7 @@ Home
                         <div class="container">
                             <div id="post" class="card-body shadow mb-5 animated bounceInDown">
                                 <div class="col">
+                                    <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
                                     <h5>
                                         <span class="font-weight-bold"><a href="#" class="text-dark">{{ $item->titulo }}</a></span>
                                         <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
@@ -89,7 +90,7 @@ Home
                                     <p>
                                         <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
                                         {{ $item->user->name }}
-                                        <span id="fecha" class="float-right font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                        <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                     </p>
                                 </div>
                             </div>
@@ -130,7 +131,12 @@ Home
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
                         <p><b>Mis posts:</b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
-                            <div class="input-group" style="margin-left: 10px;">
+                            <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
+                                <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
+                            </div>
+                            {{-- Para pantallas pequeñas --}}
+                            <div class="input-group text-center d-block d-sm-block d-md-none" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
                                 <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
                             </div>
@@ -152,7 +158,7 @@ Home
                 </div>
             </div>
 
-            <div id="divCarousel" class="card border-0 shadow mb-4">
+            <div id="divCarousel" class="card border-0 shadow mb-4 d-none d-sm-none d-lg-block">
                 <div class="card-body">
                     <div class="text-center small">
                         <h5>Busca códigos por lenguajes</h5>
@@ -173,10 +179,10 @@ Home
                                 <img class="d-block w-100" src="{{ asset('img/node.png') }}" alt="Second slide">
                               </div>
                               <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide">
+                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide" height="250px">
                               </div>
                               <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide">
+                                    <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide" height="250px">
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
