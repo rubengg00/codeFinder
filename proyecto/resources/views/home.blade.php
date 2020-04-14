@@ -10,7 +10,7 @@ Home
                 <img src="{{ asset('img/code.png') }}" width="25px" height="25px" class="img-fluid">
             </div>
         </a>
-        <a class="navbar-brand" href="#">CodeFinder</a>
+        <a class="navbar-brand" href="{{ route('home') }}">CodeFinder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">CodeFinder</span>
             <span class="navbar-toggler-icon"></span>
@@ -72,6 +72,14 @@ Home
                     </div>
                 </div>
             @endif
+
+            @if($texto=Session::get('eliminacion'))
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <p class="alert alert-danger my-3 rounded">{{$texto}}</p>
+                    </div>
+                </div>
+            @endif
             
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
@@ -92,6 +100,20 @@ Home
                                         {{ $item->user->name }}
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                     </p>
+                                    @if (Auth::check() && $item->user_id == Auth::id())
+                                        <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                            <div class="float-right">
+                                                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

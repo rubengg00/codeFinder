@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Categoria;
 use App\User;
+use SweetAlert;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -105,6 +106,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        SweetAlert::info('Post borrado correctamente');
+        return redirect()->route('home');
+
     }
 }

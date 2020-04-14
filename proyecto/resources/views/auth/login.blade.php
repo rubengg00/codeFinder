@@ -20,15 +20,6 @@
         </button>
       <div class="collapse navbar-collapse text-center">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{route('index')}}">Inicio</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="#">Buscar Código</a>
-          </li>
-          <li class="nav-item mx-2">
-              <a class="nav-link" href="#">Lenguajes</a>
-          </li>
             <li class="nav-item active mx-2">
                 <a class="nav-link" href="#">Iniciar Sesión <span class="sr-only">(current)</span></a>
             </li>

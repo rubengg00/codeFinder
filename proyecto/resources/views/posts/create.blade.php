@@ -10,7 +10,7 @@ Creando Post
                 <img src="{{ asset('img/code.png') }}" width="25px" height="25px" class="img-fluid">
             </div>
         </a>
-        <a class="navbar-brand" href="#">CodeFinder</a>
+        <a class="navbar-brand" href="{{ route('home') }}">CodeFinder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">CodeFinder</span>
             <span class="navbar-toggler-icon"></span>
@@ -117,7 +117,7 @@ Creando Post
     </div>
 </div>
 
-<div id="footer" class="footer-main bg-dark small">
+<div id="footer" class="footer-main bg-dark small d-none d-sm-none d-lg-block">
     <div class="container">
         Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.

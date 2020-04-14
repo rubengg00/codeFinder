@@ -10,7 +10,7 @@
                         <img src="{{asset('img/code.png')}}" width="25px" height="25px" class="img-fluid">
                     </div>
                 </a>
-                <a class="navbar-brand" href="#">CodeFinder</a>
+                <a class="navbar-brand" href="{{ route('index') }}">CodeFinder</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">CodeFinder</span>
@@ -20,7 +20,7 @@
                 </button>
               <div class="collapse navbar-collapse text-center">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active mx-2">
+                    {{-- <li class="nav-item active mx-2">
                         <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mx-2">
@@ -28,7 +28,7 @@
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="#">Lenguajes</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a>
                     </li>
@@ -42,7 +42,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <div class="brand text-center animated tada delay-1s">
+                    <div class="brand text-center animated fadeIn delay-1s">
                         <img src="{{asset('img/boceto_copia.png')}}" width="320px" height="380px">
                         <h1 id="titulo">CodeFinder</h1>
                         <h3 class="title text-center" id="titulo" style="font-style: italic">Tu biblioteca de código</h3>
