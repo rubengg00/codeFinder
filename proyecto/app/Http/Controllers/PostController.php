@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Categoria;
 use App\User;
-use SweetAlert;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -59,8 +59,8 @@ class PostController extends Controller
         $post->user_id=$user->id;
 
         $post->save();
-
-        return redirect()->route('home')->with('correcto', "Has creado correctamente el post $user->nombre");
+        Alert::success('Post Creado', 'Has creado el post correctamente');
+        return redirect()->route('home');
 
     }
 
@@ -107,7 +107,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        SweetAlert::info('Post borrado correctamente');
+        Alert::info('Borrado', 'Has eliminado el post correctamente');
         return redirect()->route('home');
 
     }

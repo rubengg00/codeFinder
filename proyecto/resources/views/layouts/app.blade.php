@@ -16,15 +16,13 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {{-- HighLigher --}}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
-    {{-- Sweet Alert --}}
-    <script src="{{ asset('js/app.js') }}"></script>
     <title>@yield('titulo')</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     
-            
+            @include('sweetalert::alert')
             @yield('contenido')
         
 
