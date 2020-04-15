@@ -8,6 +8,5 @@ CodeFinder es una aplicación, destinada para programadores, en dónde se puede:
 - Crear posts sobre códigos de nuestras aplicaciones.
 - Guardar posts de los demás usuarios como favoritos.
 - Comentar en los posts cualquier duda respecto al código.
-- No hacer falta que estes regitrado, puedes buscar código igualmente.
 - Diferenciar las búsquedas por lenguajes (PHP, JavaScript, Java...).
 
