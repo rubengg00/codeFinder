@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-CodeFinder
+Admin | Users
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -29,7 +29,7 @@ CodeFinder
                     <a class="nav-link" href="#">Lenguajes</a>
                 </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Panel Admin <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Usuarios <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -42,7 +42,7 @@ CodeFinder
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         @role('admin')
-                        <a href="#" class="dropdown-item">Panel de Administrador</a>
+                        <a href="{{ route('admin.index') }}" class="dropdown-item">Panel de Administrador</a>
                         <hr>
                         @endrole
                         <a href="#" class="dropdown-item">Perfil</a>
@@ -68,53 +68,38 @@ CodeFinder
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card border-0 shadow mb-4" id="card">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h2 class="text-center">Panel del Administrador</h2>
-                    <h3 class="text-center">Bienvenidos al panel de administrador <span class="font-weight-bold font-italic">{{ Auth::user()->username }}</span></h3>
+                    <h2 class="text-center">Panel de Usuarios</h2>
                     <br>
-                    <div class="row  ">
-                            <div class="col-md-6 ml-auto mr-auto">
-                                <div class="d-flex flex-row border rounded">
-                                    <div class="p-0 w-25">
-                                        <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-thumbnail border-0" />
-                                    </div>
-                                    <div class="pl-3 pt-2 pr-2 pb-2 w-75 border-left">
-                                        <h4 class="text-primary">{{ Auth::user()->name }}</h4>
-                                        <h5 class="text-info">Desarrollador de Aplicaciones Web</h5>
-                                        <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
-                                            <a href="#" class="text-dark"><i class="fa fa-linkedin-square"></i> LinkedIn</a><br>
-                                            <a href="#" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
-                                        </ul>
-                                        <p class="text-right m-0"><a href="#" class="btn btn-primary"><i class="fa fa-user"></i> View Profile</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br><br>
-                    <h5 class="text-center">En esta página podrás ver, editar, y eliminar a todos los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span> y
-                        <span class="text-warning font-italic">comentarios</span>.
-                    </h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto">
-                        <div class="profile-tabs">
-                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.users') }}">
-                                        <i class="material-icons">perm_identity</i> Usuarios
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" role="tab" data-toggle="tab">
-                                        <i class="material-icons">library_books</i> Posts
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" role="tab" data-toggle="tab">
-                                        <i class="material-icons">comment</i> Comentarios
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="responsive" style="overflow-x:auto;">
+                        <table id="listUsers" class="table table-hover text-center responsive ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Posts</th>
+                                    <th scope="col">Comentarios</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset($user->fotoPerfil) }}" alt="Foto de {{ $user->username }}" width="30px" height="30px" class="rounded-circle">
+                                    </td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->totalPosts() }}</td>
+                                    <td>{{ $user->totalComments() }}</td>
+                                    <td>#</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{$users->appends(Request::except('page'))->links()}}
                     </div>
                 </div>
             </div>

@@ -26,8 +26,7 @@
     background:black; 
     width:100%; 
     position:absolute; 
-    bottom:; 
-    left:; 
+
 }
 
 /* Animacion del Home, subdividido por Divs */
@@ -120,6 +119,14 @@
 
 #card{
     min-height: 100vh;
+}
+
+.table-responsive{
+    display: table;
+}
+
+#listUsers td{
+    line-height: 50px;
 }
 
 

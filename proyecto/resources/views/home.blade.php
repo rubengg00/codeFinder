@@ -39,7 +39,7 @@ Home
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         @role('admin')
-                        <a href="{{ route('admin.panel') }}" class="dropdown-item">
+                        <a href="{{ route('admin.index') }}" class="dropdown-item">
                             Panel de Administrador
                         </a>
                         <hr>

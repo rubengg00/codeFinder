@@ -19,6 +19,8 @@
     <title>@yield('titulo')</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Responsive tables --}}
+    <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">;
 </head>
 <body>
     
@@ -39,6 +41,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
     {{-- Script Propio --}}
     <script src="{{ asset('js/script.js') }}"></script>
+    {{-- Responsive tables --}}
+    <script src="{{ asset('responsiveTables/responsivetables.js') }}"></script>
     
 </body>
 </html>

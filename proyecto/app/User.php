@@ -42,6 +42,14 @@ class User extends Authenticatable
         return $sum;
     }
 
+    public function totalComments(){
+        $sum = 0;
+        foreach ($this->comments as $item) {
+            $sum++;
+        }
+        return $sum;
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

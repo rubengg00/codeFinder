@@ -23,5 +23,8 @@ Route::resource('posts', 'PostController');
 
 //Rutas unicamente para los administradores
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('home/admin/panel', 'UserController@adminPanel')->name('admin.panel');
+    Route::get('home/admin/users', 'AdminController@usersList')->name('admin.users');
+    Route::get('home/admin/posts', 'AdminController@postsList')->name('admin.posts');
+    Route::get('home/admin/comments', 'AdminController@commentsList')->name('admin.comments');
+    Route::resource('home/admin', 'AdminController');
 });

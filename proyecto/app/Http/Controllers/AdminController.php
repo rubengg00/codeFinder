@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Comment;
+use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,40 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //Devolvemos tanto los usuarios, como los posts y los comentarios
+        $users = User::orderBy('name')->paginate(3);
+        $posts = Post::orderBy('created_at','desc')->paginate(3);
+        $posts->setPageName('posts');
+        
+        $comments = Comment::orderBy('created_at','desc')->paginate(3);
+        
+        
+        return view ('admin.index',compact('users', 'posts', 'comments'));
     }
+
+    // Métodos para los usuarios
+
+    public function usersList(){
+        $users = User::orderBy('name')->paginate(3);
+
+        return view ('admin.users.list', compact('users'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -42,21 +75,21 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +98,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,13 +109,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }
-
-
 }
