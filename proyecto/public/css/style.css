@@ -13,11 +13,21 @@
 }
 
 #footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    position: block;
+    bottom:0;
     height: 100px;
-    line-height: 50px; 
+    bottom: 0;
+    line-height:50px;
+    width: 100%;
+}
+
+#footer1{
+    height: 50px; 
+    background:black; 
+    width:100%; 
+    position:absolute; 
+    bottom:; 
+    left:; 
 }
 
 /* Animacion del Home, subdividido por Divs */
@@ -107,3 +117,15 @@
 #post:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
+
+#card{
+    min-height: 100vh;
+}
+
+
+
+
+
+
+
+

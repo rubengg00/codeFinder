@@ -86,4 +86,15 @@
       </div>
     </div>
   </div>
+
+  <footer id="footer"class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="container">
+        <div class="copyright float-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> CodeFinder, Inc.
+        </div>
+    </div>
+</footer>
 @endsection

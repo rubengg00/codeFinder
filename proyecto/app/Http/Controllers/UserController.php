@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use App\Post;
+use App\Comment;
 
 class UserController extends Controller
 {
@@ -87,6 +88,16 @@ class UserController extends Controller
 
     public function adminPanel()
     {
-        return view ('admin.index');
+        //Devolvemos tanto los usuarios, como los posts y los comentarios
+        $users = User::orderBy('name')->paginate(3);
+        $posts = Post::orderBy('created_at','desc')->paginate(3);
+        $posts->setPageName('posts');
+
+        $comments = Comment::orderBy('created_at','desc')->paginate(3);
+
+
+        return view ('admin.index',compact('users', 'posts', 'comments'));
     }
+
+
 }

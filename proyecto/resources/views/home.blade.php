@@ -222,7 +222,7 @@ Home
     </div>
 </div>
 <br><br>
-<div class="footer-main bg-dark py-5 small">
+<div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
         Proyecto hecho con el Kit de UI 
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
@@ -235,5 +235,4 @@ Home
         </div>
     </div>
 </div>
-</footer>
 @endsection

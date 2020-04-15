@@ -117,7 +117,7 @@ Creando Post
     </div>
 </div>
 
-<div id="footer" class="footer-main bg-dark small d-none d-sm-none d-lg-block">
+<div id="footer" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
     <div class="container">
         Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.

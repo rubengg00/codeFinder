@@ -39,5 +39,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
     {{-- Script Propio --}}
     <script src="{{ asset('js/script.js') }}"></script>
+    
 </body>
 </html>

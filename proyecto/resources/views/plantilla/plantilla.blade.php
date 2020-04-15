@@ -18,6 +18,7 @@
     <title>@yield('titulo')</title>
 </head>
 <body>
+    @include('sweetalert::alert')
     @yield('contenido')
 
     <!--Scripts necesarios para la funcionalidad de la página-->
@@ -33,6 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.6/typed.min.js"></script>
+    
 
 </body>
 </html>
