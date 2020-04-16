@@ -104,12 +104,12 @@ CodeFinder
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" role="tab" data-toggle="tab">
+                                    <a class="nav-link" href="{{ route('admin.posts') }}">
                                         <i class="material-icons">library_books</i> Posts
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" role="tab" data-toggle="tab">
+                                    <a class="nav-link" href="{{ route('admin.comments') }}">
                                         <i class="material-icons">comment</i> Comentarios
                                     </a>
                                 </li>

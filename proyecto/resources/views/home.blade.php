@@ -83,7 +83,7 @@ Home
             
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h3 class="mx-auto font-weight-bold text-center">Últimos posts</h3>
+                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">Últimos posts</h3>
                     @foreach ($posts as $item)
                         <div class="container">
                             <div id="post" class="card-body shadow mb-5 animated bounceInDown">

@@ -30,5 +30,14 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+
+    public function totalComments(){
+        $sum = 0;
+        foreach ($this->comments as $item) {
+            $sum++;
+        }
+        return $sum;
+    }
     
 }

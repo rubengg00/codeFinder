@@ -36,6 +36,22 @@ class AdminController extends Controller
     }
 
 
+    //Métodos para los posts
+    public function postsList(){
+        $posts = Post::orderBy('created_at','desc')->paginate (6);
+
+        return view ('admin.posts.list', compact('posts'));
+    }
+
+
+    //Métodos para los comentarios
+    public function commentsList(){
+        $comments = Comment::orderBy('created_at','desc')->paginate(6);
+
+        return view ('admin.comments.list', compact('comments'));
+    }
+
+
 
 
 

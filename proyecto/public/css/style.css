@@ -129,7 +129,12 @@
     line-height: 50px;
 }
 
+/* Cambio de fuente para Encabezado */
 
+#encabezado{
+    font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
+    font-size: 32px;
+}
 
 
 

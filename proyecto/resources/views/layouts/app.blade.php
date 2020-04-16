@@ -21,6 +21,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- Responsive tables --}}
     <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">;
+    {{-- Fuente de Google --}}
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
 </head>
 <body>
     

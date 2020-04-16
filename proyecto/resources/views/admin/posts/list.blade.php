@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Admin | Users
+Admin | Posts
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -29,7 +29,7 @@ Admin | Users
                     <a class="nav-link" href="#">Lenguajes</a>
                 </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Usuarios <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Posts <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -74,39 +74,39 @@ Admin | Users
                                 <i class="fa fa-caret-left text-dark"></i>
                             </a>
                         </span>
-                        Panel de Usuarios
+                        Panel de Posts
                     </h2>
                     <br>
                     <div class="responsive" style="overflow-x:auto;">
                         <table id="listUsers" class="table table-hover text-center responsive ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Posts</th>
+                                    <th scope="col">Título</th>
+                                    <th scope="col">Categoría</th>
+                                    <th scope="col">Fecha de Creación</th>
+                                    <th scope="col">Creador</th>
                                     <th scope="col">Comentarios</th>
+                                    <th scope="col">Visitas</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($posts as $post)
                                 <tr>
+                                    <td>{{ $post->titulo }}</td>
+                                    <td>{{ $post->categoria->nombre }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
+                                    <td>{{ $post->user->name }}</td>
+                                    <td>{{ $post->totalComments() }}</td>
                                     <td>
-                                        <img src="{{ asset($user->fotoPerfil) }}" alt="Foto de {{ $user->username }}" width="30px" height="30px" class="rounded-circle">
+                                        <i class="fa fa-eye"></i> {{ $post->visitas }}
                                     </td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->totalPosts() }}</td>
-                                    <td>{{ $user->totalComments() }}</td>
                                     <td>#</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$users->appends(Request::except('page'))->links()}}
+                        {{$posts->appends(Request::except('page'))->links()}}
                     </div>
                 </div>
             </div>

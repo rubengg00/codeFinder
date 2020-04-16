@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Enlaces necesairos para la funcionalidad de la página-->
     <link href="{{asset('material/assets/css/material-kit.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('node_modules/animate.css/animate.min.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:500&display=swap" rel="stylesheet">
@@ -15,6 +14,15 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    {{-- HighLigher --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <title>@yield('titulo')</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Responsive tables --}}
+    <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">;
+    {{-- Fuente de Google --}}
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
     <title>@yield('titulo')</title>
 </head>
 <body>
@@ -34,7 +42,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.6/typed.min.js"></script>
-    
+
 
 </body>
 </html>

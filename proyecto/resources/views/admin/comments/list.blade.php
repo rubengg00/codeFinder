@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Admin | Users
+Admin | Comments
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -29,7 +29,7 @@ Admin | Users
                     <a class="nav-link" href="#">Lenguajes</a>
                 </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Usuarios <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Comentarios <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -74,39 +74,31 @@ Admin | Users
                                 <i class="fa fa-caret-left text-dark"></i>
                             </a>
                         </span>
-                        Panel de Usuarios
+                        Panel de Comentarios
                     </h2>
                     <br>
                     <div class="responsive" style="overflow-x:auto;">
                         <table id="listUsers" class="table table-hover text-center responsive ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Posts</th>
-                                    <th scope="col">Comentarios</th>
+                                    <th scope="col">Post</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Fecha de Comentario</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($comments as $comment)
                                 <tr>
-                                    <td>
-                                        <img src="{{ asset($user->fotoPerfil) }}" alt="Foto de {{ $user->username }}" width="30px" height="30px" class="rounded-circle">
-                                    </td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->totalPosts() }}</td>
-                                    <td>{{ $user->totalComments() }}</td>
+                                    <td>{{ $comment->post->titulo }}</td>
+                                    <td>{{ $comment->user->username }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y h:m:s') }}</td>
                                     <td>#</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$users->appends(Request::except('page'))->links()}}
+                        {{$comments->appends(Request::except('page'))->links()}}
                     </div>
                 </div>
             </div>
