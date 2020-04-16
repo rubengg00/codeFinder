@@ -68,15 +68,27 @@
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
-                    <br>
+                    <p>
+                        <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
+                        <span class="float-right">
+                            <i class="fa fa-eye"> {{ $post->visitas }}</i>
+                        </span>
+                    </p>
+                    <hr>
                     <p>{{ $post->descripcion }}</p>
                     <br>
                     <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
+                    <br>
+                    <span class="ml-3">Lenguaje: </span>
+                    <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
+                    <p class="float-right mr-3">
+                        Creado por <a class="font-italic" href="#" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a> 
+                    </p>
                 </div>
             </div>
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h5 class="m-0">Más Cosas</h5>
+                    <h5 class="m-0">Comentarios</h5>
                     <hr>
                     <ul class="mb-0">
                         <li>La prima de Jose la verdad es que está buenisima</li>
@@ -131,35 +143,35 @@
                     </div>
                     <br>
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:100%; height: 300px;">
-                            <ol class="carousel-indicators">
-                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                            </ol>
-                            <div class="carousel-inner my-2">
-                              <div class="carousel-item active">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        </ol>
+                        <div class="carousel-inner my-2">
+                            <div class="carousel-item active">
                                 <img class="d-block w-100" src="{{ asset('img/php.png') }}" alt="First slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/node.png') }}" alt="Second slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide" height="250px">
-                              </div>
-                              <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide" height="250px">
-                                </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Anterior</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Siguiente</span>
-                            </a>
-                          </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/node.png') }}" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide" height="250px">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide" height="250px">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
