@@ -29,6 +29,13 @@ class CreateCommentsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
+            $table->bigInteger('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('comments')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
             $table->timestamps();
         });
     }

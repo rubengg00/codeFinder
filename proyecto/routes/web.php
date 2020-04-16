@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::resource('posts', 'PostController');
+
+
 
 //Rutas unicamente para los administradores
 Route::group(['middleware' => ['admin']], function () {
@@ -28,3 +32,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('home/admin/comments', 'AdminController@commentsList')->name('admin.comments');
     Route::resource('home/admin', 'AdminController');
 });
+
+
+//Ruta para guardar los comentarios
+Route::post('/posts/{post}/comments', 'CommentController@create')->name('comments.create');
+Route::delete('/posts/post/{comment}', 'CommentController@destroy')->name('comments.destroy');

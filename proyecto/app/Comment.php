@@ -3,12 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Post;
 
 class Comment extends Model
 {
-    protected $fillable = ['contenido', 'post_id', 'user_id'];
+    protected $fillable = ['contenido', 'post_id', 'user_id', 'parent_id'];
 
     //Ya que se produce una Relación 1:N en las tablas Posts y Users respecto a los comentarios:
 
@@ -20,6 +18,16 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function parent() 
+    {
+        return $this->belongsTo(Comment::class, 'parent_id');
+    }
+ 
+    public function replies() 
+    {
+        return $this->hasMany(Comment::class, 'parent_id');
+    }
+
     public function commentsPerPost(){
         $sum = 0;
         foreach ($this->post as $item) {
@@ -27,5 +35,4 @@ class Comment extends Model
         }
         return $sum;
     }
-
 }

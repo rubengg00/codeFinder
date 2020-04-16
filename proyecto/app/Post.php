@@ -28,7 +28,7 @@ class Post extends Model
     //Relación 1:N entre Posts y Comments
     //Un post podrá tener uno o varios comentarios relacionados a él
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
 

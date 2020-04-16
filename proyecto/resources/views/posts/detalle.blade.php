@@ -82,18 +82,19 @@
                     <span class="ml-3">Lenguaje: </span>
                     <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
                     <p class="float-right mr-3">
-                        Creado por <a class="font-italic" href="#" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a> 
+                        Creado por <a class="font-italic" href="#" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
                 </div>
             </div>
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h5 class="m-0">Comentarios</h5>
+                    <h5 class="m-0">{{ $post->totalComments() }} comentarios en <b>"{{ $post->titulo }}" </b> </h5>
                     <hr>
-                    <ul class="mb-0">
-                        <li>La prima de Jose la verdad es que está buenisima</li>
-                        <li>A mi me pone bastante la perra esa</li>
-                    </ul>
+                    {{-- Formulario para crear comentarios --}}
+                    @include('comments.form')
+                    <br>
+                    {{-- Listar comentarios a través de item.blade.php --}}
+                    @include('comments.list', ['comments' => $post->comments])            
                 </div>
             </div>
         </div>

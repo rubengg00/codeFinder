@@ -6,6 +6,7 @@ use App\Post;
 use App\Categoria;
 use App\User;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -72,7 +73,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view ('posts.detalle', compact('post'));
+        $comments = $post->comments()->get();
+        return view ('posts.detalle', compact('post', 'comments'));
     }
 
     /**
