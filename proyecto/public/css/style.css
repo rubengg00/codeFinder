@@ -121,6 +121,10 @@
     min-height: 100vh;
 }
 
+#comentariosCard{
+    min-height: 50vh;
+}
+
 .table-responsive{
     display: table;
 }
@@ -135,6 +139,18 @@
     font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
     font-size: 32px;
 }
+
+#encabezadoPost{
+    font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
+    font-size: 32px;
+}
+
+#encabezadoComentarios{
+    font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
+    font-size: 32px;
+}
+
+
 
 
 

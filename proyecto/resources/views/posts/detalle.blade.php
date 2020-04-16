@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Creando Post
+{{ $post->titulo }}
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -27,9 +27,6 @@ Creando Post
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#">Lenguajes</a>
-                </li>
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Creando Post <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -68,56 +65,30 @@ Creando Post
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card border-0 shadow mb-4">
+            <div id="card" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h2 class="mx-auto font-weight-bold text-center font-italic">Creación de Post</h2>
+                    <h2 id="encabezadoPost" class="mx-auto font-weight-bold text-center ">{{ $post->titulo }}</h2>
                     <br>
-                    @if($errors->any())
-                        <div class="alert alert-danger rounded">
-                            <ul>
-                                @foreach($errors->all() as $miError)
-                                <li>{{$miError}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
-                            <div class="form-group">
-                                <label for="title">Título</label>
-                                <input type="text" name="titulo" class="form-control" id="title" placeholder="Título..." value="{{ old('title') }}" maxlength="80">
-                            </div>
-                            <div class="form-group">
-                                <label for="categoria_id">Lenguaje</label>
-                                    <select name="categoria_id" class="form-control">
-                                        @foreach ($categorias as $cat)
-                                            <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
-                                        @endforeach
-                                    </select>
-                              </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion..." value="{{ old('descripcion') }}" rows="2" maxlength="180"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="contenido">Código</label>
-                                <textarea name="contenido" class="form-control" id="contenido" placeholder="Código..." value="{{ old('contenido') }}" rows="10">
-                                        
-                                </textarea>
-                            </div>
-                            <div class="form-group pt-2 text-center">
-                                <input class="btn btn-info" type="submit" value="Crear">
-                                <a href="{{ route('home') }}" class="btn btn-dark">Volver</a>
-                            </div>
-                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div id="comentariosCard" class="card border-0 shadow mb-4">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <h2 id="encabezadoComentarios" class="mx-auto font-weight-bold text-center">Comentarios</h2>
+                    <br>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="footer" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
+<div id="footer1" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
     <div class="container">
         Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
