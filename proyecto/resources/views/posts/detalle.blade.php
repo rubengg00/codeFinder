@@ -64,30 +64,107 @@
 <br><br>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div id="card" class="card border-0 shadow mb-4">
+        <div class="col-lg-8">
+            <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h2 id="encabezadoPost" class="mx-auto font-weight-bold text-center ">{{ $post->titulo }}</h2>
+                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
                     <br>
-
+                    <p>{{ $post->descripcion }}</p>
+                    <br>
+                    <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
+                </div>
+            </div>
+            <div id="divMas" class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <h5 class="m-0">Más Cosas</h5>
+                    <hr>
+                    <ul class="mb-0">
+                        <li>La prima de Jose la verdad es que está buenisima</li>
+                        <li>A mi me pone bastante la perra esa</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div id="comentariosCard" class="card border-0 shadow mb-4">
-                <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h2 id="encabezadoComentarios" class="mx-auto font-weight-bold text-center">Comentarios</h2>
+        <div class="col-lg-4">
+            <div id="divPerfil" class="card border-0 shadow mb-4 d-lg-block">
+                <div class="card-body">
+                    <h3 class="text-center">Mi Perfil</h3>
+                    <div class="text-center">
+                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="62px" height="60px" />
+                        <br><br>
+                        <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
+                        <p><b>Usename:</b> {{ Auth::user()->username }}</p>
+                        <p><b>Mis posts:</b> {{ Auth::user()->totalPosts() }}</p>
+                        <div class="text-center">
+                            <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
+                                <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
+                            </div>
+                            {{-- Para pantallas pequeñas --}}
+                            <div class="input-group text-center d-block d-sm-block d-md-none" style="margin-left: 10px;">
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
+                                <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="divExtra" class="card border-0 shadow mb-4 text-center">
+                <div class="card-body">
+                    <div class="small mb-2 font-weight-bold">Sigue los proyectos nuevos del creador del sitio!</div>
+                    <a href="https://github.com/RubenGarciaGonzalez" class="btn btn-sm btn-block">
+                        <div class="text-center">
+                            <span class="text-primary">
+                                <i class="fa fa-github"></i> Github
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div id="divCarousel" class="card border-0 shadow mb-4 d-none d-sm-none d-lg-block">
+                <div class="card-body">
+                    <div class="text-center small">
+                        <h5>Busca códigos por lenguajes</h5>
+                    </div>
                     <br>
-
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:100%; height: 300px;">
+                            <ol class="carousel-indicators">
+                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                            </ol>
+                            <div class="carousel-inner my-2">
+                              <div class="carousel-item active">
+                                <img class="d-block w-100" src="{{ asset('img/php.png') }}" alt="First slide">
+                              </div>
+                              <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/node.png') }}" alt="Second slide">
+                              </div>
+                              <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide" height="250px">
+                              </div>
+                              <div class="carousel-item">
+                                    <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide" height="250px">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Siguiente</span>
+                            </a>
+                          </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div id="footer1" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
     <div class="container">
         Proyecto hecho con el Kit de UI
