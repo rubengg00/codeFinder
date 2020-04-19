@@ -25,9 +25,6 @@ Creando Post
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Lenguajes</a>
-                </li>
                 <li class="nav-item active mx-2">
                     <a class="nav-link" href="#">Creando Post <span class="sr-only">(current)</span></a>
                 </li>

@@ -26,9 +26,6 @@
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Lenguajes</a>
-                </li>
-                <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
                 </li>
                 <li class="dropdown nav-item inline-block">

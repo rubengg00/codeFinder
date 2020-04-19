@@ -26,9 +26,6 @@ Home
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Lenguajes</a>
-                </li>
-                <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
                 </li>
                 <li class="dropdown nav-item inline-block" id="lista">
@@ -129,8 +126,8 @@ Home
                     <h5 class="m-0">Más Cosas</h5>
                     <hr>
                     <ul class="mb-0">
-                        <li>La prima de Jose la verdad es que está buenisima</li>
-                        <li>A mi me pone bastante la perra esa</li>
+                        <li>Aquí irán más cosas</li>
+                        <li>Aunque todavía no esté hecho</li>
                     </ul>
                 </div>
             </div>
@@ -151,16 +148,20 @@ Home
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
-                        <p><b>Mis posts:</b> {{ Auth::user()->totalPosts() }}</p>
+                        <p><b><a href="#" class="text-dark">Mis posts:</a></b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
                             <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
+                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">
+                                    Favoritos 
+                                </a>
                             </div>
                             {{-- Para pantallas pequeñas --}}
                             <div class="input-group text-center d-block d-sm-block d-md-none" style="margin-left: 10px;">
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2">Mis Posts</a>
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
+                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">
+                                    Favoritos
+                                </a>
                             </div>
                         </div>
                     </div>
