@@ -41,8 +41,7 @@ Home
                         </a>
                         <hr>
                         @endrole
-                        <a href="#" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">Mis Posts</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -94,7 +93,7 @@ Home
                                     <br>
                                     <p>
                                         <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                        {{ $item->user->name }}
+                                        <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                     </p>
                                     @if (Auth::check() && $item->user_id == Auth::id())
@@ -148,7 +147,7 @@ Home
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
-                        <p><b><a href="#" class="text-dark">Mis posts:</a></b> {{ Auth::user()->totalPosts() }}</p>
+                        <p><b><a href="{{ route('users.show', Auth::user()) }}" class="text-dark">Mis posts:</a></b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
                             <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>

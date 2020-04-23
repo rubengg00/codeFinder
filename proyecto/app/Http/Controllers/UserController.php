@@ -8,6 +8,12 @@ use App\Comment;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +53,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        
+        $posts = $user->posts()->paginate(3);
+        return view('users.perfil', compact('user','posts'));
     }
 
     /**
@@ -70,7 +77,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name'=>['required'],
+            'stock'=>['required','unique:users,email,'.$user->id],
+            'username'=>['required'],
+        ]);
+
+        $user->name = ucwords($request->name);
+        
+
     }
 
     /**

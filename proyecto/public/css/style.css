@@ -186,6 +186,28 @@
   }
 
 
+  /* Vista del Perfil de Usuario */
+
+  #foto{
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 5px ;
+    border-radius:5px;
+  }
+
+  #perfil{
+      display:block;
+  }
+
+
+  #formPerfil{
+      display: none;
+  }
+
+  
+
 
 
 

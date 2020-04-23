@@ -43,7 +43,6 @@ Admin | Posts
                         <hr>
                         @endrole
                         <a href="#" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">Mis Posts</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
