@@ -31,7 +31,7 @@ Home
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="profile-photo-small">
-                            <img src="{{ asset('img/fotoUsuarios/default.jpg') }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
+                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="35px" height="45px" style="margin-top:5px">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -143,7 +143,7 @@ Home
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="62px" height="60px" />
+                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>

@@ -34,7 +34,7 @@ Creando Post
                 <li class="dropdown nav-item inline-block">
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="profile-photo-small">
-                            <img src="{{ asset('img/fotoUsuarios/default.jpg') }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
+                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -44,7 +44,7 @@ Creando Post
                         </a>
                         <hr>
                         @endrole
-                        <a href="#" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show',Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>

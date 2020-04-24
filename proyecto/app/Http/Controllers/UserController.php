@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Comment;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class UserController extends Controller
 {
@@ -65,7 +70,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
     }
 
     /**
@@ -75,17 +80,31 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        $request->validate([
-            'name'=>['required'],
-            'stock'=>['required','unique:users,email,'.$user->id],
-            'username'=>['required'],
-        ]);
-
-        $user->name = ucwords($request->name);
+    public function update(UserRequest $request, User $user)
+    {        
+        $datos = $request->validated();
         
+        $user->name = ucwords($datos['name']);
+        $user->username = $datos['username'];
+        $user->email = $datos['email'];
 
+        if (isset($datos['fotoPerfil'])) {
+            $file = $datos['fotoPerfil'];
+            $nombre = 'fotoUsuarios/'.time().'_'.$file->getClientOriginalName();
+            \Storage::disk('public')->put($nombre, \File::get($file));
+
+            $imagenOld = $user->fotoPerfil;
+            if (basename($imagenOld)!="default.jpg") {
+                unlink($imagenOld);
+            }
+
+            $user->fotoPerfil="img/$nombre";
+        }
+
+        $user->update();
+
+        Alert::success('Perfil Modificado', 'Tu perfil ha sido modificado correctamente');
+        return redirect()->route('users.show',$user);
     }
 
     /**

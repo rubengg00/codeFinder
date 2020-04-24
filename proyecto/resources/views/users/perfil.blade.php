@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Creando Post
+Mi Perfil
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -36,7 +36,7 @@ Creando Post
                 <li class="dropdown nav-item inline-block">
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="profile-photo-small">
-                            <img src="{{ asset('img/fotoUsuarios/default.jpg') }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
+                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -80,9 +80,10 @@ Creando Post
                                     <a id="editPerfil" class="btn btn-dark btn-round text-center">Editar Perfl</a>
                                 </div>
                                 <div class="container mt-3">
-                                    <form action="{{ route('users.update', $user) }}" id="formPerfil" method="POST" enctype="multipart/form-data">
-                                        @csrf
+                                    <form action="{{route('users.update',$user)}}" id="formPerfil" method="POST" enctype="multipart/form-data">
                                         @method('PUT')
+                                        @csrf       
+                                        <input type="hidden" name="id" value="{{$user->id}}">
                                         <p class="text-center">Editando Perfil</p>
                                         <div class="form-row">
                                             <div class="col text-center">

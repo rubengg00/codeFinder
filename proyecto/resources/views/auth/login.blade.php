@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse text-center">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active mx-2">
-                <a class="nav-link" href="#">Iniciar Sesión <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Inicia Sesión <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -74,7 +74,7 @@
                     </label>
                 </div>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-info">Iniciar Sesion</button>
+                    <button type="submit" class="btn btn-info">Inicia Sesion</button>
                 </div>
                 <div class="text-center mt-3">
                     <p style="color:white">¿No tienes cuenta todavía? <a href="{{route('register')}}">Regístrate</a></p>
@@ -94,7 +94,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script> CodeFinder, Inc.
-        </div>
     </div>
+  </div>
 </footer>
 @endsection

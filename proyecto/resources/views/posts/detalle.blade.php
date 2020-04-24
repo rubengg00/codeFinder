@@ -31,7 +31,7 @@
                 <li class="dropdown nav-item inline-block">
                     <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="profile-photo-small">
-                            <img src="{{ asset('img/fotoUsuarios/default.jpg') }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
+                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -41,7 +41,7 @@
                         </a>
                         <hr>
                         @endrole
-                        <a href="#" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show',Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -63,7 +63,14 @@
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
+                    @if (Auth::check() && $post->user_id == Auth::id())
+                        <h3 id="encabezado" class="mx-auto font-weight-bold text-center">
+                            {{ $post->titulo }}
+                            <span class="float-right mr-2"><h5>Editar</h5></span>
+                        </h3>
+                    @else
+                        <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>   
+                    @endif
                     <p>
                         <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
                         <span class="float-right">
@@ -77,8 +84,9 @@
                     <br>
                     <span class="ml-3">Lenguaje: </span>
                     <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
+                    
                     <p class="float-right mr-3">
-                        Creado por <a class="font-italic" href="#" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
+                        Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
                 </div>
             </div>
@@ -100,11 +108,11 @@
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="62px" height="60px" />
+                        <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
-                        <p><b>Mis posts:</b> {{ Auth::user()->totalPosts() }}</p>
+                        <p><b><a href="{{ route('users.show', Auth::user()) }}" class="text-dark">Mis posts:</a></b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
                             <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2">Crear Posts</a>
