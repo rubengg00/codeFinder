@@ -9,11 +9,11 @@
         <form name="borrar" method='post' action='{{route('comments.destroy', $comment->id)}}'>
             @csrf
             @method('DELETE')
-            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block float-right" onclick="return confirm('¿Borrar post?')">
+            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block float-right" onclick="return confirm('¿Borrar comentario?')">
                 <i class="material-icons">delete</i>
             </button>
             <div class="float-right">
-                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none float-right" onclick="return confirm('¿Borrar post?')">
+                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none float-right" onclick="return confirm('¿Borrar comentario?')">
                     <i class="material-icons">delete</i>
                 </button>
             </div>
@@ -33,3 +33,4 @@
         @include('comments.list', ['comments' => $comment->replies])
     @endif
 </div>
+

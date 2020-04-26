@@ -97,7 +97,7 @@
                     {{-- Formulario para crear comentarios --}}
                     @include('comments.form')
                     <br>
-                    {{-- Listar comentarios a través de item.blade.php --}}
+                    {{-- Listar comentarios a través de list.blade.php --}}
                     @include('comments.list', ['comments' => $post->comments])            
                 </div>
             </div>

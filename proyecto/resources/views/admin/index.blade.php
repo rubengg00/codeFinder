@@ -77,8 +77,7 @@ CodeFinder
                                         <h4 class="text-primary">{{ Auth::user()->name }}</h4>
                                         <h5 class="text-info">Desarrollador de Aplicaciones Web</h5>
                                         <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
-                                            <a href="#" class="text-dark"><i class="fa fa-linkedin-square"></i> LinkedIn</a><br>
-                                            <a href="#" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
+                                            <a href="https://github.com/RubenGarciaGonzalez" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
                                         </ul>
                                         <p class="text-right m-0"><a href="{{ route('users.show', Auth::user()) }}" class="btn btn-primary"><i class="fa fa-user"></i> Ver Perfil</a></p>
                                     </div>

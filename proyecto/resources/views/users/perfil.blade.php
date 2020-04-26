@@ -96,18 +96,33 @@ Mi Perfil
                                                 <label for="name" class="col-form-label">Nombre</label>
                                                 <input type="text" class="form-control" name="name" value="{{$user->name}}" id="name" required>
                                             </div>
+                                            @error('name')
+                                                <span class="invalid-feedback text-center" role="alert">
+                                                    <strong>No puedes dejar el nombre vacío.</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="form-row">
                                             <div class="col">
                                                 <label for="username" class="col-form-label">Nickname</label>
                                                 <input type="text" class="form-control" name="username" value="{{$user->username}}" id="username" required>
                                             </div>
+                                            @error('username')
+                                                <span class="invalid-feedback text-center" role="alert">
+                                                    <strong>Nombre de usuario inválido </strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="form-row">
                                             <div class="col">
-                                                <label for="username" class="col-form-label">E-mail</label>
+                                                <label for="email" class="col-form-label">E-mail</label>
                                                 <input type="email" class="form-control" name="email" value="{{$user->email}}" id="email" required>
                                             </div>
+                                            @error('email')
+                                                <span class="invalid-feedback text-center" role="alert">
+                                                    <strong>Correo inválido </strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="form-row text-center mt-3">
                                             <div class="col">
@@ -126,9 +141,9 @@ Mi Perfil
                         <div class="col col-lg-9 mt-4">
                             <div>
                                 @if (Auth::check() && $user->id == Auth::id())
-                                <h4 class="text-center">Tus posts ({{ $user->totalPosts() }})</h4>
+                                    <h4 class="text-center">Tus posts ({{ $user->totalPosts() }})</h4>
                                 @else
-                                <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
+                                    <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
                                 @endif
                                 @foreach ($posts as $item)
                                 <div class="container">

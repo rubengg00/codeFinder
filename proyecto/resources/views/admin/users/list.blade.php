@@ -92,7 +92,7 @@ Admin | Users
                                     <td>
                                         <img src="{{ asset($user->fotoPerfil) }}" alt="Foto de {{ $user->username }}" width="30px" height="30px" class="rounded-circle">
                                     </td>
-                                    <td>{{ $user->name }}</td>
+                                    <td><a href="{{ route('users.show',$user) }}" class="text-dark">{{ $user->name }}</a></td>
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->totalPosts() }}</td>

@@ -17,11 +17,11 @@ class AdminController extends Controller
     public function index()
     {
         //Devolvemos tanto los usuarios, como los posts y los comentarios
-        $users = User::orderBy('name')->paginate(3);
-        $posts = Post::orderBy('created_at','desc')->paginate(3);
+        $users = User::orderBy('name')->paginate(6);
+        $posts = Post::orderBy('created_at','desc')->paginate(6);
         $posts->setPageName('posts');
         
-        $comments = Comment::orderBy('created_at','desc')->paginate(3);
+        $comments = Comment::orderBy('created_at','desc')->paginate(6);
         
         
         return view ('admin.index',compact('users', 'posts', 'comments'));
@@ -30,7 +30,7 @@ class AdminController extends Controller
     // Métodos para los usuarios
 
     public function usersList(){
-        $users = User::orderBy('name')->paginate(3);
+        $users = User::orderBy('name')->paginate(6);
 
         return view ('admin.users.list', compact('users'));
     }

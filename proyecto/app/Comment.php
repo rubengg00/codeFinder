@@ -28,6 +28,8 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_id');
     }
 
+
+    
     public function commentsPerPost(){
         $sum = 0;
         foreach ($this->post as $item) {
