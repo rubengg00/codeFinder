@@ -133,6 +133,11 @@
     line-height: 50px;
 }
 
+#listCategory td{
+    line-height: 50px;
+    width: 200px;
+}
+
 /* Cambio de fuente para Encabezado */
 
 #encabezado{

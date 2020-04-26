@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Admin | Comments
+Admin | Categorias
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -26,7 +26,7 @@ Admin | Comments
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Comentarios <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -70,37 +70,45 @@ Admin | Comments
                                 <i class="fa fa-caret-left text-dark"></i>
                             </a>
                         </span>
-                        Panel de Comentarios
+                        Panel de Categorias
+
                     </h2>
                     <br>
                     <div class="responsive" style="overflow-x:auto;">
-                        <table id="listUsers" class="table table-hover text-center responsive ">
+                        <table id="listCategory" class="table table-hover text-center responsive ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Post</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Fecha de Comentario</th>
-                                    <th scope="col">Acciones</th>
+                                    <th>Lenguaje</th>
+                                    <th>Posts</th>
+                                    <th>Logo</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </thead>
                             <tbody>
-                                @foreach ($comments as $comment)
+                                @foreach ($categorias as $item)
                                 <tr>
-                                    <td>{{ $comment->post->titulo }}</td>
-                                    <td>{{ $comment->user->username }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y h:m:s') }}</td>
-                                    <td>*
-                                        <form name="borrar" method='post' action='{{route('admin.comments.destroy', $comment)}}'>
+                                    <td class="align-middle">{{ $item->nombre }}</td>
+                                    <td class="align-middle">{{ $item->totalPosts() }}</td>
+                                    <td class="align-middle"><img src="{{ asset($item->logo) }}" alt="PHP" width="70px" height="60px"></td>
+                                    <td class="align-middle" style="white-space: nowrap">
+                                        <form name="borrar" method='post' action='#'>
                                             @csrf
                                             @method('DELETE')
-                                            <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar comentario?')">Borrar</button>
+                                            <a href='#' class="btn btn-info">Editar</a>
+                                            <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar categoría?')">
+                                                Borrar</button>
                                         </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$comments->appends(Request::except('page'))->links()}}
+                        {{$categorias->appends(Request::except('page'))->links()}}
+                        <br>
+                        <div class="col text-center">
+                            <a href="#" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
+                                <i class="material-icons">add</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

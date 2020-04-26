@@ -42,7 +42,7 @@ Admin | Posts
                         <a href="{{ route('admin.index') }}" class="dropdown-item">Panel de Administrador</a>
                         <hr>
                         @endrole
-                        <a href="#" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -89,7 +89,7 @@ Admin | Posts
                             <tbody>
                                 @foreach ($posts as $post)
                                 <tr>
-                                    <td>{{ $post->titulo }}</td>
+                                    <td><a href="{{ route('posts.show',$post) }}" class="text-dark">{{ $post->titulo }}</a></td>
                                     <td>{{ $post->categoria->nombre }}</td>
                                     <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
                                     <td>{{ $post->user->name }}</td>
@@ -97,7 +97,13 @@ Admin | Posts
                                     <td>
                                         <i class="fa fa-eye"></i> {{ $post->visitas }}
                                     </td>
-                                    <td>#</td>
+                                    <td>
+                                        <form name="borrar" method='post' action='{{route('admin.posts.destroy', $post)}}'>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar post?')">Borrar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

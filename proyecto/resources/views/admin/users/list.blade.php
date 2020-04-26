@@ -42,7 +42,7 @@ Admin | Users
                         <a href="{{ route('admin.index') }}" class="dropdown-item">Panel de Administrador</a>
                         <hr>
                         @endrole
-                        <a href="#" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -97,7 +97,13 @@ Admin | Users
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->totalPosts() }}</td>
                                     <td>{{ $user->totalComments() }}</td>
-                                    <td>#</td>
+                                    <td>
+                                        <form name="borrar" method='post' action='{{route('admin.users.destroy', $user)}}'>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar usuario?')">Borrar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

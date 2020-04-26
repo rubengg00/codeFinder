@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Comment;
+use App\Categoria;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdminController extends Controller
 {
@@ -35,6 +38,12 @@ class AdminController extends Controller
         return view ('admin.users.list', compact('users'));
     }
 
+    public function usersDestroy(User $user){
+        $user->delete();
+        Alert::info('Borrado', 'Usuario borrado correctamente');
+        return \Redirect::back();
+    }
+
 
     //Métodos para los posts
     public function postsList(){
@@ -43,12 +52,34 @@ class AdminController extends Controller
         return view ('admin.posts.list', compact('posts'));
     }
 
+    public function postsDestroy(Post $post){
+        $post->delete();
+        Alert::info('Borrado', 'Post borrado correctamente');
+        return \Redirect::back();
+    }
+    
 
     //Métodos para los comentarios
     public function commentsList(){
         $comments = Comment::orderBy('created_at','desc')->paginate(6);
 
         return view ('admin.comments.list', compact('comments'));
+    }
+
+    public function commentsDestroy(Comment $comment)
+    {
+        $comment->delete();
+        Alert::info('Borrado', 'Comentario borrado correctamente');
+        return \Redirect::back();
+    }
+
+
+    //Métodos para las categorias
+    public function categoriesList()
+    {
+        $categorias = Categoria::orderBy('nombre')->paginate(6);
+
+        return view('admin.categories.list', compact('categorias'));
     }
 
 

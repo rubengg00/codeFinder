@@ -29,9 +29,23 @@ Route::resource('users', 'UserController');
 
 //Rutas unicamente para los administradores
 Route::group(['middleware' => ['admin']], function () {
+    //Rutas relacionadas con usuarios
     Route::get('home/admin/users', 'AdminController@usersList')->name('admin.users');
+    Route::delete('home/admin/users/{user}', 'AdminController@usersDestroy')->name('admin.users.destroy');
+
+    //Rutas relacionadas con posts
     Route::get('home/admin/posts', 'AdminController@postsList')->name('admin.posts');
+    Route::delete('home/admin/posts/{post}', 'AdminController@postsDestroy')->name('admin.posts.destroy');
+
+    //Rutas relacionadas con comentarios
     Route::get('home/admin/comments', 'AdminController@commentsList')->name('admin.comments');
+    Route::delete('home/admin/comments/{comment}', 'AdminController@commentsDestroy')->name('admin.comments.destroy');
+
+    //Rutas relacionadas con categorias
+    Route::get('home/admin/categories', 'AdminController@categoriesList')->name('admin.categories');
+
+
+    //Resource para las rutas del administrador
     Route::resource('home/admin', 'AdminController');
 });
 

@@ -14,4 +14,13 @@ class Categoria extends Model
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+
+    public function totalPosts(){
+        $sum = 0;
+        foreach ($this->posts as $item) {
+            $sum++;
+        }
+        return $sum;
+    }
 }

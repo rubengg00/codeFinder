@@ -85,8 +85,8 @@ CodeFinder
                             </div>
                         </div>
                         <br><br>
-                    <h5 class="text-center">En esta página podrás ver, editar, y eliminar a todos los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span> y
-                        <span class="text-warning font-italic">comentarios</span>.
+                    <h5 class="text-center">En esta página podrás tener un visionado generar de los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span>,
+                        <span class="text-warning font-italic">comentarios</span> y <span class="text-success font-italic">categorias</span> del portal.
                     </h5>
                 </div>
                 <div class="row">
@@ -106,6 +106,11 @@ CodeFinder
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.comments') }}">
                                         <i class="material-icons">comment</i> Comentarios
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.categories') }}">
+                                        <i class="material-icons">language</i> Categorias
                                     </a>
                                 </li>
                             </ul>
