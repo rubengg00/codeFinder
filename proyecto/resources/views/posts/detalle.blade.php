@@ -156,16 +156,16 @@
                         </ol>
                         <div class="carousel-inner my-2">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('img/php.png') }}" alt="First slide">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="First slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/node.png') }}" alt="Second slide">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/node.png') }}" alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/js.png') }}" alt="Third slide" height="250px">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/java.png') }}" alt="Forth slide" height="250px">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
