@@ -57,13 +57,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function messages()
-    {
-        return[
-            'name.required'=>'Nombre requerido'
-        ];
-    }
-
     /**
      * Create a new user instance after a valid registration.
      *

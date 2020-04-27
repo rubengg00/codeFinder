@@ -25,8 +25,6 @@ Route::resource('posts', 'PostController');
 Route::resource('users', 'UserController');
 
 
-
-
 //Rutas unicamente para los administradores
 Route::group(['middleware' => ['admin']], function () {
     //Rutas relacionadas con usuarios
