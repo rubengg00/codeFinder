@@ -25,23 +25,16 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
-                </li>
-                <li class="dropdown nav-item inline-block">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="profile-photo-small">
-                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown nav-item inline-block" id="lista">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
                         <a href="{{ route('admin.index') }}" class="dropdown-item">
                             Panel de Administrador
                         </a>
                         <hr>
                         @endrole
-                        <a href="{{ route('users.show',Auth::user()) }}" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -64,12 +57,14 @@
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     @if (Auth::check() && $post->user_id == Auth::id())
-                        <h3 id="encabezado" class="mx-auto font-weight-bold text-center">
-                            {{ $post->titulo }}
-                            <span class="float-right mr-2"><h5>Editar</h5></span>
-                        </h3>
+                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">
+                        {{ $post->titulo }}
+                        <span class="float-right mr-2">
+                            <h5>Editar</h5>
+                        </span>
+                    </h3>
                     @else
-                        <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>   
+                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
                     @endif
                     <p>
                         <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
@@ -84,7 +79,7 @@
                     <br>
                     <span class="ml-3">Lenguaje: </span>
                     <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
-                    
+
                     <p class="float-right mr-3">
                         Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
@@ -98,7 +93,7 @@
                     @include('comments.form')
                     <br>
                     {{-- Listar comentarios a través de list.blade.php --}}
-                    @include('comments.list', ['comments' => $post->comments])            
+                    @include('comments.list', ['comments' => $post->comments])
                 </div>
             </div>
         </div>

@@ -30,16 +30,9 @@ Mi Perfil
                     <a class="nav-link" href="#">Mi Perfil <span class="sr-only">(current)</span></a>
                 </li>
                 @endif
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
-                </li>
-                <li class="dropdown nav-item inline-block">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="profile-photo-small">
-                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown nav-item inline-block" id="lista">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
                         <a href="{{ route('admin.index') }}" class="dropdown-item">
                             Panel de Administrador
@@ -69,7 +62,8 @@ Mi Perfil
             <div id="card" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="row">
-                        <div class="col col-lg-3 float-left">
+                        @if ($user->totalPosts() == 0)
+                        <div class="col col-lg-3 col-sm-12 float-left">
                             <div id="perfil">
                                 <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
                                 <h3 class="mx-auto font-weight-bold text-center">{{ $user->name }}</h3>
@@ -82,7 +76,7 @@ Mi Perfil
                                 <div class="container mt-3">
                                     <form action="{{route('users.update',$user)}}" id="formPerfil" method="POST" enctype="multipart/form-data">
                                         @method('PUT')
-                                        @csrf       
+                                        @csrf
                                         <input type="hidden" name="id" value="{{$user->id}}">
                                         <p class="text-center">Editando Perfil</p>
                                         <div class="form-row">
@@ -97,9 +91,9 @@ Mi Perfil
                                                 <input type="text" class="form-control" name="name" value="{{$user->name}}" id="name" required>
                                             </div>
                                             @error('name')
-                                                <span class="invalid-feedback text-center" role="alert">
-                                                    <strong>No puedes dejar el nombre vacío.</strong>
-                                                </span>
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>No puedes dejar el nombre vacío.</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-row">
@@ -108,9 +102,9 @@ Mi Perfil
                                                 <input type="text" class="form-control" name="username" value="{{$user->username}}" id="username" required>
                                             </div>
                                             @error('username')
-                                                <span class="invalid-feedback text-center" role="alert">
-                                                    <strong>Nombre de usuario inválido </strong>
-                                                </span>
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>Nombre de usuario inválido </strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-row">
@@ -119,9 +113,78 @@ Mi Perfil
                                                 <input type="email" class="form-control" name="email" value="{{$user->email}}" id="email" required>
                                             </div>
                                             @error('email')
-                                                <span class="invalid-feedback text-center" role="alert">
-                                                    <strong>Correo inválido </strong>
-                                                </span>
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>Correo inválido </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-row text-center mt-3">
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                    <i class="fa fa-save"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                @endif
+                            </div>
+                            <br>
+                        </div>
+                        @else
+                        <div class="col col-lg-3 col-sm-12 float-left">
+                            <div id="perfil">
+                                <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
+                                <h3 class="mx-auto font-weight-bold text-center">{{ $user->name }}</h3>
+                                <h4 class="mx-auto font-weight-bold text-center"><small class="text-muted">{{ $user->username }}</small></h4>
+                                <p class="mx-auto text-center">Se unió el <em>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</em></p>
+                                @if (Auth::check() && $user->id == Auth::id())
+                                <div class="col text-center">
+                                    <a id="editPerfil" class="btn btn-dark btn-round text-center">Editar Perfl</a>
+                                </div>
+                                <div class="container mt-3">
+                                    <form action="{{route('users.update',$user)}}" id="formPerfil" method="POST" enctype="multipart/form-data">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$user->id}}">
+                                        <p class="text-center">Editando Perfil</p>
+                                        <div class="form-row">
+                                            <div class="col text-center">
+                                                <img src="{{asset($user->fotoPerfil)}}" width="100px" height="100px" class="rounded-circle mb-1">
+                                                <input type="file" class="form-control p-1" name="fotoPerfil" accept="image/*" id="fotoPerfil">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <label for="name" class="col-form-label">Nombre</label>
+                                                <input type="text" class="form-control" name="name" value="{{$user->name}}" id="name" required>
+                                            </div>
+                                            @error('name')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>No puedes dejar el nombre vacío.</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <label for="username" class="col-form-label">Nickname</label>
+                                                <input type="text" class="form-control" name="username" value="{{$user->username}}" id="username" required>
+                                            </div>
+                                            @error('username')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>Nombre de usuario inválido </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <label for="email" class="col-form-label">E-mail</label>
+                                                <input type="email" class="form-control" name="email" value="{{$user->email}}" id="email" required>
+                                            </div>
+                                            @error('email')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>Correo inválido </strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-row text-center mt-3">
@@ -141,9 +204,9 @@ Mi Perfil
                         <div class="col col-lg-9 mt-4">
                             <div>
                                 @if (Auth::check() && $user->id == Auth::id())
-                                    <h4 class="text-center">Tus posts ({{ $user->totalPosts() }})</h4>
+                                <h4 class="text-center">Tus posts ({{ $user->totalPosts() }})</h4>
                                 @else
-                                    <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
+                                <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
                                 @endif
                                 @foreach ($posts as $item)
                                 <div class="container">
@@ -182,6 +245,7 @@ Mi Perfil
                                 {{$posts->appends(Request::except('page'))->links()}}
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

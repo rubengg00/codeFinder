@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:500&display=swap" rel="stylesheet">
     <link rel="icon" href="{{asset('img/icon.png')}}" sizes="80x80">
     <link href="https://fonts.googleapis.com/css?family=Poppins:500&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="{{asset('sticker.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {{-- HighLigher --}}
     <link rel="stylesheet" href="{{ asset('highlight/styles/railscasts.css') }}">
@@ -38,7 +37,6 @@
     <script src="{{asset('material/assets/js/plugins/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('material/assets/js/material-kit.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('alertas/ohsnap.js') }}"></script>
     {{-- HighLighter Script --}}
     <script src="{{ asset('highlight/highlight.pack.js') }}"></script>
     {{-- Script Propio --}}

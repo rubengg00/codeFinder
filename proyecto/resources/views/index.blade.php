@@ -32,6 +32,9 @@
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a>
                     </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ route('register') }}">Registrarse </a>
+                    </li>
                 </ul>
             </div>
             </div>

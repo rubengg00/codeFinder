@@ -28,18 +28,13 @@ CodeFinder
                 <li class="nav-item active mx-2">
                     <a class="nav-link" href="#">Panel Admin <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
-                </li>
-                <li class="dropdown nav-item inline-block">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="profile-photo-small">
-                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown nav-item inline-block" id="lista">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
-                        <a href="#" class="dropdown-item">Panel de Administrador</a>
+                        <a href="{{ route('admin.index') }}" class="dropdown-item">
+                            Panel de Administrador
+                        </a>
                         <hr>
                         @endrole
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
@@ -68,23 +63,23 @@ CodeFinder
                     <h3 class="text-center">Bienvenidos al panel de administrador <span class="font-weight-bold font-italic">{{ Auth::user()->username }}</span></h3>
                     <br>
                     <div class="row  ">
-                            <div class="col-md-6 ml-auto mr-auto">
-                                <div class="d-flex flex-row border rounded">
-                                    <div class="p-0 w-25">
-                                        <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-thumbnail border-0" />
-                                    </div>
-                                    <div class="pl-3 pt-2 pr-2 pb-2 w-75 border-left">
-                                        <h4 class="text-primary">{{ Auth::user()->name }}</h4>
-                                        <h5 class="text-info">Desarrollador de Aplicaciones Web</h5>
-                                        <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
-                                            <a href="https://github.com/RubenGarciaGonzalez" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
-                                        </ul>
-                                        <p class="text-right m-0"><a href="{{ route('users.show', Auth::user()) }}" class="btn btn-primary"><i class="fa fa-user"></i> Ver Perfil</a></p>
-                                    </div>
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <div class="d-flex flex-row border rounded">
+                                <div class="p-0 w-25">
+                                    <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-thumbnail border-0" />
+                                </div>
+                                <div class="pl-3 pt-2 pr-2 pb-2 w-75 border-left">
+                                    <h4 class="text-primary">{{ Auth::user()->name }}</h4>
+                                    <h5 class="text-info">Desarrollador de Aplicaciones Web</h5>
+                                    <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
+                                        <a href="https://github.com/RubenGarciaGonzalez" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
+                                    </ul>
+                                    <p class="text-right m-0"><a href="{{ route('users.show', Auth::user()) }}" class="btn btn-primary"><i class="fa fa-user"></i> Ver Perfil</a></p>
                                 </div>
                             </div>
                         </div>
-                        <br><br>
+                    </div>
+                    <br><br>
                     <h5 class="text-center">En esta página podrás tener un visionado generar de los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span>,
                         <span class="text-warning font-italic">comentarios</span> y <span class="text-success font-italic">categorias</span> del portal.
                     </h5>

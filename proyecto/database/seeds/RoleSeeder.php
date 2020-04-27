@@ -13,7 +13,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
 
-        DB::table('categorias')->truncate(); 
+        DB::table('roles')->truncate(); 
 
         Role::create([
             'name'=>'admin'

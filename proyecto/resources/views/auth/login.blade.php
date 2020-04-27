@@ -21,7 +21,10 @@
       <div class="collapse navbar-collapse text-center">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active mx-2">
-                <a class="nav-link" href="#">Inicia Sesión <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Iniciar Sesión <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="{{ route('register') }}">Registrarse</span></a>
             </li>
         </ul>
     </div>

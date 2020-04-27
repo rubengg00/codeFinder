@@ -28,23 +28,16 @@ Creando Post
                 <li class="nav-item active mx-2">
                     <a class="nav-link" href="#">Creando Post <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
-                </li>
-                <li class="dropdown nav-item inline-block">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="profile-photo-small">
-                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="30px" height="45px" style="margin-top:5px">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown nav-item inline-block" id="lista">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
                         <a href="{{ route('admin.index') }}" class="dropdown-item">
                             Panel de Administrador
                         </a>
                         <hr>
                         @endrole
-                        <a href="{{ route('users.show',Auth::user()) }}" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
                         <a href="#" class="dropdown-item">
                             Posts Favoritos
                         </a>
@@ -69,44 +62,44 @@ Creando Post
                     <h2 class="mx-auto font-weight-bold text-center font-italic">Creación de Post</h2>
                     <br>
                     @if($errors->any())
-                        <div class="alert alert-danger rounded">
-                            <ul>
-                                @foreach($errors->all() as $miError)
-                                <li>{{$miError}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger rounded">
+                        <ul>
+                            @foreach($errors->all() as $miError)
+                            <li>{{$miError}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
-                        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
-                            <div class="form-group">
-                                <label for="title">Título</label>
-                                <input type="text" name="titulo" class="form-control" id="title" placeholder="Título..." value="{{ old('title') }}" maxlength="80">
-                            </div>
-                            <div class="form-group">
-                                <label for="categoria_id">Lenguaje</label>
-                                    <select name="categoria_id" class="form-control">
-                                        @foreach ($categorias as $cat)
-                                            <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
-                                        @endforeach
-                                    </select>
-                              </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion..." value="{{ old('descripcion') }}" rows="2" maxlength="180"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="contenido">Código</label>
-                                <textarea name="contenido" class="form-control" id="contenido" placeholder="Código..." value="{{ old('contenido') }}" rows="10">
-                                        
+                    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
+                        <div class="form-group">
+                            <label for="title">Título</label>
+                            <input type="text" name="titulo" class="form-control" id="title" placeholder="Título..." value="{{ old('title') }}" maxlength="80">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria_id">Lenguaje</label>
+                            <select name="categoria_id" class="form-control">
+                                @foreach ($categorias as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripcion</label>
+                            <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion..." value="{{ old('descripcion') }}" rows="2" maxlength="180"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contenido">Código</label>
+                            <textarea name="contenido" class="form-control" id="contenido" placeholder="Código..." value="{{ old('contenido') }}" rows="10">
+
                                 </textarea>
-                            </div>
-                            <div class="form-group pt-2 text-center">
-                                <input class="btn btn-info" type="submit" value="Crear">
-                                <a href="{{ route('home') }}" class="btn btn-dark">Volver</a>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="form-group pt-2 text-center">
+                            <input class="btn btn-info" type="submit" value="Crear">
+                            <a href="{{ route('home') }}" class="btn btn-dark">Volver</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

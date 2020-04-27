@@ -20,8 +20,11 @@
         </button>
       <div class="collapse navbar-collapse text-center">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión </a>
+            </li>
             <li class="nav-item active mx-2">
-                <a class="nav-link" href="{{route('register')}}">Registrarse <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Registrarse <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -93,14 +96,14 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <i class="material-icons"></i>
+                            <i class="material-icons">lock_outline</i>
                         </span>
                     </div>
                     <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-info">Crear</button>
-                    <a href="{{ route('login') }}" class="btn">Volver</a>
+                    <a href="{{ URL::previous() }}" class="btn">Volver</a>
                 </div>
               </div>
             </form>

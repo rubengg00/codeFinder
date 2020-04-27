@@ -25,16 +25,9 @@ Home
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
-                </li>
                 <li class="dropdown nav-item inline-block" id="lista">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-                        <div class="profile-photo-small">
-                            <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="img-fluid rounded" width="35px" height="45px" style="margin-top:5px">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
                         <a href="{{ route('admin.index') }}" class="dropdown-item">
                             Panel de Administrador
