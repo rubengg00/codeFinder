@@ -47,7 +47,7 @@
                     <input id="name" type="text" placeholder="Nombre..." class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
                     @error('name')
                         <span class="invalid-feedback text-center" role="alert">
-                            <strong>Nombre incorrecto.</strong>
+                            <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @enderror
                 </div>
@@ -60,7 +60,7 @@
                     <input id="username" type="text" placeholder="Nombre de usuario..." class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
                         @error('username')
                             <span class="invalid-feedback text-center" role="alert">
-                                <strong>Nombre de usuario no disponible.</strong>
+                                <strong>{{  $errors->first('username') }}</strong>
                             </span>
                         @enderror
                 </div>
@@ -73,7 +73,7 @@
                   <input id="email" type="email" placeholder="E-Mail..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                     @error('email')
                         <span class="invalid-feedback text-center" role="alert">
-                            <strong>Este correo esta vinculado a una cuenta ya.</strong>
+                            <strong>{{  $errors->first('email') }} </strong>
                         </span>
                     @enderror
                 </div>
@@ -86,14 +86,14 @@
                   <input id="password" type="password" placeholder="Contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                     @error('password')
                         <span class="invalid-feedback text-center" role="alert">
-                            <strong>Contraseñas no coincidentes</strong>
+                            <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <i class="material-icons">lock_outline</i>
+                            <i class="material-icons"></i>
                         </span>
                     </div>
                     <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
