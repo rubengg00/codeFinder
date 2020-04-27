@@ -32,13 +32,15 @@ class AdminController extends Controller
 
     // Métodos para los usuarios
 
-    public function usersList(){
+    public function usersList()
+    {
         $users = User::orderBy('name')->paginate(6);
 
         return view ('admin.users.list', compact('users'));
     }
 
-    public function usersDestroy(User $user){
+    public function usersDestroy(User $user)
+    {
         $user->delete();
         Alert::info('Borrado', 'Usuario borrado correctamente');
         return \Redirect::back();
@@ -46,13 +48,15 @@ class AdminController extends Controller
 
 
     //Métodos para los posts
-    public function postsList(){
+    public function postsList()
+    {
         $posts = Post::orderBy('created_at','desc')->paginate (6);
 
         return view ('admin.posts.list', compact('posts'));
     }
 
-    public function postsDestroy(Post $post){
+    public function postsDestroy(Post $post)
+    {
         $post->delete();
         Alert::info('Borrado', 'Post borrado correctamente');
         return \Redirect::back();
@@ -60,7 +64,8 @@ class AdminController extends Controller
     
 
     //Métodos para los comentarios
-    public function commentsList(){
+    public function commentsList()
+    {
         $comments = Comment::orderBy('created_at','desc')->paginate(6);
 
         return view ('admin.comments.list', compact('comments'));
@@ -80,6 +85,19 @@ class AdminController extends Controller
         $categorias = Categoria::orderBy('nombre')->paginate(6);
 
         return view('admin.categories.list', compact('categorias'));
+    }
+
+    public function categoriesEdit(Categoria $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+
+    public function categoriesDestroy(Categoria $category)
+    {
+        $category->delete();
+        Alert::info('Borrado', 'Categoría borrada correctamente');
+        return \Redirect::back();
     }
 
 

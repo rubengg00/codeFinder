@@ -43,6 +43,8 @@ Route::group(['middleware' => ['admin']], function () {
 
     //Rutas relacionadas con categorias
     Route::get('home/admin/categories', 'AdminController@categoriesList')->name('admin.categories');
+    Route::get('home/admin/categories/{category}', 'AdminController@categoriesEdit')->name('admin.categories.edit');
+    Route::delete('home/admin/categories/{category}', 'AdminController@categoriesDestroy')->name('admin.categories.destroy');
 
 
     //Resource para las rutas del administrador

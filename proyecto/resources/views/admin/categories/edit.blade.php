@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Admin | Categorias
+Admin | categorys
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -26,7 +26,7 @@ Admin | Categorias
                     <a class="nav-link" href="#">Buscar Código</a>
                 </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">categorys <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="#" style="pointer-events: none; cursor: default;">{{ Auth::user()->username }}</a>
@@ -66,51 +66,42 @@ Admin | Categorias
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <h2 class="text-center">
                         <span class="float-left small">
-                            <a href="{{ route('admin.index') }}">
+                            <a href="{{ route('admin.categories') }}">
                                 <i class="fa fa-caret-left text-dark"></i>
                             </a>
                         </span>
-                        Panel de Categorias
-
+                        Editando Categoría: <em>{{ $category->nombre }}</em>
                     </h2>
                     <br>
                     <br>
-                    <div class="responsive" style="overflow-x:auto;">
-                        <table id="listCategory" class="table table-hover text-center responsive ">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Lenguaje</th>
-                                    <th>Posts</th>
-                                    <th>Logo</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            <tbody>
-                                @foreach ($categorias as $item)
-                                <tr>
-                                    <td class="align-middle">{{ $item->nombre }}</td>
-                                    <td class="align-middle">{{ $item->totalPosts() }}</td>
-                                    <td class="align-middle"><img src="{{ asset($item->logo) }}" alt="{{ $item->nombre }}" width="80px" height="75px"></td>
-                                    <td class="align-middle" style="white-space: nowrap">
-                                        <form name="borrar" method='post' action='{{ route('admin.categories.destroy',$item) }}'>
-                                            @csrf
-                                            @method('DELETE')
-                                            <a id="editCat" href="{{ route('admin.categories.edit', $item) }}" class="btn btn-info text-center">Editar</a>
-                                            <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar categoría?')">
-                                                Borrar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{$categorias->appends(Request::except('page'))->links()}}
-                        <br>
-                        <div class="col text-center">
-                            <a href="#" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
-                                <i class="material-icons">add</i>
-                            </a>
-                        </div>
+                    <div class="container mt-3">
+                        <form action="#" method="POST" enctype="multipart/form-data">
+                            @method('PUT')
+                            @csrf
+                            <input type="hidden" name="id" value="{{$category->id}}">
+                            <div class="container">
+                                <div class="form-row">
+                                    <div class="col my-2">
+                                        <img src="{{asset($category->logo)}}" id="imagenCat" width="150px" height="150px" class="rounded-circle center-block">
+                                        <br>
+                                        <label for="logo" class="col-form-label">Logo</label>
+                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="logo">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="nom" class="col-form-label">Nombre</label>
+                                        <input type="text" class="form-control" name="nombre" value={{$category->nombre}} id="nom" required>
+                                    </div>
+                                </div>
+                                <div class="form-row text-center mt-3">
+                                    <div class="col">
+                                        <input type="submit" value="Modificar" class="btn btn-info mr-2">
+                                        <a href="{{ route('admin.categories') }}" class="btn btn-dark ml-2">Volver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
