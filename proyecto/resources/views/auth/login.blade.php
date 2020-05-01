@@ -48,11 +48,11 @@
                     </span>
                   </div>
                   <input id="email" name="email" type="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="E-Mail..." autocomplete="email" required>
-                  @error('email')
+                  {{-- @error('email')
                   <span class="invalid-feedback text-center" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong class="text-center">{{ $message }}</strong>
                   </span>
-                @enderror
+                @enderror --}}
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -63,13 +63,13 @@
                   <input id="password" name="password" type="password" class="form-control  @error('password') is-invalid @enderror" placeholder="Contraseña..." required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong class="text-center">{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="">
+                        <input class="form-check-input" type="checkbox" name="remember">
                         Recordar usuario
                         <span class="form-check-sign">
                             <span class="check"></span>

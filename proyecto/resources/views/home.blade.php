@@ -54,7 +54,7 @@ Home
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            @if($texto=Session::get('correcto'))
+            {{-- @if($texto=Session::get('correcto'))
                 <div class="card border-0 shadow mb-4">
                     <div class="card-body">
                         <p class="alert alert-success my-3 rounded">{{$texto}}</p>
@@ -68,7 +68,7 @@ Home
                         <p class="alert alert-danger my-3 rounded">{{$texto}}</p>
                     </div>
                 </div>
-            @endif
+            @endif --}}
             
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
