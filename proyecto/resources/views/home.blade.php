@@ -163,7 +163,7 @@ Home
             <div id="divExtra" class="card border-0 shadow mb-4 text-center">
                 <div class="card-body">
                     <div class="small mb-2 font-weight-bold">Sigue los proyectos nuevos del creador del sitio!</div>
-                    <a href="https://github.com/RubenGarciaGonzalez" class="btn btn-sm btn-block">
+                    <a href="https://github.com/RubenGarciaGonzalez" target="_blank" class="btn btn-sm btn-block">
                         <div class="text-center">
                             <span class="text-primary">
                                 <i class="fa fa-github"></i> Github

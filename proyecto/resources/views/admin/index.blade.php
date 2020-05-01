@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-CodeFinder
+Admin Panel
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -72,7 +72,7 @@ CodeFinder
                                     <h4 class="text-primary">{{ Auth::user()->name }}</h4>
                                     <h5 class="text-info">Desarrollador de Aplicaciones Web</h5>
                                     <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
-                                        <a href="https://github.com/RubenGarciaGonzalez" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
+                                        <a href="https://github.com/RubenGarciaGonzalez" target="_blank" class="text-dark"><i class="fa fa-github-square"></i> Github</a>
                                     </ul>
                                     <p class="text-right m-0"><a href="{{ route('users.show', Auth::user()) }}" class="btn btn-primary"><i class="fa fa-user"></i> Ver Perfil</a></p>
                                 </div>
@@ -80,7 +80,7 @@ CodeFinder
                         </div>
                     </div>
                     <br><br>
-                    <h5 class="text-center">En esta página podrás tener un visionado generar de los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span>,
+                    <h5 class="text-center">En esta página podrás tener un visionado general de los <span class="text-info font-italic">usuarios</span>, <span class="text-danger font-italic">posts</span>,
                         <span class="text-warning font-italic">comentarios</span> y <span class="text-success font-italic">categorias</span> del portal.
                     </h5>
                 </div>

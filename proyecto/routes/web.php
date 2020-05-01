@@ -50,6 +50,7 @@ Route::group(['middleware' => ['admin']], function () {
 });
 
 
+
 //Ruta para guardar/eliminar los comentarios
 Route::post('/posts/{post}/comments', 'CommentController@create')->name('comments.create');
 Route::delete('/posts/post/{comment}', 'CommentController@destroy')->name('comments.destroy');
