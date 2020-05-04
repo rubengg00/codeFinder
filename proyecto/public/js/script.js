@@ -16,3 +16,13 @@
   $("#editPerfil").click(function(){
     runEffect();
   });
+
+
+// Toggle para la creación de categorias:
+function runEffect(){
+  $("#formCategoria").toggle('fade');
+}
+
+$("#create").click(function(){
+  runEffect();
+});

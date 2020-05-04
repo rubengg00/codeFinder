@@ -102,9 +102,34 @@ Admin | Categorias
                         {{$categorias->appends(Request::except('page'))->links()}}
                         <br>
                         <div class="col text-center">
-                            <a href="#" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
+                            <a  id="create" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
                                 <i class="material-icons">add</i>
                             </a>
+                        </div>
+                        <div id="formCategoria" class="container">
+                            <form action="{{route('admin.categories.store')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <h6 class="text-center">Creación de categoría nueva</h6>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="logo">Logo</label>
+                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="fotoPerfil">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="nombre" class="col-form-label">Nombre</label>
+                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre..." id="name" required>
+                                    </div>
+                                </div>
+                                <div class="form-row text-center mt-3">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                            </form>
                         </div>
                     </div>
                 </div>
