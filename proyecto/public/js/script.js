@@ -9,12 +9,12 @@
 
 // Toggle del formulario de edición de perfil
 
-  function runEffect(){
+  function runEffect1(){
     $("#formPerfil").toggle('drop');
   }
 
   $("#editPerfil").click(function(){
-    runEffect();
+    runEffect1();
   });
 
 

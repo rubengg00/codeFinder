@@ -39,5 +39,13 @@ class Post extends Model
         }
         return $sum;
     }
+
+
+    public function scopeTitulo($query, $titulo)
+    {
+        if ($titulo) {
+            return $query->orWhere('titulo', 'LIKE', "%$titulo%");
+        }
+    }
     
 }

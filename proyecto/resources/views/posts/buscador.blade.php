@@ -22,8 +22,12 @@ Home | Buscador
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ route('home') }}">Inicio </span></a>
                 </li>
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Buscar Código <span class="sr-only">(current)</span></a>
+                <li class="nav-item active mx-2 dropdown nav-item inline-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="#" class="dropdown-item">Título</a>
+                        <a href="#" class="dropdown-item">Categoría</a>
+                    </div>
                 </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
@@ -55,17 +59,60 @@ Home | Buscador
     <div class="row">
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
-                <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Búsqueda de código..." name="titulo" id="titulo">
-                        <div class="input-group-append">
-                            <span class="input-group-text">Búsqueda</span>
-                        </div>
+                <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
+                    <h3 id="encabezado" class="text-center">Búsqueda por título</h3>
+                    <br>
+                    <div class="container">
+                        <form class="form ml-auto" method="GET" action="{{ route('posts.buscador') }}">
+                            <div class="input-group mb-3">
+                                @if ($request)
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo">  
+                                @else
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo">
+                                @endif
+                                <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                    <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <br>
-                <div id="resultados" class="bg-light border">
-
+                <div id="resultados">
+                    @foreach ($posts as $item)
+                    <div class="container">
+                        <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                            <div class="col">
+                                <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
+                                <h5>
+                                    <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
+                                    <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                </h5>
+                                <p class="font-italic">{{ $item->descripcion }}</p>
+                                <br>
+                                <p>
+                                    <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
+                                    <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
+                                    <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                </p>
+                                @if (Auth::check() && $item->user_id == Auth::id())
+                                <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                    <div class="float-right">
+                                        <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </div>
+                                </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    {{$posts->appends(Request::except('page'))->links()}}
                 </div>
             </div>
 
@@ -181,35 +228,5 @@ Home | Buscador
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-
-        fetch_customer_data();
-
-        function fetch_customer_data(query = '') {
-            $.ajax({
-                url: "{{ route('posts.buscador') }}"
-                , method: 'GET'
-                , data: {
-                    query: query
-                }
-                , dataType: 'json'
-                , success: function(data) {
-                    $('resultado').html(data.table_data);
-                }
-            })
-        }
-
-        $(document).on('keyup', '#titulo', function() {
-            var query = $(this).val();
-            fetch_customer_data(query);
-        });
-    });
-
-</script>
-
-
 
 @endsection

@@ -20,8 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Ruta para buscador
+Route::get('/home/buscador', 'SearchController@index')->name('posts.buscador');
 
 
+// Rutas para usuarios y posts
 Route::resource('posts', 'PostController');
 
 Route::resource('users', 'UserController');
@@ -52,9 +54,6 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('home/admin', 'AdminController');
 });
 
-
 //Ruta para guardar/eliminar los comentarios
 Route::post('/posts/{post}/comments', 'CommentController@create')->name('comments.create');
 Route::delete('/posts/post/{comment}', 'CommentController@destroy')->name('comments.destroy');
-
-
