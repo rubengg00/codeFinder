@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Ruta para buscador
+
 
 Route::resource('posts', 'PostController');
 
@@ -46,13 +48,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::put('home/admin/categories/{category}', 'AdminController@categoriesUpdate')->name('admin.categories.update');
     Route::delete('home/admin/categories/{category}', 'AdminController@categoriesDestroy')->name('admin.categories.destroy');
 
-
     //Resource para las rutas del administrador
     Route::resource('home/admin', 'AdminController');
 });
 
 
-
 //Ruta para guardar/eliminar los comentarios
 Route::post('/posts/{post}/comments', 'CommentController@create')->name('comments.create');
 Route::delete('/posts/post/{comment}', 'CommentController@destroy')->name('comments.destroy');
+
+

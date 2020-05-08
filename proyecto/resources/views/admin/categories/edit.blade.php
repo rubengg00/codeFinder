@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Admin | categorys
+Editando Categoría
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
