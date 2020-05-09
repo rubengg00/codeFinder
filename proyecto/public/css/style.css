@@ -222,10 +222,15 @@
     margin-right: auto;
 }
 
-/* Alineación de elementos en el dropdown del NavBar */
+/* Estilos para las diferentes categorías */
+#categoria{
+    text-align: center;
+    transition: ease-in-out 0.3s;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 50px;
+}
 
-
-
-
-
-
+#categoria:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}

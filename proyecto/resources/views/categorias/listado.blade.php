@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Home
+Home | Buscador
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -19,16 +19,16 @@ Home
         </button>
         <div class="collapse navbar-collapse text-center">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{{ route('home') }}">Inicio </span></a>
                 </li>
-                <li class="nav-item mx-2 dropdown nav-item inline-block">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu dropdown-menu-center">
-                            <a href="{{ route('posts.buscador') }}" class="dropdown-item" >Título</a>
-                            <a href="{{ route('categorias.listado') }}" class="dropdown-item" >Categoría</a>
-                        </div>
-                    </li>
+                <li class="nav-item active mx-2 dropdown nav-item inline-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="#" class="dropdown-item">Categoría</a>
+                    </div>
+                </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
@@ -58,64 +58,40 @@ Home
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            {{-- @if($texto=Session::get('correcto'))
-                <div class="card border-0 shadow mb-4">
-                    <div class="card-body">
-                        <p class="alert alert-success my-3 rounded">{{$texto}}</p>
-                    </div>
-                </div>
-            @endif
-
-            @if($texto=Session::get('eliminacion'))
-                <div class="card border-0 shadow mb-4">
-                    <div class="card-body">
-                        <p class="alert alert-danger my-3 rounded">{{$texto}}</p>
-                    </div>
-                </div>
-            @endif --}}
-            
             <div id="divPosts" class="card border-0 shadow mb-4">
-                <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">Últimos posts</h3>
-                    @foreach ($posts as $item)
-                        <div class="container">
-                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
-                                <div class="col">
-                                    <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
-                                    <h5>
-                                        <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
-                                        <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
-                                    </h5>
-                                    <p class="font-italic">{{ $item->descripcion }}</p>
-                                    <br>
-                                    <p>
-                                        <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                        <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
-                                        <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
-                                    </p>
-                                    @if (Auth::check() && $item->user_id == Auth::id())
-                                        <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                            <div class="float-right">
-                                                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
-                                                    <i class="material-icons">delete</i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    @endif
-                                </div>
+                <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
+                    <h3 id="encabezado" class="text-center">Búsqueda por categorías</h3>
+                    <br>
+                    <div class="container">
+                        <form class="form ml-auto" method="GET" action="{{ route('posts.buscador') }}">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo">
+                                <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                    <i class="material-icons">search</i>
+                                </button>
                             </div>
-                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="categorías">
+                    <div class="container text-center">
+                    <div class="row">
+                    @foreach ($categorias as $cat)
+                            <div class="col-md-6 mb-5  animated fadeIn">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Posts: {{ $cat->totalPosts() }}">
+                              <div class="cate" id="categoria">
+                                <img src="{{ asset($cat->logo) }}" alt="" width="100px" height="100px">
+                                <h4 class="info-title">{{ $cat->nombre }}</h4>
+                              </div>
+                            </a>
+                            </div>
                     @endforeach
-                    {{$posts->appends(Request::except('page'))->links()}}
+                        </div>
+                    </div>
+                    {{$categorias->appends(Request::except('page'))->links()}}
                 </div>
             </div>
 
-            {{-- <div class="native-standard"></div> --}}
 
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
@@ -128,11 +104,6 @@ Home
                 </div>
             </div>
 
-            {{-- <div class="card border-0 shadow mb-4">
-                <div class="card-body">
-                
-                </div>
-            </div> --}}
         </div>
 
         <div class="col-lg-4">
@@ -140,7 +111,7 @@ Home
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
+                        <img src="{{Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
@@ -149,7 +120,7 @@ Home
                             <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
                                 <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">
-                                    Favoritos 
+                                    Favoritos
                                 </a>
                             </div>
                             {{-- Para pantallas pequeñas --}}
@@ -184,35 +155,35 @@ Home
                     </div>
                     <br>
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:100%; height: 300px;">
-                            <ol class="carousel-indicators">
-                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                            </ol>
-                            <div class="carousel-inner my-2">
-                              <div class="carousel-item active">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        </ol>
+                        <div class="carousel-inner my-2">
+                            <div class="carousel-item active">
                                 <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="First slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/node.png') }}" alt="Second slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
-                              </div>
-                              <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
-                                </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Anterior</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Siguiente</span>
-                            </a>
-                          </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/node.png') }}" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -221,15 +192,17 @@ Home
 <br><br>
 <div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>
 </div>
+
 @endsection

@@ -19,8 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Ruta para buscador
+// Ruta para buscador por titulo
 Route::get('/home/buscador', 'SearchController@index')->name('posts.buscador');
+
+// Rutas para buscador por categorias
+Route::get('/home/categorias', 'SearchController@listCategorias')->name('categorias.listado');
+
+
 
 
 // Rutas para usuarios y posts
