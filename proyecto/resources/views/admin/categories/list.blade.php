@@ -22,12 +22,17 @@ Admin | Categorias
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Buscar Código</a>
-                </li>
                 <li class="nav-item active mx-2">
-                    <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
-                </li>
+                        <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
+                    </li>
+                <li class="nav-item mx-2 dropdown nav-item inline-block">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu dropdown-menu-center">
+                            <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                            <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
+                        </div>
+                    </li>
+                
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">

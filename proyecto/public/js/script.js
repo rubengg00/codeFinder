@@ -28,4 +28,9 @@ $("#create").click(function(){
 });
 
 
+$(document).ready(function(){
+  $('.pagination').addClass('pagination justify-content-center');
+})
+
+
 

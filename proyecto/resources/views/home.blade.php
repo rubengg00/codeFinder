@@ -28,7 +28,7 @@ Home
                             <a href="{{ route('posts.buscador') }}" class="dropdown-item" >Título</a>
                             <a href="{{ route('categorias.listado') }}" class="dropdown-item" >Categoría</a>
                         </div>
-                    </li>
+                </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
@@ -84,7 +84,7 @@ Home
                                     <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
                                     <h5>
                                         <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
-                                        <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                        <span class="float-right"><a href="{{ route('categorias.posts', $item->categoria) }}" class="text-info">{{ $item->categoria->nombre }}</a></span>
                                     </h5>
                                     <p class="font-italic">{{ $item->descripcion }}</p>
                                     <br>

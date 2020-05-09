@@ -26,7 +26,7 @@ Home | Buscador
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
                     <div class="dropdown-menu dropdown-menu-center">
                         <a href="#" class="dropdown-item">Título</a>
-                        <a href="#" class="dropdown-item">Categoría</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
                     </div>
                 </li>
                 <li class="dropdown nav-item inline-block" id="lista">

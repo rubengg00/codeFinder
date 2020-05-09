@@ -63,9 +63,13 @@ Home | Buscador
                     <h3 id="encabezado" class="text-center">Búsqueda por categorías</h3>
                     <br>
                     <div class="container">
-                        <form class="form ml-auto" method="GET" action="{{ route('posts.buscador') }}">
+                        <form class="form ml-auto" method="GET" action="{{ route('categorias.listado') }}">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo">
+                                @if ($request)
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->nombre }}" name="nombre">  
+                                @else
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="nombre">
+                                @endif
                                 <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
                                 </button>
@@ -76,19 +80,21 @@ Home | Buscador
                 <div id="categorías">
                     <div class="container text-center">
                     <div class="row">
-                    @foreach ($categorias as $cat)
+                    @foreach ($categorias as $category)
                             <div class="col-md-6 mb-5  animated fadeIn">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Posts: {{ $cat->totalPosts() }}">
+                            <a href="{{ route('categorias.posts', $category) }}" data-toggle="tooltip" data-placement="top" title="Posts: {{ $category->totalPosts() }}">
                               <div class="cate" id="categoria">
-                                <img src="{{ asset($cat->logo) }}" alt="" width="100px" height="100px">
-                                <h4 class="info-title">{{ $cat->nombre }}</h4>
+                                <img src="{{ asset($category->logo) }}" alt="" width="100px" height="100px">
+                                <h4 class="info-title">{{ $category->nombre }}</h4>
                               </div>
                             </a>
                             </div>
                     @endforeach
                         </div>
                     </div>
-                    {{$categorias->appends(Request::except('page'))->links()}}
+                    <div class="container text-center">
+                        {{$categorias->appends(Request::except('page'))->links()}}
+                    </div>
                 </div>
             </div>
 

@@ -23,4 +23,20 @@ class Categoria extends Model
         }
         return $sum;
     }
+
+
+    public function scopeNombre($query, $nombre)
+    {
+        if ($nombre) {
+            return $query->orWhere('nombre', 'LIKE', "%$nombre%");
+        }
+    }
+
+
+    public function scopeTitulo($query, $titulo)
+    {
+        if ($titulo) {
+            return $query->orWhere('titulo', 'LIKE', "%$titulo%");
+        }
+    }
 }

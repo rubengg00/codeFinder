@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-{{ $post->titulo }}
+Posts de {{ $category->nombre }}
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse text-center">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ route('home') }}">Inicio</a>
+                    <a class="nav-link" href="{{ route('home') }}">Inicio </span></a>
                 </li>
                 <li class="nav-item mx-2 dropdown nav-item inline-block">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
@@ -29,6 +29,7 @@
                             <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
                         </div>
                     </li>
+                </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
@@ -59,47 +60,79 @@
     <div class="row">
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
-                <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    @if (Auth::check() && $post->user_id == Auth::id())
-                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">
-                        {{ $post->titulo }}
-                        <span class="float-right mr-2">
-                            <h5>Editar</h5>
-                        </span>
-                    </h3>
-                    @else
-                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
-                    @endif
-                    <p>
-                        <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
-                        <span class="float-right">
-                            <i class="fa fa-eye"> {{ $post->visitas }}</i>
-                        </span>
-                    </p>
-                    <hr>
-                    <p>{{ $post->descripcion }}</p>
+                <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
+                    <h4 id="encabezado" class="text-center">{{ $category->nombre }}</h4>
+                    <h3 id="encabezado" class="text-center">Búsqueda por título</h3>
                     <br>
-                    <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
-                    <br>
-                    <span class="ml-3">Lenguaje: </span>
-                    <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
-
-                    <p class="float-right mr-3">
-                        Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
-                    </p>
+                    <div class="container">
+                        <form class="form ml-auto" method="GET" action="{{ route('categorias.posts', $category) }}">
+                            <div class="input-group mb-3">
+                                @if ($request)
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo">  
+                                @else
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo">
+                                @endif
+                                <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                    <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="resultados">
+                        @forelse ($posts as $item)
+                        <div class="container">
+                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                                <div class="col">
+                                    <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
+                                    <h5>
+                                        <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
+                                        <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                    </h5>
+                                    <p class="font-italic">{{ $item->descripcion }}</p>
+                                    <br>
+                                    <p>
+                                        <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
+                                        <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
+                                        <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                    </p>
+                                    @if (Auth::check() && $item->user_id == Auth::id())
+                                    <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                        <div class="float-right">
+                                            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                            <h3 class="text-center mb-5">No hay posts de {{ $category->nombre }}</h3>
+                            <br><br>
+                        @endforelse
+                    {{$posts->appends(Request::except('page'))->links()}}
                 </div>
             </div>
+
+
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h5 class="m-0">{{ $post->totalComments() }} comentarios en <b>"{{ $post->titulo }}" </b> </h5>
+                    <h5 class="m-0">Más Cosas</h5>
                     <hr>
-                    {{-- Formulario para crear comentarios --}}
-                    @include('comments.form')
-                    <br>
-                    {{-- Listar comentarios a través de list.blade.php --}}
-                    @include('comments.list', ['comments' => $post->comments])
+                    <ul class="mb-0">
+                        <li>Aquí irán más cosas</li>
+                        <li>Aunque todavía no esté hecho</li>
+                    </ul>
                 </div>
             </div>
+
         </div>
 
         <div class="col-lg-4">
@@ -107,7 +140,7 @@
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="rounded-circle" width="100px" height="100px" />
+                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
@@ -115,12 +148,16 @@
                         <div class="text-center">
                             <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">Mis Posts</a>
+                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">
+                                    Favoritos
+                                </a>
                             </div>
                             {{-- Para pantallas pequeñas --}}
                             <div class="input-group text-center d-block d-sm-block d-md-none" style="margin-left: 10px;">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">Mis Posts</a>
+                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">
+                                    Favoritos
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -130,7 +167,7 @@
             <div id="divExtra" class="card border-0 shadow mb-4 text-center">
                 <div class="card-body">
                     <div class="small mb-2 font-weight-bold">Sigue los proyectos nuevos del creador del sitio!</div>
-                    <a href="https://github.com/RubenGarciaGonzalez" class="btn btn-sm btn-block">
+                    <a href="https://github.com/RubenGarciaGonzalez" target="_blank" class="btn btn-sm btn-block">
                         <div class="text-center">
                             <span class="text-primary">
                                 <i class="fa fa-github"></i> Github
@@ -181,7 +218,8 @@
         </div>
     </div>
 </div>
-<div id="footer1" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
+<br><br>
+<div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
         Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.

@@ -23,11 +23,27 @@ class SearchController extends Controller
 
     // Métodos para categorias
 
-    public function listCategorias()
+    public function listCategorias(Request $request)
     {
-        $categorias = Categoria::orderBy('nombre')->paginate(6);
+        $nombre = $request->get('nombre');
 
-        return view('categorias.listado', compact('categorias'));
+        $categorias = Categoria::orderBy('nombre')
+        ->nombre($nombre)
+        ->paginate(6);
+
+        return view('categorias.listado', compact('categorias', 'request'));
+    }
+
+
+    public function postCategorias(Categoria $category, Request $request)
+    {
+        $titulo = $request->get('titulo');
+        
+        $posts = $category->posts()
+        ->titulo($titulo)
+        ->paginate(3);
+
+        return view ('categorias.posts', compact('category', 'posts', 'request'));
     }
 
 
