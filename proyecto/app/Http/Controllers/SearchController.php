@@ -40,7 +40,7 @@ class SearchController extends Controller
         $titulo = $request->get('titulo');
         
         $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(2);
-        dd($posts);
+        
  
 
         return view ('categorias.posts', compact('categoria', 'posts', 'request'));
