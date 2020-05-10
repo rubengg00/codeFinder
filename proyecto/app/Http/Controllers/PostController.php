@@ -91,7 +91,7 @@ class PostController extends Controller
         $datos = $request->validated();
 
         $post->titulo = ucwords($datos['titulo']);
-        $post->descripcion = ucwords($datos['descripcion']);
+        $post->descripcion = $datos['descripcion'];
         $post->contenido = $datos['contenido'];
         $post->user_id=$datos['user_id'];
 
