@@ -33,10 +33,6 @@ class Categoria extends Model
     }
 
 
-    public function scopeTitulo($query, $titulo)
-    {
-        if ($titulo) {
-            return $query->orWhere('titulo', 'LIKE', "%$titulo%");
-        }
-    }
+    
+    
 }

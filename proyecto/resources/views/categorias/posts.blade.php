@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-Posts de {{ $category->nombre }}
+Posts de {{ $categoria->nombre }}
 @endsection
 @section('contenido')
 <nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top" role="navigation-demo">
@@ -61,11 +61,11 @@ Posts de {{ $category->nombre }}
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
-                    <h4 id="encabezado" class="text-center">{{ $category->nombre }}</h4>
+                    <h4 id="encabezado" class="text-center">{{ $categoria->nombre }}</h4>
                     <h3 id="encabezado" class="text-center">Búsqueda por título</h3>
                     <br>
                     <div class="container">
-                        <form class="form ml-auto" method="GET" action="{{ route('categorias.posts', $category) }}">
+                        <form class="form ml-auto" method="GET" action="{{ route('categorias.posts', $categoria) }}">
                             <div class="input-group mb-3">
                                 @if ($request)
                                     <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo">  
@@ -114,7 +114,7 @@ Posts de {{ $category->nombre }}
                             </div>
                         </div>
                         @empty
-                            <h3 class="text-center mb-5">No hay posts de {{ $category->nombre }}</h3>
+                            <h3 class="text-center mb-5">No hay posts de {{ $categoria->nombre }}</h3>
                             <br><br>
                         @endforelse
                     {{$posts->appends(Request::except('page'))->links()}}

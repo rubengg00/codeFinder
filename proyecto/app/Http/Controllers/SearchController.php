@@ -35,15 +35,17 @@ class SearchController extends Controller
     }
 
 
-    public function postCategorias(Categoria $category, Request $request)
+    public function postCategorias(Categoria $categoria, Request $request)
     {
         $titulo = $request->get('titulo');
         
-        $posts = $category->posts()
-        ->titulo($titulo)
-        ->paginate(3);
+        $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(2);
+        dd($posts);
+ 
 
-        return view ('categorias.posts', compact('category', 'posts', 'request'));
+        return view ('categorias.posts', compact('categoria', 'posts', 'request'));
+
+
     }
 
 

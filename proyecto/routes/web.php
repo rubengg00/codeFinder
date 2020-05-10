@@ -24,8 +24,7 @@ Route::get('/home/buscador', 'SearchController@index')->name('posts.buscador');
 
 // Rutas para buscador por categorias
 Route::get('/home/categorias', 'SearchController@listCategorias')->name('categorias.listado');
-Route::get('/home/categorias/{category}', 'SearchController@postCategorias')->name('categorias.posts');
-
+Route::get('/home/categorias/{categoria}', 'SearchController@postCategorias')->name('categorias.posts');
 
 
 // Rutas para usuarios y posts
