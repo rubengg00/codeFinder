@@ -31,8 +31,4 @@ class Categoria extends Model
             return $query->orWhere('nombre', 'LIKE', "%$nombre%");
         }
     }
-
-
-    
-    
 }

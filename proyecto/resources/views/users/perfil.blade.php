@@ -219,7 +219,7 @@ Mi Perfil
                                             <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
                                             <h5>
                                                 <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
-                                                <span class="float-right"><a href="#" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                                <span class="float-right"><a href="{{ route('categorias.posts', $item->categoria) }}" class="text-info">{{ $item->categoria->nombre }}</a></span>
                                             </h5>
                                             <p class="font-italic">{{ $item->descripcion }}</p>
                                             <br>

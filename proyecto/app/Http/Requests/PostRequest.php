@@ -23,13 +23,23 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'titulo'=>['required', 'unique:posts', 'max:100'],
-            'descripcion'=>['required','max:200'],
-            'contenido'=>['required'],
-            'user_id'=>['required'],
-            'categoria_id'=>['required']
-        ];
+        if ($this->method() == "PUT") {
+            return [ 
+                'titulo'=>['required', 'unique:posts,titulo,'.$this->id, 'max:100'],
+                'descripcion'=>['required','max:200'],
+                'contenido'=>['required'],
+                'user_id'=>['required']
+            ];
+        }else{
+            return [
+                'titulo'=>['required', 'unique:posts', 'max:100'],
+                'descripcion'=>['required','max:200'],
+                'contenido'=>['required'],
+                'user_id'=>['required'],
+                'categoria_id'=>['required']
+            ];
+        }
+       
     }
 
     public function messages(){

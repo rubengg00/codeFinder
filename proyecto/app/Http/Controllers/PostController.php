@@ -86,9 +86,19 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $datos = $request->validated();
+
+        $post->titulo = ucwords($datos['titulo']);
+        $post->descripcion = ucwords($datos['descripcion']);
+        $post->contenido = $datos['contenido'];
+        $post->user_id=$datos['user_id'];
+
+        $post->update();
+
+        Alert::success('Post modificado', 'La publicación ha sido modificada correctamente');
+        return \Redirect::back();
     }
 
     /**

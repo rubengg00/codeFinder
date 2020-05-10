@@ -39,7 +39,7 @@ class SearchController extends Controller
     {
         $titulo = $request->get('titulo');
         
-        $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(2);
+        $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(3);
         
  
 

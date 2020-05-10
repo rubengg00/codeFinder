@@ -33,4 +33,17 @@ $(document).ready(function(){
 })
 
 
+// Toggle para la edicion de post
+function runEffect2(){
+  $("#transicion").toggle('fade');
+  runEffect3();
+}
+
+function runEffect3(){
+  $("#editPost").toggle('fade');
+}
+
+$("#editar").click(function(){
+  runEffect2();
+});
 

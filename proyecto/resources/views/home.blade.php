@@ -93,7 +93,7 @@ Home
                                         <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                     </p>
-                                    @if (Auth::check() && $item->user_id == Auth::id())
+                                    {{-- @if (Auth::check() && $item->user_id == Auth::id())
                                         <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
                                             @csrf
                                             @method('DELETE')
@@ -106,7 +106,7 @@ Home
                                                 </button>
                                             </div>
                                         </form>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>

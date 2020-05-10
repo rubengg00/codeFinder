@@ -23,12 +23,12 @@
                     <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                 </li>
                 <li class="nav-item mx-2 dropdown nav-item inline-block">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu dropdown-menu-center">
-                            <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
-                            <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
-                        </div>
-                    </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
+                    </div>
+                </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
@@ -61,34 +61,87 @@
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     @if (Auth::check() && $post->user_id == Auth::id())
-                    <h3 id="encabezado" class="mx-auto font-weight-bold text-center">
-                        {{ $post->titulo }}
-                        <span class="float-right mr-2">
-                            <h5>Editar</h5>
-                        </span>
-                    </h3>
+                    <div>
+                        <form name="borrar" method='post' action='{{route('posts.destroy', $post)}}'>
+                            @csrf
+                            @method('DELETE')
+                            <span class="float-left ml-2" id="borrar">
+                                <button type='submit' class="btn btn-outline-danger btn-fab btn-fab-mini btn-round" onclick="return confirm('¿Borrar post?')">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </span>
+                            <h3 id="encabezadoPost" class="mx-auto font-weight-bold text-center">
+                                {{ $post->titulo }}
+                                <span class="float-right mr-2" id="editar">
+                                    <a href="#" class="btn btn-outline-dark btn-fab btn-fab-mini btn-round">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </span>
+                            </h3>
+                        </form>
+                    </div>
                     @else
                     <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
                     @endif
-                    <p>
-                        <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
-                        <span class="float-right">
-                            <i class="fa fa-eye"> {{ $post->visitas }}</i>
-                        </span>
-                    </p>
+                    <div class="d-block d-sm-block d-md-none">
+                        <br>
+                        <br>
+                        <p>
+                            <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
+                            <span class="float-right">
+                                <i class="fa fa-eye"> {{ $post->visitas }}</i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="d-none d-sm-none d-md-block">
+                        <p>
+                            <span class="font-italic">Publicado el {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</span>
+                            <span class="float-right">
+                                <i class="fa fa-eye"> {{ $post->visitas }}</i>
+                            </span>
+                        </p>
+                    </div>
                     <hr>
-                    <p>{{ $post->descripcion }}</p>
-                    <br>
-                    <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
-                    <br>
-                    <span class="ml-3">Lenguaje: </span>
-                    <a href="#" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
+                    <div id="editPost">
+                        <form action="{{ route('posts.update', $post) }}" method="POST">
+                            @method('PUT')
+                            @csrf
+                            <input type="hidden" name="id" value="{{$post->id}}">
+                            <input type="hidden" name="user_id" value="{{\auth()->id()}}">
+                            <div class="form-group">
+                                <label for="title">Título</label>
+                                <input type="text" name="titulo" class="form-control" id="title" value="{{ $post->titulo }}" maxlength="80">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea name="descripcion" class="form-control" id="descripcion" value="{{ old('descripcion') }}" rows="4" maxlength="180">{{ $post->descripcion }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenido">Código</label>
+                                <textarea name="contenido" class="form-control" id="contenido" value="{{ old('contenido') }}" rows="14">
+                                {{ $post->contenido }}
+                                </textarea>
+                            </div>
+                            <div class="form-group pt-2 text-center">
+                                <input class="btn btn-outline-dark" type="submit" value="Guardar">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="transicion">
+                        <p>{{ $post->descripcion }}</p>
+                        <br>
+                        <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
+                        <br>
+                    </div>
+                    <span class="ml-3" id="lenguaje">Lenguaje: </span>
+                    <a href="{{ route('categorias.posts', $post->categoria) }}" class="badge badge-pill badge-default ml-3">{{ $post->categoria->nombre }}</a>
 
-                    <p class="float-right mr-3">
+                    <p class="float-right mr-3" id="user">
                         Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
                 </div>
             </div>
+
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <h5 class="m-0">{{ $post->totalComments() }} comentarios en <b>"{{ $post->titulo }}" </b> </h5>

@@ -87,7 +87,7 @@ Admin | Categorias
                             <tbody>
                                 @foreach ($categorias as $item)
                                 <tr>
-                                    <td class="align-middle">{{ $item->nombre }}</td>
+                                    <td class="align-middle"><a href="{{ route('categorias.posts', $item) }}" class="text-dark"> {{ $item->nombre }}</a></td>
                                     <td class="align-middle">{{ $item->totalPosts() }}</td>
                                     <td class="align-middle"><img src="{{ asset($item->logo) }}" alt="{{ $item->nombre }}" width="80px" height="75px"></td>
                                     <td class="align-middle" style="white-space: nowrap">

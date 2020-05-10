@@ -90,7 +90,7 @@ Admin | Posts
                                 @foreach ($posts as $post)
                                 <tr>
                                     <td><a href="{{ route('posts.show',$post) }}" class="text-dark">{{ $post->titulo }}</a></td>
-                                    <td>{{ $post->categoria->nombre }}</td>
+                                    <td><a href="{{ route('categorias.posts', $post->categoria) }}" class="text-dark">{{ $post->categoria->nombre }}</a> </td>
                                     <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->totalComments() }}</td>
