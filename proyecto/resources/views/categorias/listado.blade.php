@@ -117,7 +117,7 @@ Home | Buscador
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
+                        <img src="{{asset(Auth::user()->fotoPerfil) }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>

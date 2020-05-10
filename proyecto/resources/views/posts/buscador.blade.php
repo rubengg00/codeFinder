@@ -94,20 +94,6 @@ Home | Buscador
                                     <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
                                     <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                 </p>
-                                @if (Auth::check() && $item->user_id == Auth::id())
-                                <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                    <div class="float-right">
-                                        <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </div>
-                                </form>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -135,7 +121,7 @@ Home | Buscador
                 <div class="card-body">
                     <h3 class="text-center">Mi Perfil</h3>
                     <div class="text-center">
-                        <img src="{{ Auth::user()->fotoPerfil }}" class="rounded-circle" width="100px" height="100px" />
+                        <img src="{{ asset(Auth::user()->fotoPerfil) }}" class="rounded-circle" width="100px" height="100px" />
                         <br><br>
                         <p><b>Nombre:</b> {{ Auth::user()->name }}</p>
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
