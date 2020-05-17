@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Categoria;
 use App\Comment;
+use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 
 class Post extends Model
 {
+
+    use Favoriteable;
+
     protected $fillable = [
         'titulo','descripcion','contenido','visitas','user_id'
     ];

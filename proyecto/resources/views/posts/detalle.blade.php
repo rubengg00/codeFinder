@@ -141,6 +141,25 @@
                     <p class="float-right mr-3" id="user">
                         Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
+                    <br>
+                    <div class="text-center">
+                        @if ($post->isFavorited())
+                            <form action="{{ route('posts.deleteFav', $post) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Post guardado como favorito</em>" onclick="return confirm('¿Deseas borrar la publicación de tus favoritos?')">
+                                    <i class="material-icons">favorite</i>
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('users.fav', $post) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Guardar post como favorito</em>" onclick="return confirm('¿Deseas guardar la publicación como favorita?')">
+                                    <i class="material-icons">favorite_border</i>
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
 

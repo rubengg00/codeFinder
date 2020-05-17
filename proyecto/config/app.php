@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
         /*
          * Package Service Providers...
          */

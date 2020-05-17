@@ -26,6 +26,11 @@ Route::get('/home/buscador', 'SearchController@index')->name('posts.buscador');
 Route::get('/home/categorias', 'SearchController@listCategorias')->name('categorias.listado');
 Route::get('/home/categorias/{categoria}', 'SearchController@postCategorias')->name('categorias.posts');
 
+// Rutas relacionados con el guardado de publicaciones como favoritas
+Route::post('/posts/{post}', 'UserController@favPost')->name('users.fav');
+Route::get('/users/favoritos', 'UserController@listFav')->name('posts.fav');
+Route::delete('/post/{post}', 'UserController@deleteFav')->name('posts.deleteFav');
+
 
 // Rutas para usuarios y posts
 Route::resource('posts', 'PostController');

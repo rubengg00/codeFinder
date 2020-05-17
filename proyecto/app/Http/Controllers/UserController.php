@@ -79,4 +79,33 @@ class UserController extends Controller
     }
 
 
+
+    // Métodos relacionads con las publicaciones favoritas
+
+    public function favPost(Post $post)
+    {
+        $user = auth()->user();
+        $user->addFavorite($post);
+        Alert::success('Favorito Guardado', 'Has guardado el post como favorito');
+        return \Redirect::back();
+    }
+
+    public function listFav()
+    {
+        $user = auth()->user();
+        $posts = $user->favorite(Post::class);
+
+        return view ('posts.fav', compact('user', 'posts'));
+    }
+
+    public function deleteFav(Post $post)
+    {
+        $user = auth()->user();
+        $user->removeFavorite($post); // The user added to favorites this post
+        Alert::info('Favorito borrado', 'Has borrado el post como favorito');
+        return redirect()->route('posts.show',$post);
+    }
+
+
+
 }
