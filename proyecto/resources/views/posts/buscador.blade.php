@@ -60,25 +60,32 @@ Home | Buscador
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
-                    <h3 id="encabezado" class="text-center">Búsqueda por título</h3>
+                    <h3 id="encabezado" class="text-center">
+                            <span class="float-left small">
+                                    <a href="javascript:goBack();">
+                                        <i class="fa fa-caret-left text-dark"></i>
+                                    </a>
+                                </span>
+                        Búsqueda por título
+                    </h3>
                     <br>
                     <div class="container">
-                        <form class="form ml-auto" method="GET" action="{{ route('posts.buscador') }}">
+                        <form class="form ml-auto" method="GET" action="{{ route('posts.buscador') }}" id="form">
                             <div class="input-group mb-3">
                                 @if ($request)
-                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo">  
+                                    <input type="text" class="form-control" id="input" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo" required>  
                                 @else
-                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo">
+                                    <input type="text" class="form-control" id="input" placeholder="Introduce palabras clave..." name="titulo" required>
                                 @endif
-                                <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                <a href="javascript:submitForm();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div id="resultados">
-                    @foreach ($posts as $item)
+                    @forelse($posts as $item)
                     <div class="container">
                         <div id="post" class="card-body shadow mb-5 animated bounceInDown">
                             <div class="col">
@@ -97,7 +104,10 @@ Home | Buscador
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                        <h3 class="text-center mb-5">No hay publicaciones con el título <b><em>{{ $request->titulo }}</em></b></h3>
+                        <br><br>
+                    @endforelse
                     {{$posts->appends(Request::except('page'))->links()}}
                 </div>
             </div>
@@ -214,5 +224,24 @@ Home | Buscador
         </div>
     </div>
 </div>
+
+<script>
+
+    function submitForm()
+    {
+        let input = document.getElementById('input').value;
+
+        if (input.trim() == "") {
+            alert('Debes introducir algún valor para realizar la búsqueda');
+        }else{
+            document.getElementById('form').submit();
+        }
+    }
+
+    function goBack() {
+        window.history.back()
+    }
+
+</script>
 
 @endsection

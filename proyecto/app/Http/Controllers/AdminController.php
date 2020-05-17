@@ -143,8 +143,6 @@ class AdminController extends Controller
 
 
     
-
-
     public function categoriesUpdate(CategoriaRequest $request, Categoria $category)
     {
         $datos = $request->validated();

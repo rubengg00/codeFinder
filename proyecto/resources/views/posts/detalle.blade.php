@@ -123,7 +123,9 @@
                                 </textarea>
                             </div>
                             <div class="form-group pt-2 text-center">
-                                <input class="btn btn-outline-dark" type="submit" value="Guardar">
+                                <button type="submit" class="btn btn-dark btn-fab btn-fab-mini btn-round">
+                                    <i class="fa fa-save"></i>
+                                </button>
                             </div>
                         </form>
                     </div>

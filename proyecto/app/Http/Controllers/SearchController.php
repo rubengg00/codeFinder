@@ -8,6 +8,13 @@ use App\Categoria;
 
 class SearchController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(Request $request)
     {
         $titulo = $request->get('titulo');
@@ -41,8 +48,6 @@ class SearchController extends Controller
         
         $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(3);
         
- 
-
         return view ('categorias.posts', compact('categoria', 'posts', 'request'));
 
 

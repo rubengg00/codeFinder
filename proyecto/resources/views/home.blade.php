@@ -93,20 +93,6 @@ Home
                                         <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                     </p>
-                                    {{-- @if (Auth::check() && $item->user_id == Auth::id())
-                                        <form name="borrar" method='post' action='{{route('posts.destroy', $item)}}'>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block" onclick="return confirm('¿Borrar post?')">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                            <div class="float-right">
-                                                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none" onclick="return confirm('¿Borrar post?')">
-                                                    <i class="material-icons">delete</i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    @endif --}}
                                 </div>
                             </div>
                         </div>

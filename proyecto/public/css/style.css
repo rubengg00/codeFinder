@@ -1,31 +1,31 @@
-#titulo{
+#titulo {
     font-family: 'Poppins', sans-serif;
     color: whitesmoke
 }
 
-#textoIndex{
-    line-height: 25px;    
+#textoIndex {
+    line-height: 25px;
 
 }
 
-#navbar{
+#navbar {
     padding-top: 60px;
 }
 
-#footer{
+#footer {
     position: block;
-    bottom:0;
+    bottom: 0;
     height: 100px;
     bottom: 0;
-    line-height:50px;
+    line-height: 50px;
     width: 100%;
 }
 
-#footer1{
-    height: 50px; 
-    background:black; 
-    width:100%; 
-    position:absolute; 
+#footer1 {
+    height: 50px;
+    background: black;
+    width: 100%;
+    position: absolute;
 
 }
 
@@ -33,67 +33,95 @@
 
 #divPosts {
     animation: fadein 1s;
-    -moz-animation: fadein 1s; /* Firefox */
-    -webkit-animation: fadein 1s; /* Safari and Chrome */
-    -o-animation: fadein 1s; /* Opera */
+    -moz-animation: fadein 1s;
+    /* Firefox */
+    -webkit-animation: fadein 1s;
+    /* Safari and Chrome */
+    -o-animation: fadein 1s;
+    /* Opera */
 }
 
 #divMas {
     animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    -moz-animation: fadein 2s;
+    /* Firefox */
+    -webkit-animation: fadein 2s;
+    /* Safari and Chrome */
+    -o-animation: fadein 2s;
+    /* Opera */
 }
 
 #divPerfil {
     animation: fadein 3s;
-    -moz-animation: fadein 3s; /* Firefox */
-    -webkit-animation: fadein 3s; /* Safari and Chrome */
-    -o-animation: fadein 3s; /* Opera */
+    -moz-animation: fadein 3s;
+    /* Firefox */
+    -webkit-animation: fadein 3s;
+    /* Safari and Chrome */
+    -o-animation: fadein 3s;
+    /* Opera */
 }
 
 #divExtra {
     animation: fadein 4s;
-    -moz-animation: fadein 4s; /* Firefox */
-    -webkit-animation: fadein 4s; /* Safari and Chrome */
-    -o-animation: fadein 4s; /* Opera */
+    -moz-animation: fadein 4s;
+    /* Firefox */
+    -webkit-animation: fadein 4s;
+    /* Safari and Chrome */
+    -o-animation: fadein 4s;
+    /* Opera */
 }
 
 #divCarousel {
     animation: fadein 4s;
-    -moz-animation: fadein 4s; /* Firefox */
-    -webkit-animation: fadein 4s; /* Safari and Chrome */
-    -o-animation: fadein 4s; /* Opera */
+    -moz-animation: fadein 4s;
+    /* Firefox */
+    -webkit-animation: fadein 4s;
+    /* Safari and Chrome */
+    -o-animation: fadein 4s;
+    /* Opera */
 }
 
 @keyframes fadein {
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
-@-moz-keyframes fadein { /* Firefox */
+
+@-moz-keyframes fadein {
+
+    /* Firefox */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
-@-webkit-keyframes fadein { /* Safari and Chrome */
+
+@-webkit-keyframes fadein {
+
+    /* Safari and Chrome */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
-@-o-keyframes fadein { /* Opera */
+
+@-o-keyframes fadein {
+
+    /* Opera */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -101,11 +129,11 @@
 
 /* Sombreado y zoomIn para cada Post */
 
-#fotoPost{
-    box-shadow: 2px 2px 5px ;
+#fotoPost {
+    box-shadow: 2px 2px 5px;
 }
 
-#fecha{
+#fecha {
     text-shadow: 1px 1px 10px;
 }
 
@@ -114,43 +142,43 @@
 }
 
 #post:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
-#card{
+#card {
     min-height: 100vh;
 }
 
-#comentariosCard{
+#comentariosCard {
     min-height: 50vh;
 }
 
-.table-responsive{
+.table-responsive {
     display: table;
 }
 
-#listUsers td{
+#listUsers td {
     line-height: 50px;
 }
 
-#listCategory td{
+#listCategory td {
     line-height: 70px;
     width: 200px;
 }
 
 /* Cambio de fuente para Encabezado */
 
-#encabezado{
+#encabezado {
     font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
     font-size: 32px;
 }
 
-#encabezadoPost{
+#encabezadoPost {
     font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
     font-size: 32px;
 }
 
-#encabezadoComentarios{
+#encabezadoComentarios {
     font-family: 'Baloo Bhaina 2', 'Courier New', Courier, monospace;
     font-size: 32px;
 }
@@ -158,12 +186,12 @@
 
 /* Elemento pre dónde se muestra el código */
 
-#codigo{
+#codigo {
     border-radius: 5px;
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
-    height:555px;
+    height: 555px;
     overflow-y: scroll;
 }
 
@@ -172,58 +200,58 @@
 /* width */
 ::-webkit-scrollbar {
     width: 12px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+
     background: lightsteelblue;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #888;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+}
 
 
-  /* Vista del Perfil de Usuario */
+/* Vista del Perfil de Usuario */
 
-  #foto{
+#foto {
     display: block;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 2px 2px 5px ;
-    border-radius:5px;
-  }
+    box-shadow: 2px 2px 5px;
+    border-radius: 5px;
+}
 
-  #perfil{
-      display:block;
-  }
+#perfil {
+    display: block;
+}
 
 
-  #formPerfil{
-      display: none;
-  }
+#formPerfil {
+    display: none;
+}
 
-  #formCategoria{
+#formCategoria {
     display: none;
 }
 
 
-#imagenCat{
+#imagenCat {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Estilos para las diferentes categorías */
-#categoria{
+#categoria {
     text-align: center;
     transition: ease-in-out 0.3s;
     width: 70%;
@@ -232,39 +260,50 @@
 }
 
 #categoria:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
-@media(max-width:768px){
+@media(max-width:768px) {
 
-    #lenguaje{
+    #lenguaje {
         margin-left: 92px !important;
 
     }
 
-    #user{
+    #user {
         margin-right: 85px !important;
         margin-top: 20px !important;
 
     }
 
-    #borrar{
-        margin-top:90px !important;
+    #borrar {
+        margin-top: 90px !important;
     }
 
-    #editar{
+    #editar {
         float: right !important;
         margin-left: 35px !important;
-        margin-top:12px !important;
+        margin-top: 12px !important;
     }
 
-    #encabezadoPost{
+    #encabezadoPost {
         font-size: 28px;
         margin-right: 30px !important;
     }
 
+    #sinResultado{
+        font-size: 18px !important;
+        margin-right:100px !important;
+    }
+
 }
 
-#editPost{
-    display:none;
+#editPost {
+    display: none;
+}
+
+
+#sinResultado
+{
+    margin-left:100px !important;
 }

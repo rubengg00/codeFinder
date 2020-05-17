@@ -60,19 +60,26 @@ Home | Buscador
         <div class="col-lg-8">
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
-                    <h3 id="encabezado" class="text-center">Búsqueda por categorías</h3>
+                    <h3 id="encabezado" class="text-center">
+                            <span class="float-left small">
+                                    <a href="javascript:goBack();">
+                                        <i class="fa fa-caret-left text-dark"></i>
+                                    </a>
+                                </span>
+                        Búsqueda por categorías
+                    </h3>
                     <br>
                     <div class="container">
-                        <form class="form ml-auto" method="GET" action="{{ route('categorias.listado') }}">
+                        <form class="form ml-auto" method="GET" action="{{ route('categorias.listado') }}" id="form">
                             <div class="input-group mb-3">
                                 @if ($request)
-                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->nombre }}" name="nombre">  
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->nombre }}" id="input" name="nombre" required>  
                                 @else
-                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="nombre">
+                                    <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="nombre" id="input" required>
                                 @endif
-                                <button type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                <a href="javascript:submitForm();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -80,7 +87,7 @@ Home | Buscador
                 <div id="categorías">
                     <div class="container text-center">
                     <div class="row">
-                    @foreach ($categorias as $category)
+                    @forelse($categorias as $category)
                             <div class="col-md-6 mb-5  animated fadeIn">
                             <a href="{{ route('categorias.posts', $category) }}" data-toggle="tooltip" data-placement="top" title="Posts: {{ $category->totalPosts() }}">
                               <div class="cate" id="categoria">
@@ -89,7 +96,10 @@ Home | Buscador
                               </div>
                             </a>
                             </div>
-                    @endforeach
+                    @empty
+                        <h3 class="text-center mb-5 ml-5" id="sinResultado">No hay categorías con el nombre <b><em>{{ $request->nombre }}</em></b></h3>
+                        <br><br>
+                    @endforelse
                         </div>
                     </div>
                     <div class="container text-center">
@@ -210,5 +220,23 @@ Home | Buscador
         </div>
     </div>
 </div>
+
+<script>
+        function submitForm()
+        {
+            let input = document.getElementById('input').value;
+
+            if (input.trim() == "") {
+                alert('Debes introducir algún valor para realizar la búsqueda');
+            }else{
+                document.getElementById('form').submit();
+            }
+        }
+
+        function goBack() {
+            window.history.back()
+        }
+
+</script>
 
 @endsection
