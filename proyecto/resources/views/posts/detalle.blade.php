@@ -130,7 +130,14 @@
                         </form>
                     </div>
                     <div id="transicion">
-                        <p>{{ $post->descripcion }}</p>
+                        <p>
+                            {{ $post->descripcion }}
+                            <span class="float-right">
+                                <button id="copiar" class="btn btn-primary btn-fab btn-fab-mini btn-round"  data-toggle="tooltip" data-html="true" title="<em>Copiar código</em>">
+                                    <i class="material-icons">file_copy</i>
+                                </button>
+                            </span>
+                        </p>
                         <br>
                         <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
                         <br>
@@ -268,5 +275,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('copiar').addEventListener('click', copiarAlPortapapeles);
+
+    function copiarAlPortapapeles()
+    {
+        var codigoACopiar = document.getElementById('codigo');
+        var seleccion = document.createRange();
+        seleccion.selectNodeContents(codigoACopiar);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);
+        var res = document.execCommand('copy');
+        window.getSelection().removeRange(seleccion);
+
+        $('#copiar').tooltip('hide').attr('data-original-title', '<em>Código copiado</em>').tooltip('show');
+        
+    }
+
+</script>
 
 @endsection
