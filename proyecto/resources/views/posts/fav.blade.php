@@ -44,7 +44,7 @@ Posts Favoritos
                         <hr>
                         @endrole
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('posts.fav') }}" class="dropdown-item">
                             Posts Favoritos
                         </a>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -207,8 +207,13 @@ Posts Favoritos
                         <br>
                         <div class="col col-lg-9 mt-4">
                             <div>
-                                <h4 class="text-center">Tus Posts Favoritos</h4>
-                                @foreach ($posts as $item)
+                                <h4 class="text-center" id="encabezadoUsuario">
+                                        <span class="font-weight-bold">Tus Posts Favoritos</span> 
+                                    <span>
+                                        <a class="float-right text-dark  mr-2" style="font-size:15px;" href="{{ route('users.show', $user) }}">Mis Posts</a>
+                                    </span>
+                                </h4>
+                                @forelse ($posts as $item)
                                 <div class="container">
                                     <div id="post" class="card-body shadow mb-5 animated bounceInDown">
                                         <div class="col">
@@ -227,8 +232,18 @@ Posts Favoritos
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                               
+                                @empty
+                                    <div class="container text-center mt-5 mr-3">
+                                        <span></span>
+                                        <h5>
+                                            <em>No tienes guardado ningún post como favorito</em>
+                                        </h5>
+                                        <br>
+                                        <h6>
+                                            <em>Mira los últimos posts </em>
+                                        </h6>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                         @endif

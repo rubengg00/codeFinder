@@ -62,9 +62,13 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show( Post $post)
     {
         $comments = $post->comments()->get();
+        \DB::table('posts')
+            ->where('id', $post->id)
+            ->increment('visitas', 1);
+
         return view ('posts.detalle', compact('post', 'comments'));
     }
 

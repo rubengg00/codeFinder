@@ -39,7 +39,7 @@
                         <hr>
                         @endrole
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('posts.fav') }}" class="dropdown-item">
                             Posts Favoritos
                         </a>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -187,14 +187,13 @@
                         <p><b>Usename:</b> {{ Auth::user()->username }}</p>
                         <p><b><a href="{{ route('users.show', Auth::user()) }}" class="text-dark">Mis posts:</a></b> {{ Auth::user()->totalPosts() }}</p>
                         <div class="text-center">
-                            <div class="input-group text-center d-none d-sm-none d-md-block" style="margin-left: 10px;">
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">Mis Posts</a>
+                            <div class="input-group text-center d-none d-sm-none d-md-block">
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crea Posts</a>
+                                
                             </div>
                             {{-- Para pantallas pequeñas --}}
-                            <div class="input-group text-center d-block d-sm-block d-md-none" style="margin-left: 10px;">
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crear Posts</a>
-                                <a href="#" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Tus posts guardados como favoritos</em>">Mis Posts</a>
+                            <div class="input-group text-center d-block d-sm-block d-md-none" >
+                                <a href="{{ route('posts.create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crea Posts</a>
                             </div>
                         </div>
                     </div>

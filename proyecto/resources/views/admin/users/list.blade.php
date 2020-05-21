@@ -43,7 +43,7 @@ Admin | Users
                         <hr>
                         @endrole
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('posts.fav') }}" class="dropdown-item">
                             Posts Favoritos
                         </a>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

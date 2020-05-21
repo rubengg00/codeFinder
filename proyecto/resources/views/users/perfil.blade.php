@@ -44,7 +44,7 @@ Mi Perfil
                         <hr>
                         @endrole
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('posts.fav') }}" class="dropdown-item">
                             Posts Favoritos
                         </a>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -208,7 +208,12 @@ Mi Perfil
                         <div class="col col-lg-9 mt-4">
                             <div>
                                 @if (Auth::check() && $user->id == Auth::id())
-                                <h4 class="text-center">Tus posts ({{ $user->totalPosts() }})</h4>
+                                <h4 class="text-center" id="encabezadoUsuario">
+                                    <span class="font-weight-bold">Tus posts ({{ $user->totalPosts() }})</span> 
+                                    <span>
+                                       <a class="float-right text-dark mr-2" style="font-size:15px;" href="{{ route('posts.fav') }}">Mis Favoritos</a>
+                                    </span>
+                                </h4>
                                 @else
                                 <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
                                 @endif
