@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('plantilla.plantilla')
 @section('titulo')
 Posts de {{ $categoria->nombre }}
 @endsection

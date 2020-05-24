@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('plantilla.plantilla')
 @section('titulo')
 Admin | Posts
 @endsection

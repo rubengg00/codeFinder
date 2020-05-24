@@ -16,18 +16,16 @@
     {{-- HighLigher --}}
     <link rel="stylesheet" href="{{ asset('highlight/styles/railscasts.css') }}">
     <title>@yield('titulo')</title>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- Responsive tables --}}
-    <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">;
+    <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">
     {{-- Fuente de Google --}}
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-            @include('sweetalert::alert')
-            @yield('contenido')
-        
+        @yield('contenido')
 
         <!--Scripts necesarios para la funcionalidad de la página-->
     <script src="{{asset('material/assets/js/core/jquery.min.js')}}" type="text/javascript"></script>
