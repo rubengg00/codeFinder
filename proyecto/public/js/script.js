@@ -1,6 +1,6 @@
 // Inicialización de la Librería Responsive Tables
   $( document ).ready( function() {
-      window.responsiveTables.init();
+      window.responsiveTables.init();      
   } );
 
 // Inicialización de la Librería HighLighting
@@ -46,4 +46,11 @@ function runEffect3(){
 $("#editar").click(function(){
   runEffect2();
 });
+
+
+window.onload = () =>{
+  setInterval(function(){
+    $('#alertContraseña').hide(1000);
+    }, 3000);
+}
 

@@ -82,14 +82,9 @@
                 <div class="text-center mt-3">
                     <p style="color:white">¿No tienes cuenta todavía? <a href="{{route('register')}}">Regístrate</a></p>
                 </div>
-                @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                @endif
-                {{-- <div class="text-center mt-3">
+                <div class="text-center mt-3">
                   <p><a href="{{ route('password.request') }}"><em>He olvidado mi contraseña</em></a></p>
-                </div> --}}
+                </div>
               </div>
             </form>
           </div>
