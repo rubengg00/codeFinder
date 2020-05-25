@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 use App\Post;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -70,4 +71,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }
