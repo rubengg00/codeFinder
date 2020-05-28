@@ -149,7 +149,7 @@
                         Creado por <a class="font-italic" href="{{ route('users.show',$post->user) }}" data-toggle="tooltip" data-html="true" title="Posts: {{ $post->user->totalPosts()  }}">{{ $post->user->username }}</a>
                     </p>
                     <br>
-                    <div class="text-center">
+                    <div class="text-center" id="fav">
                         @if ($post->isFavorited())
                             <form action="{{ route('posts.deleteFav', $post) }}" method="POST">
                                 @csrf

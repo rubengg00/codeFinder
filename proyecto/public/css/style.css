@@ -300,6 +300,10 @@
         margin-right: 30px !important;
     }
 
+    #fav{
+        margin-right: 160px ;
+    }
+
 }
 
 #editPost {
@@ -314,4 +318,8 @@
 
 #cardSolicitud{
     height: 300px;
+}
+
+#fav{
+    margin-left: 150px ;
 }

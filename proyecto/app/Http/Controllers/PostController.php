@@ -65,6 +65,8 @@ class PostController extends Controller
     public function show( Post $post)
     {
         $comments = $post->comments()->get();
+
+        // Contador de visitas
         \DB::table('posts')
             ->where('id', $post->id)
             ->increment('visitas', 1);

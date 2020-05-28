@@ -25,6 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
 </head>
 <body>
+        @include('sweetalert::alert')
         @yield('contenido')
 
         <!--Scripts necesarios para la funcionalidad de la página-->
