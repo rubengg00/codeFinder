@@ -93,14 +93,17 @@
     </div>
   </div>
 
-  <footer id="footer"class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="footer-main bg-dark py-5 small d-block d-sm-block" id="footerAuth">
     <div class="container">
-        <div class="copyright float-right">
+        Proyecto hecho con el Kit de UI 
+        <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
+        <br>
+        <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
             </script> CodeFinder, Inc.
+        </div>
     </div>
-  </div>
-</footer>
+</div>
 @endsection

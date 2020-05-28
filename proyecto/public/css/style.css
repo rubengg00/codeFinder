@@ -291,17 +291,17 @@
         margin-right: 30px !important;
     }
 
-    #sinResultado{
+    #sinResultado {
         font-size: 18px !important;
-        margin-right:100px !important;
+        margin-right: 100px !important;
     }
 
-    #encabezadoUsuario{
+    #encabezadoUsuario {
         margin-right: 30px !important;
     }
 
-    #fav{
-        margin-right: 160px ;
+    #fav {
+        margin-right: 160px;
     }
 
 }
@@ -311,15 +311,20 @@
 }
 
 
-#sinResultado
-{
-    margin-left:100px !important;
+#sinResultado {
+    margin-left: 100px !important;
 }
 
-#cardSolicitud{
+#cardSolicitud {
     height: 300px;
 }
 
-#fav{
-    margin-left: 150px ;
+#fav {
+    margin-left: 150px;
+}
+
+
+#footerAuth {
+    opacity: 1 !important;
+    background-color: #212529 !important;
 }

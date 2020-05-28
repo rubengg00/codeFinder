@@ -46,18 +46,28 @@ Cambio de contraseña
                             <h4 class="card-title">Cambio de contraseña</h4>
                         </div>
                         <div class="card-body mt-5">
-                            <div class="input-group">
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="material-icons">mail</i>
                                     </span>
                                 </div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                
                                 @error('email')
                                 <span class="invalid-feedback text-center" role="alert">
                                     <strong class="text-center">{{ $message }}</strong>
                                 </span>
                                 @enderror
+                            </div> --}}
+                            <div class="container">
+                                <p class="text-center font-italic">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text justify-content-center">
+                                                <i class="material-icons mr-3">mail</i>{{$email}}
+                                        </span>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" style="opacity:0 !important;" >
+                                    </div>
+                                </p>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -65,12 +75,14 @@ Cambio de contraseña
                                         <i class="material-icons">lock_outline</i>
                                     </span>
                                 </div>
-                                <input id="password" type="password" placeholder="Contraseña nueva..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
-                                <span class="invalid-feedback text-center" role="alert">
-                                    <strong class="text-center">{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <input id="password" type="password" placeholder="Contraseña nueva..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" autofocus>
+                                @if ($errors->get('password'))
+                                  @foreach ($errors->get('password') as $error)
+                                  <span class="invalid-feedback text-center" role="alert">
+                                      <strong>{{ $error }}</strong>
+                                  </span>
+                                  @endforeach
+                                @endif
                             </div>
 
                             <div class="input-group">
@@ -79,7 +91,7 @@ Cambio de contraseña
                                         <i class="material-icons">lock_outline</i>
                                     </span>
                                 </div>
-                                <input id="password-confirm" type="password" placeholder="Repite contraseña nueva..." class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" placeholder="Confirma contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <div class="text-center mt-5">
                                 <button type="submit" class="btn btn-info">Cambiar</button>
@@ -93,17 +105,19 @@ Cambio de contraseña
     </div>
 </div>
 
-<footer id="footer" class="footer footer-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="footer-main bg-dark py-5 small d-block d-sm-block" id="footerAuth">
     <div class="container">
-        <div class="copyright float-right">
+        Proyecto hecho con el Kit de UI 
+        <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
+        <br>
+        <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-
             </script> CodeFinder, Inc.
         </div>
     </div>
-</footer>
+</div>
 
 
 {{-- <div class="container">

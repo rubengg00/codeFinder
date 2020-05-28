@@ -110,16 +110,15 @@ Creando Post
     </div>
 </div>
 
-<div id="footer1" class="footer-main bg-dark small d-none d-sm-none d-lg-block bottom-0">
+<div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI
+        Proyecto hecho con el Kit de UI 
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-
             </script> CodeFinder, Inc.
         </div>
     </div>
