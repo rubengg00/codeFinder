@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('responsiveTables/responsivetables.css') }}">
     {{-- Fuente de Google --}}
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
         @include('sweetalert::alert')
@@ -42,6 +43,8 @@
     <script src="{{ asset('js/script.js') }}"></script>
     {{-- Responsive tables --}}
     <script src="{{ asset('responsiveTables/responsivetables.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     
 </body>
 </html>

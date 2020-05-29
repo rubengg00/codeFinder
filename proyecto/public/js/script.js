@@ -1,6 +1,7 @@
 // Inicialización de la Librería Responsive Tables
   $( document ).ready( function() {
-      window.responsiveTables.init();      
+      window.responsiveTables.init(); 
+      AOS.init();     
   } );
 
 // Inicialización de la Librería HighLighting
