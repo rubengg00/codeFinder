@@ -59,7 +59,7 @@ CodeFinder
                 </p>
             </blockquote>
         </div>
-        <div class="text-center">
+        <div class="text-center flow-lg-row">
             <div class="row">
                 <div class="col-md-4" data-aos="fade-down">
                     <div class="info">
@@ -114,7 +114,7 @@ CodeFinder
                                 <p class="card-description">
                                     Soy un estudiante del grado superior de Desarrollo de Aplicaciones Web, realizado en el instituto IES Al-Ándalus en Almería. 
                             </div>
-                            <div class="card-footer justify-content-center" data-aos="fade-left">
+                            <div class="card-footer justify-content-center">
                                 <a href="https://github.com/RubenGarciaGonzalez" target="_blank" class="btn btn-link btn-just-icon"><i class="fa fa-github"></i></a>
                             </div>
                         </div>
