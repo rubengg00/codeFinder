@@ -48,11 +48,11 @@
                     </span>
                   </div>
                   <input id="email" name="email" type="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="E-Mail..." autocomplete="email" required>
-                  {{-- @error('email')
+                  @error('email')
                   <span class="invalid-feedback text-center" role="alert">
                       <strong class="text-center">{{ $message }}</strong>
                   </span>
-                @enderror --}}
+                @enderror
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
