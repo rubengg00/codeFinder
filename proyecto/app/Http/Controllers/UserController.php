@@ -7,12 +7,16 @@ use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Notifications\Notifiable;
+
 
 
 class UserController extends Controller
 {
+
 
     public function __construct()
     {
@@ -67,6 +71,18 @@ class UserController extends Controller
         return redirect()->route('users.show',$user);
     }
 
+
+    public function contraseña(PasswordRequest $request, User $user)
+    {
+        $datos = $request->validated();
+        $user->password = \Hash::make($datos['password']);
+        $user->update();
+        Alert::success('Contraseña cambiada', 'Tu contraseña ha sido cambiada correctamente');
+        return redirect()->route('users.show',$user);
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -75,7 +91,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        
     }
 
 

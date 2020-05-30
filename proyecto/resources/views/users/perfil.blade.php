@@ -28,11 +28,11 @@ Mi Perfil
                 </li>
                 @endif
                 <li class="nav-item mx-2 dropdown nav-item inline-block">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu dropdown-menu-center">
-                            <a href="{{ route('posts.buscador') }}" class="dropdown-item" >Título</a>
-                            <a href="{{ route('categorias.listado') }}" class="dropdown-item" >Categoría</a>
-                        </div>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
+                    </div>
                 </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
@@ -193,12 +193,60 @@ Mi Perfil
                                         </div>
                                         <div class="form-row text-center mt-3">
                                             <div class="col">
+                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
+                                                    <i class="fa fa-key"></i>
+                                                </button>
                                                 <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                                                     <i class="fa fa-save"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                                <div class="modal fade" id="modalContraseña" tabindex="-1" role="">
+                                    <div class="modal-dialog modal-login" role="document">
+                                        <div class="modal-content">
+                                            <div class="card card-signup card-plain">
+                                                <div class="modal-body">
+                                                    <form action="{{route('users.contraseña',$user)}}" method="POST">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$user->id}}">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Cambio de contraseña</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body">
+
+                                                            <div class="form-group bmd-form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="material-icons">lock_outline</i>
+                                                                    </span>
+                                                                    <input id="password" type="password" placeholder="Contraseña..." class="form-control" name="password" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group bmd-form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="material-icons">lock_outline</i>
+                                                                    </span>
+                                                                    <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="float-right mt-3">
+                                                                <div class="input-group">
+                                                                    <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endif
                             </div>
@@ -209,9 +257,9 @@ Mi Perfil
                             <div>
                                 @if (Auth::check() && $user->id == Auth::id())
                                 <h4 class="text-center" id="encabezadoUsuario">
-                                    <span class="font-weight-bold">Tus posts ({{ $user->totalPosts() }})</span> 
+                                    <span class="font-weight-bold">Tus posts ({{ $user->totalPosts() }})</span>
                                     <span>
-                                       <a class="float-right text-dark mr-2" style="font-size:15px;" href="{{ route('posts.fav') }}">Mis Favoritos</a>
+                                        <a class="float-right text-dark mr-2" style="font-size:15px;" href="{{ route('posts.fav') }}">Mis Favoritos</a>
                                     </span>
                                 </h4>
                                 @else
@@ -250,13 +298,14 @@ Mi Perfil
 
 <div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>

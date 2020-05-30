@@ -37,6 +37,8 @@ Route::resource('posts', 'PostController');
 
 Route::resource('users', 'UserController');
 
+Route::put('user/{user}', 'UserController@contraseña')->name('users.contraseña');
+
 
 
 //Rutas unicamente para los administradores
