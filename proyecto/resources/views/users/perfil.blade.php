@@ -66,7 +66,6 @@ Mi Perfil
             <div id="card" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="row">
-                        @if ($user->totalPosts() == 0)
                         <div class="col col-lg-3 col-sm-12 float-left">
                             <div id="perfil">
                                 <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
@@ -89,75 +88,8 @@ Mi Perfil
                                                 <input type="file" class="form-control p-1" name="fotoPerfil" accept="image/*" id="fotoPerfil">
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="name" class="col-form-label">Nombre</label>
-                                                <input type="text" class="form-control" name="name" value="{{$user->name}}" id="name" required>
-                                            </div>
-                                            @error('name')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>No puedes dejar el nombre vacío.</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="username" class="col-form-label">Nickname</label>
-                                                <input type="text" class="form-control" name="username" value="{{$user->username}}" id="username" required>
-                                            </div>
-                                            @error('username')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>Nombre de usuario inválido </strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="email" class="col-form-label">E-mail</label>
-                                                <input type="email" class="form-control" name="email" value="{{$user->email}}" id="email" required>
-                                            </div>
-                                            @error('email')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>Correo inválido </strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row text-center mt-3">
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
-                                                    <i class="fa fa-save"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                @endif
-                            </div>
-                            <br>
-                        </div>
-                        @else
-                        <div class="col col-lg-3 col-sm-12 float-left">
-                            <div id="perfil">
-                                <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
-                                <h3 class="mx-auto font-weight-bold text-center">{{ $user->name }}</h3>
-                                <h4 class="mx-auto font-weight-bold text-center"><small class="text-muted">{{ $user->username }}</small></h4>
-                                <p class="mx-auto text-center">Se unió el <em>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</em></p>
-                                @if (Auth::check() && $user->id == Auth::id())
-                                <div class="col text-center">
-                                    <a id="editPerfil" class="btn btn-dark btn-round text-center">Editar Perfl</a>
-                                </div>
-                                <div class="container mt-3">
-                                    <form action="{{route('users.update',$user)}}" id="formPerfil" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{$user->id}}">
-                                        <p class="text-center">Editando Perfil</p>
-                                        <div class="form-row">
-                                            <div class="col text-center">
-                                                <img src="{{asset($user->fotoPerfil)}}" width="100px" height="100px" class="rounded-circle mb-1">
-                                                <input type="file" class="form-control p-1" name="fotoPerfil" accept="image/*" id="fotoPerfil">
-                                            </div>
-                                        </div>
+
+                                        <p class="text-center text-danger" id="msgError1"></p>
                                         <div class="form-row">
                                             <div class="col">
                                                 <label for="name" class="col-form-label">Nombre</label>
@@ -196,9 +128,9 @@ Mi Perfil
                                                 <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
-                                                    <i class="fa fa-save"></i>
-                                                </button>
+                                                <a href="javascript:submitForm1();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                    <i class="material-icons">save</i>
+                                                </a>
                                             </div>
                                         </div>
                                     </form>
@@ -208,7 +140,7 @@ Mi Perfil
                                         <div class="modal-content">
                                             <div class="card card-signup card-plain">
                                                 <div class="modal-body">
-                                                    <form action="{{route('users.contraseña',$user)}}" method="POST">
+                                                    <form action="{{route('users.contraseña',$user)}}" method="POST" id="formContraseña">
                                                         @method('PUT')
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{$user->id}}">
@@ -219,7 +151,7 @@ Mi Perfil
                                                             </button>
                                                         </div>
                                                         <div class="card-body">
-
+                                                            <p class="text-center text-danger" id="msgError"></p>
                                                             <div class="form-group bmd-form-group">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">
@@ -238,7 +170,7 @@ Mi Perfil
                                                             </div>
                                                             <div class="float-right mt-3">
                                                                 <div class="input-group">
-                                                                    <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+                                                                    <a href="javascript:submitForm();" type="submit" class="btn btn-primary">Cambiar contraseña</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -248,11 +180,12 @@ Mi Perfil
                                         </div>
                                     </div>
                                 </div>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                             <br>
                         </div>
                         <br>
+                        {{-- Cuerpo de los posts --}}
                         <div class="col col-lg-9 mt-4">
                             <div>
                                 @if (Auth::check() && $user->id == Auth::id())
@@ -310,5 +243,55 @@ Mi Perfil
         </div>
     </div>
 </div>
+
+<script>
+    function submitForm() {
+        let password = document.getElementById('password').value;
+        let passwordConfirm = document.getElementById('password-confirm').value;
+        let error = document.getElementById('msgError');
+
+        if (password.trim() == "" || passwordConfirm.trim() == "") {
+            // alert('Ambos campos son obligatorios');
+            error.innerHTML = "";
+            error.innerHTML = "Los campos son obligatorios";
+            $('#msgError').show();
+            error.onmouseover = () => {
+                $('#msgError').hide(1000);
+            }
+        } else if (!(password == passwordConfirm)) {
+            // alert('Las contraseñas no coinciden');
+            error.innerHTML = "";
+            error.innerHTML = "Las contraseñas no coinciden";
+            $('#msgError').show();
+            error.onmouseover = () => {
+                $('#msgError').hide(1000);
+            }
+        } else {
+            document.getElementById('formContraseña').submit();
+        }
+    }
+
+    
+    function submitForm1()
+    {
+        let name = document.getElementById('name').value;
+        let nickname = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
+        let error = document.getElementById('msgError1')
+
+        if (name.trim()=="" || nickname.trim()=="" || email.trim()=="") {
+            error.innerHTML = "";
+            error.innerHTML += "No puedes dejar ningún campo vacío";
+            $('#msgError1').show();
+            error.onmouseover = () => {
+                $('#msgError1').hide(1000);
+            }
+        }else{
+            document.getElementById('formPerfil').submit();
+        }
+    }
+
+</script>
+
 
 @endsection
