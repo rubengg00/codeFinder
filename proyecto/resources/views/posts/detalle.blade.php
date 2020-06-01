@@ -300,7 +300,6 @@
         $('#copiar').tooltip('hide').attr('data-original-title', '<em>Código copiado</em>').tooltip('show');
         
     }
-
 </script>
 
 @endsection

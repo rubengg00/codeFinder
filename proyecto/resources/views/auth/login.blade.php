@@ -35,12 +35,13 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 col-xs-12 ml-auto mr-auto">
           <div class="card card-login" style="background-color:#212121">
-            <form class="form" method="POST" action="{{ route('login')}}">
+            <form class="form" method="POST" id="formLogin" action="{{ route('login')}}">
             @csrf
               <div class="card-header card-header-info text-center">
                 <h4 class="card-title">Login</h4>
               </div>
               <div class="card-body mt-5">
+                <p class="text-center text-danger" id="msgError"></p>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -77,7 +78,7 @@
                     </label>
                 </div>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-info">Inicia Sesion</button>
+                    <a href="javascript:submitFormLogin();" type="submit" class="btn btn-info">Inicia Sesión</a>   
                 </div>
                 <div class="text-center mt-3">
                     <p style="color:white">¿No tienes cuenta todavía? <a href="{{route('register')}}">Regístrate</a></p>

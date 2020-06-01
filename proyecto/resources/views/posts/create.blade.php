@@ -74,7 +74,8 @@ Creando Post
                         </ul>
                     </div>
                     @endif
-                    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                    <p class="text-center text-danger" id="msgError"></p>
+                    <form method="POST" action="{{ route('posts.store') }}" id="formCreate" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
                         <div class="form-group">
@@ -83,7 +84,7 @@ Creando Post
                         </div>
                         <div class="form-group">
                             <label for="categoria_id">Lenguaje</label>
-                            <select name="categoria_id" class="form-control">
+                            <select name="categoria_id" class="form-control" id="categoria_id">
                                 @foreach ($categorias as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
                                 @endforeach
@@ -91,7 +92,7 @@ Creando Post
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripcion</label>
-                            <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion..." value="{{ old('descripcion') }}" rows="2" maxlength="180"></textarea>
+                            <textarea name="descripcion"  class="form-control" id="descripcion" placeholder="Descripcion..." value="{{ old('descripcion') }}" rows="2" maxlength="180"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="contenido">Código</label>
@@ -100,7 +101,7 @@ Creando Post
                                 </textarea>
                         </div>
                         <div class="form-group pt-2 text-center">
-                            <input class="btn btn-info" type="submit" value="Crear">
+                            <a href="javascript:submitFormCreatePost();" type="submit" class="btn btn-primary">Crear</a>                            
                             <a href="{{ route('home') }}" class="btn btn-dark">Volver</a>
                         </div>
                     </form>

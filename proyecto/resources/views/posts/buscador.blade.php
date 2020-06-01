@@ -77,7 +77,7 @@ Home | Buscador
                                 @else
                                     <input type="text" class="form-control" id="input" placeholder="Introduce palabras clave..." name="titulo" required>
                                 @endif
-                                <a href="javascript:submitForm();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
+                                <a href="javascript:submitFormBusqueda();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
                                 </a>
                             </div>
@@ -231,16 +231,7 @@ Home | Buscador
 
 <script>
 
-    function submitForm()
-    {
-        let input = document.getElementById('input').value;
-
-        if (input.trim() == "") {
-            alert('Debes introducir algún valor para realizar la búsqueda');
-        }else{
-            document.getElementById('form').submit();
-        }
-    }
+    
 
     function goBack() {
         window.history.back()

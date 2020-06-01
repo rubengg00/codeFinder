@@ -128,7 +128,7 @@ Mi Perfil
                                                 <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <a href="javascript:submitForm1();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
                                                     <i class="material-icons">save</i>
                                                 </a>
                                             </div>
@@ -170,7 +170,7 @@ Mi Perfil
                                                             </div>
                                                             <div class="float-right mt-3">
                                                                 <div class="input-group">
-                                                                    <a href="javascript:submitForm();" type="submit" class="btn btn-primary">Cambiar contraseña</a>
+                                                                    <a href="javascript:submitFormContraseña();" type="submit" class="btn btn-primary">Cambiar contraseña</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -243,55 +243,5 @@ Mi Perfil
         </div>
     </div>
 </div>
-
-<script>
-    function submitForm() {
-        let password = document.getElementById('password').value;
-        let passwordConfirm = document.getElementById('password-confirm').value;
-        let error = document.getElementById('msgError');
-
-        if (password.trim() == "" || passwordConfirm.trim() == "") {
-            // alert('Ambos campos son obligatorios');
-            error.innerHTML = "";
-            error.innerHTML = "Los campos son obligatorios";
-            $('#msgError').show();
-            error.onmouseover = () => {
-                $('#msgError').hide(1000);
-            }
-        } else if (!(password == passwordConfirm)) {
-            // alert('Las contraseñas no coinciden');
-            error.innerHTML = "";
-            error.innerHTML = "Las contraseñas no coinciden";
-            $('#msgError').show();
-            error.onmouseover = () => {
-                $('#msgError').hide(1000);
-            }
-        } else {
-            document.getElementById('formContraseña').submit();
-        }
-    }
-
-    
-    function submitForm1()
-    {
-        let name = document.getElementById('name').value;
-        let nickname = document.getElementById('username').value;
-        let email = document.getElementById('email').value;
-        let error = document.getElementById('msgError1')
-
-        if (name.trim()=="" || nickname.trim()=="" || email.trim()=="") {
-            error.innerHTML = "";
-            error.innerHTML += "No puedes dejar ningún campo vacío";
-            $('#msgError1').show();
-            error.onmouseover = () => {
-                $('#msgError1').hide(1000);
-            }
-        }else{
-            document.getElementById('formPerfil').submit();
-        }
-    }
-
-</script>
-
 
 @endsection

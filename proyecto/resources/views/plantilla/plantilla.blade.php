@@ -41,6 +41,7 @@
     <script src="{{ asset('highlight/highlight.pack.js') }}"></script>
     {{-- Script Propio --}}
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/validaciones.js') }}"></script>
     {{-- Responsive tables --}}
     <script src="{{ asset('responsiveTables/responsivetables.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
