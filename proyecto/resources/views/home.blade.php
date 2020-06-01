@@ -23,11 +23,11 @@ Home
                     <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mx-2 dropdown nav-item inline-block">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu dropdown-menu-center">
-                            <a href="{{ route('posts.buscador') }}" class="dropdown-item" >Título</a>
-                            <a href="{{ route('categorias.listado') }}" class="dropdown-item" >Categoría</a>
-                        </div>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
+                    </div>
                 </li>
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
@@ -59,35 +59,35 @@ Home
     <div class="row">
         <div class="col-lg-8">
             @if(session('status'))
-                <div class="card border-0 shadow mb-4" id="alertContraseña">
-                    <div class="card-body">
-                        <p class="alert alert-success my-3 rounded">{{session('status')}}</p>
-                    </div>
+            <div class="card border-0 shadow mb-4" id="alertContraseña">
+                <div class="card-body">
+                    <p class="alert alert-success my-3 rounded">{{session('status')}}</p>
                 </div>
+            </div>
             @endif
 
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <h3 id="encabezado" class="mx-auto font-weight-bold text-center">Últimos posts</h3>
                     @foreach ($posts as $item)
-                        <div class="container">
-                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
-                                <div class="col">
-                                    <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
-                                    <h5>
-                                        <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
-                                        <span class="float-right"><a href="{{ route('categorias.posts', $item->categoria) }}" class="text-info">{{ $item->categoria->nombre }}</a></span>
-                                    </h5>
-                                    <p class="font-italic">{{ $item->descripcion }}</p>
-                                    <br>
-                                    <p>
-                                        <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                        <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
-                                        <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
-                                    </p>
-                                </div>
+                    <div class="container">
+                        <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                            <div class="col">
+                                <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
+                                <h5>
+                                    <span class="font-weight-bold"><a href="{{ route('posts.show', $item) }}" class="text-dark">{{ $item->titulo }}</a></span>
+                                    <span class="float-right"><a href="{{ route('categorias.posts', $item->categoria) }}" class="text-info">{{ $item->categoria->nombre }}</a></span>
+                                </h5>
+                                <p class="font-italic">{{ $item->descripcion }}</p>
+                                <br>
+                                <p>
+                                    <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
+                                    <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
+                                    <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
+                                </p>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                     {{$posts->appends(Request::except('page'))->links()}}
                 </div>
@@ -156,35 +156,43 @@ Home
                     </div>
                     <br>
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:100%; height: 300px;">
-                            <ol class="carousel-indicators">
-                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                            </ol>
-                            <div class="carousel-inner my-2">
-                              <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="First slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/node.png') }}" alt="Second slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
-                              </div>
-                              <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
-                                </div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        </ol>
+                        <div class="carousel-inner my-2">
+                            <div class="carousel-item active">
+                                <a href="{{route('categorias.posts', 20)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/python.png') }}" alt="First slide" height="260px">
+                                </a>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Anterior</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Siguiente</span>
-                            </a>
-                          </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 1)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="Second slide">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 3)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 2)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
+                                </a>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,13 +201,14 @@ Home
 <br><br>
 <div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>

@@ -47,12 +47,13 @@ Registro
                                     </span>
                                 </div>
                                 <input id="name" type="text" placeholder="Nombre..." class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+                                <span class="invalid-feedback text-center" role="alert" id="msgName"></span>                                
                                 @if ($errors->get('name'))
-                                  @foreach ($errors->get('name') as $error)
-                                  <span class="invalid-feedback text-center" role="alert">
-                                      <strong>{{ $error }}</strong>
-                                  </span>
-                                  @endforeach
+                                @foreach ($errors->get('name') as $error)
+                                <span class="invalid-feedback text-center" role="alert">
+                                    <strong>{{ $error }}</strong>
+                                </span>
+                                @endforeach
                                 @endif
                             </div>
                             <div class="input-group">
@@ -62,12 +63,13 @@ Registro
                                     </span>
                                 </div>
                                 <input id="username" type="text" placeholder="Nombre de usuario..." class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+                                <span class="invalid-feedback text-center" role="alert" id="msgUsername"></span>
                                 @if ($errors->get('username'))
-                                  @foreach ($errors->get('username') as $error)
-                                  <span class="invalid-feedback text-center" role="alert">
-                                      <strong>{{ $error }}</strong>
-                                  </span>
-                                  @endforeach
+                                @foreach ($errors->get('username') as $error)
+                                <span class="invalid-feedback text-center" role="alert">
+                                    <strong>{{ $error }}</strong>
+                                </span>
+                                @endforeach
                                 @endif
                             </div>
                             <div class="input-group">
@@ -78,11 +80,11 @@ Registro
                                 </div>
                                 <input id="email" type="email" placeholder="E-Mail..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @if ($errors->get('email'))
-                                  @foreach ($errors->get('email') as $error)
-                                  <span class="invalid-feedback text-center" role="alert">
-                                      <strong>{{ $error }}</strong>
-                                  </span>
-                                  @endforeach
+                                @foreach ($errors->get('email') as $error)
+                                <span class="invalid-feedback text-center" role="alert">
+                                    <strong>{{ $error }}</strong>
+                                </span>
+                                @endforeach
                                 @endif
                             </div>
                             <div class="input-group">
@@ -92,12 +94,13 @@ Registro
                                     </span>
                                 </div>
                                 <input id="password" type="password" placeholder="Contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <span class="invalid-feedback text-center" role="alert" id="msgPassword"></span>                                
                                 @if ($errors->get('password'))
-                                  @foreach ($errors->get('password') as $error)
-                                  <span class="invalid-feedback text-center" role="alert">
-                                      <strong>{{ $error }}</strong>
-                                  </span>
-                                  @endforeach
+                                @foreach ($errors->get('password') as $error)
+                                <span class="invalid-feedback text-center" role="alert">
+                                    <strong>{{ $error }}</strong>
+                                </span>
+                                @endforeach
                                 @endif
                             </div>
                             <div class="input-group">
@@ -122,15 +125,20 @@ Registro
 
 <div class="footer-main bg-dark py-5 small d-block d-sm-block" id="footerAuth">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>
 </div>
+
+
+
+
 @endsection

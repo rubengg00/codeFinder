@@ -174,19 +174,27 @@ Home | Buscador
                             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                         </ol>
                         <div class="carousel-inner my-2">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="First slide">
+                                <div class="carousel-item active">
+                                    <a href="{{route('categorias.posts', 20)}}">
+                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/python.png') }}" alt="First slide" height="260px">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{route('categorias.posts', 1)}}">
+                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="Second slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{route('categorias.posts', 3)}}">
+                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{route('categorias.posts', 2)}}">
+                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
+                                    </a>
+                                </div>
                             </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/node.png') }}" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
-                            </div>
-                        </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Anterior</span>
