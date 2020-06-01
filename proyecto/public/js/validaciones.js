@@ -58,7 +58,7 @@ function submitFormBusqueda() {
 }
 
 
-
+// Validación del formulario de creación de publicaciones
 function submitFormCreatePost()
 {
     let titulo = document.getElementById('title').value;
@@ -80,7 +80,7 @@ function submitFormCreatePost()
 
 }
 
-
+// Validacón del formulario de Login
 function submitFormLogin()
 {
     let email = document.getElementById('email').value;
@@ -94,7 +94,161 @@ function submitFormLogin()
         error.onmouseover = () => {
             $('#msgError').hide(1000);
         }
-    } else {
+    } else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+        error.innerHTML = "";
+        error.innerHTML += "Debes introducir un correo válido";
+        $('#msgError').show();
+        error.onmouseover = () => {
+            $('#msgError').hide(1000);
+        }
+    }else{
         document.getElementById('formLogin').submit();
     }
+}
+
+// Validación para el formulario de Registro 
+
+function iniciar(){
+    validar();
+}
+
+
+function validacionNombre(){
+    let nombre=document.getElementById("name").value;
+    let msgName = document.getElementById('msgName');
+    if (nombre.trim()=="") {
+        msgName.innerHTML = "";
+        msgName.innerHTML += "Debes introducir un nombre";
+        $('#msgName').show();
+        msgName.onmouseover = () => {
+            $('#msgName').hide();
+        }
+        return false;
+    }else{
+        msgName.innerHTML = "";
+        $('#msgName').hide();
+    }
+    return true;
+}
+
+
+function validacionUsername()
+{
+    let username = document.getElementById('username').value;
+    let msgUsername = document.getElementById('msgUsername');
+    if (username.trim()=="") {
+        msgUsername.innerHTML = "";
+        msgUsername.innerHTML += "Debes introducir un nombre de usuario";
+        $('#msgUsername').show();
+        msgUsername.onmouseover = () => {
+            $('#msgUsername').hide();
+        }
+        return false;
+    }else if(username.length <6){
+        msgUsername.innerHTML = "";
+        msgUsername.innerHTML += "Mínimo de caracteres permitidos: 6";
+        $('#msgUsername').show();
+        msgUsername.onmouseover = () => {
+            $('#msgUsername').hide();
+        }
+        return false;
+    }else{
+        msgUsername.innerHTML = "";
+        $('#msgUsername').hide();
+    }
+    return true;
+}
+
+
+function validacionCorreo()
+{
+    let email = document.getElementById('email').value;
+    let msgEmail = document.getElementById('msgEmail');
+
+    if (email.trim()=="") {
+        msgEmail.innerHTML = "";
+        msgEmail.innerHTML += "Debes introducir un correo";
+        $('#msgEmail').show();
+        msgEmail.onmouseover = () => {
+            $('#msgEmail').hide();
+        }
+        return false;
+    }else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+        msgEmail.innerHTML = "";
+        msgEmail.innerHTML += "Correo introducido no válido";
+        $('#msgEmail').show();
+        msgEmail.onmouseover = () => {
+            $('#msgEmail').hide();
+        }
+        return false;
+    }else{
+        msgEmail.innerHTML = "";
+        $('#msgEmail').hide();
+    }
+    return true;
+}
+
+function validacionContraseña()
+{
+    let password = document.getElementById('password').value;
+    let passwordConfirm = document.getElementById('password-confirm').value;
+    let msgPassword = document.getElementById('msgPassword');
+
+    if (password.trim()=="" || passwordConfirm.trim()=="") {
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Debes introducir ambas contraseñas";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide();
+        }
+        return false;
+    }else if(password.length<8 || passwordConfirm.length<8){
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Mínimo de caracteres permitidos: 8";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide();
+        }
+        return false;
+    }else if(!(password == passwordConfirm))
+    {
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Las contraseñas no coinciden";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide();
+        }
+        return false;
+    }else{
+        msgPassword.innerHTML = "";
+        $('#msgPassword').hide();
+    }
+    return true;
+
+}
+
+function validacionTodos()
+{
+    validacionNombre();
+    validacionUsername();
+    validacionCorreo();
+    validacionContraseña();
+
+    if (validacionNombre() && validacionUsername() && validacionCorreo() && validacionContraseña())
+    {
+        return true;  
+    }else{
+        return false;
+    }
+
+}
+
+function validar(e){
+
+    if (validacionTodos()) {
+        document.getElementById('formRegister').submit();
+    }else{
+        e.preventDefault();
+    }
+
 }

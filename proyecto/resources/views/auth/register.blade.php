@@ -34,7 +34,7 @@ Registro
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12 ml-auto mr-auto mt-3">
                 <div class="card card-login" style="background-color:#212121">
-                    <form class="form" method="POST" action="{{route('register')}}">
+                    <form class="form" method="POST" action="{{route('register')}}" id="formRegister">
                         @csrf
                         <div class="card-header card-header-info text-center">
                             <h4 class="card-title">Registro</h4>
@@ -79,6 +79,7 @@ Registro
                                     </span>
                                 </div>
                                 <input id="email" type="email" placeholder="E-Mail..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <span class="invalid-feedback text-center" role="alert" id="msgEmail"></span>                                                                
                                 @if ($errors->get('email'))
                                 @foreach ($errors->get('email') as $error)
                                 <span class="invalid-feedback text-center" role="alert">
@@ -94,7 +95,6 @@ Registro
                                     </span>
                                 </div>
                                 <input id="password" type="password" placeholder="Contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                <span class="invalid-feedback text-center" role="alert" id="msgPassword"></span>                                
                                 @if ($errors->get('password'))
                                 @foreach ($errors->get('password') as $error)
                                 <span class="invalid-feedback text-center" role="alert">
@@ -102,6 +102,9 @@ Registro
                                 </span>
                                 @endforeach
                                 @endif
+                            </div>
+                            <div class="text-center">
+                                <span class="invalid-feedback text-center" role="alert" id="msgPassword"></span>                                
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -112,8 +115,7 @@ Registro
                                 <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-info">Crear</button>
-                                <a href="{{ URL::previous() }}" class="btn">Volver</a>
+                                <a href="javascript:iniciar();" id="crear" type="submit" class="btn btn-info">Crear</a>                                   <a href="{{ URL::previous() }}" class="btn">Volver</a>
                             </div>
                         </div>
                     </form>
