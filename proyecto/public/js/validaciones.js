@@ -252,3 +252,90 @@ function validar(e){
     }
 
 }
+
+
+// Validacion para creacion de nueva categoría
+
+function submitCategoriaNueva()
+{
+    validacionCategoriaNueva();
+}
+
+function validacionNombreCategoria()
+{
+    let nombre = document.getElementById('name').value;
+    let msgError = document.getElementById('msgError');
+
+    if (nombre.trim()=="") {
+        msgError.innerHTML = "";
+        msgError.innerHTML += "Debes introducir un nombre";
+        $('#msgError').show();
+        msgError.onmouseover = () => {
+            $('#msgError').hide(1000);
+        }
+        return false;
+    }else{
+        msgError.innerHTML = "";
+        $('#msgError').hide();
+    }
+
+    return true;
+}
+
+
+function validacionFotoCategoria()
+{
+    let foto = document.getElementById('fotoPerfil').value;
+    let msgError1 = document.getElementById('msgError1');
+    let patron = new RegExp('^.*\.(jpg|jpeg|JPG|PNG|png|svg|SVG)$');
+
+
+    if (foto.trim()=="") {
+        msgError1.innerHTML = "";
+        msgError1.innerHTML += "Debes introducir un logo para la categoría nueva";
+        $('#msgError1').show();
+        msgError1.onmouseover = () => {
+            $('#msgError1').hide(1000);
+        }
+        return false;
+    }else if(!(patron.test(document.getElementById('fotoPerfil').value))){
+        msgError1.innerHTML = "";
+        msgError1.innerHTML += "No es un formato válido de imagen";
+        $('#msgError1').show();
+        msgError1.onmouseover = () => {
+            $('#msgError1').hide(1000);
+        }
+        return false;
+    }else{
+        msgError1.innerHTML = "";
+        $('#msgError1').hide();
+    }
+
+    return true;
+
+}
+
+
+function validacionTodasCategoria()
+{
+    validacionNombreCategoria();
+    validacionFotoCategoria();
+
+    if (validacionNombreCategoria() && validacionFotoCategoria())
+    {
+        return true;  
+    }else{
+        return false;
+    }
+
+}
+
+function validacionCategoriaNueva(e){
+
+    if (validacionTodasCategoria()) {
+        document.getElementById('formNewCategoria').submit();
+    }else{
+        e.preventDefault();
+    }
+
+}

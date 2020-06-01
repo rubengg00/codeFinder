@@ -23,16 +23,16 @@ Admin | Categorias
                     <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                 </li>
                 <li class="nav-item active mx-2">
-                        <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
-                    </li>
+                    <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item mx-2 dropdown nav-item inline-block">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu dropdown-menu-center">
-                            <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
-                            <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
-                        </div>
-                    </li>
-                
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
+                    </div>
+                </li>
+
                 <li class="dropdown nav-item inline-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
@@ -107,19 +107,26 @@ Admin | Categorias
                         {{$categorias->appends(Request::except('page'))->links()}}
                         <br>
                         <div class="col text-center">
-                            <a  id="create" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
+                            <a id="create" class="btn btn-dark btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva categoría">
                                 <i class="material-icons">add</i>
                             </a>
                         </div>
                         <div id="formCategoria" class="container">
-                            <form action="{{route('admin.categories.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('admin.categories.store')}}" id="formNewCategoria" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <h6 class="text-center">Creación de categoría nueva</h6>
+                                <div class="text-center">
+                                    <p class="text-center text-danger" id="msgError1"></p>
+                                </div>
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="logo">Logo</label>
-                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="fotoPerfil">
+                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="fotoPerfil" required/>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="text-center">
+                                    <p class="text-center text-danger" id="msgError"></p>
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
@@ -128,12 +135,12 @@ Admin | Categorias
                                     </div>
                                 </div>
                                 <div class="form-row text-center mt-3">
-                                        <div class="col">
-                                            <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
-                                                <i class="fa fa-save"></i>
-                                            </button>
-                                        </div>
+                                    <div class="col">
+                                        <a href="javascript:submitCategoriaNueva();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                            <i class="material-icons">save</i>
+                                        </a>
                                     </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -145,13 +152,14 @@ Admin | Categorias
 
 <div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>

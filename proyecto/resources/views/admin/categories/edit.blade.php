@@ -85,13 +85,13 @@ Editando Categoría
                                         <img src="{{asset($category->logo)}}" id="imagenCat" width="150px" height="150px" class="rounded-circle center-block">
                                         <br>
                                         <label for="logo" class="col-form-label">Logo</label>
-                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="logo">
+                                        <input type="file" class="form-control p-1" name="logo" accept="image/*" id="fotoPerfil">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="nom" class="col-form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre" value={{$category->nombre}} id="nom" required>
+                                        <input type="text" class="form-control" name="nombre" value={{$category->nombre}} id="name" required>
                                     </div>
                                 </div>
                                 <div class="form-row text-center mt-3">
