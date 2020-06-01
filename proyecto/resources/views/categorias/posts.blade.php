@@ -117,12 +117,34 @@ Posts de {{ $categoria->nombre }}
 
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h5 class="m-0">Más Cosas</h5>
-                    <hr>
-                    <ul class="mb-0">
-                        <li>Aquí irán más cosas</li>
-                        <li>Aunque todavía no esté hecho</li>
-                    </ul>
+                        <h5 class="m-0 text-center font-weight-bold">Publicación más vista del portal</h5>
+                        <hr>
+                        <div class="container">
+                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                                <div class="col">
+                                    <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">
+                                        {{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}
+                                        <span class="float-right d-block d-sm-block d-md-none ml-3">
+                                                <i class="fa fa-eye"> {{ $postMostViewed->visitas }}</i>
+                                        </span>
+                                    </p>
+                                    <h5>
+                                        <span class="font-weight-bold"><a href="{{ route('posts.show', $postMostViewed) }}" class="text-dark">{{ $postMostViewed->titulo }}</a></span>
+                                        <span class="float-right text-center  d-none d-sm-none d-md-block ml-3">
+                                            <i class="fa fa-eye"> {{ $postMostViewed->visitas }}</i>
+                                        </span>  
+                                        <span class="float-right"><a href="{{ route('categorias.posts', $postMostViewed->categoria) }}" class="text-info">{{ $postMostViewed->categoria->nombre }}</a></span>
+                                    </h5>
+                                    <p class="font-italic">{{ $postMostViewed->descripcion }}</p>
+                                    <br>
+                                    <p>
+                                        <img id="fotoPost" src="{{ asset($postMostViewed->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $postMostViewed->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
+                                        <span><a href="{{ route('users.show', $postMostViewed->user) }}" class="text-dark">{{ $postMostViewed->user->name }}</a></span>
+                                        <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>    
                 </div>
             </div>
 

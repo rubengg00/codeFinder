@@ -23,8 +23,9 @@ class SearchController extends Controller
             ->titulo($titulo)
             ->paginate(4);
 
+        $postMostViewed = Post::orderBy('visitas', 'desc')->first();
         
-        return view ('posts.buscador', compact('posts','request'));
+        return view ('posts.buscador', compact('posts','request', 'postMostViewed'));
     }
 
 
@@ -38,7 +39,9 @@ class SearchController extends Controller
         ->nombre($nombre)
         ->paginate(6);
 
-        return view('categorias.listado', compact('categorias', 'request'));
+        $postMostViewed = Post::orderBy('visitas', 'desc')->first();
+
+        return view('categorias.listado', compact('categorias', 'request', 'postMostViewed'));
     }
 
 
@@ -47,8 +50,10 @@ class SearchController extends Controller
         $titulo = $request->get('titulo');
         
         $posts = $categoria->posts()->where('titulo','like', "%$titulo%")->paginate(3);
+
+        $postMostViewed = Post::orderBy('visitas', 'desc')->first();
         
-        return view ('categorias.posts', compact('categoria', 'posts', 'request'));
+        return view ('categorias.posts', compact('categoria', 'posts', 'request', 'postMostViewed'));
 
 
     }
