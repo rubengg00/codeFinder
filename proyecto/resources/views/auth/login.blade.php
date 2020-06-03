@@ -3,7 +3,7 @@
     Inicio de Sesión
 @endsection
 @section('contenido')
-<nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top " role="navigation-demo">
+<nav class="navbar navbar-inverse navbar-expand-lg bg-dark fixed-top " role="navigation-demo" >
     <div class="container">
       <a class="navbar-brand">
             <div class="logo-small">

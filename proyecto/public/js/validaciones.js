@@ -1,10 +1,16 @@
+
 // Validación del formulario de cambio de contraseña
 function submitFormContraseña() {
     let password = document.getElementById('password').value;
     let passwordConfirm = document.getElementById('password-confirm').value;
+    let passwordAntigua = document.getElementById('passwordAntigua').value;
+
+    console.log(passAntigua);
+    
+
     let error = document.getElementById('msgError');
 
-    if (password.trim() == "" || passwordConfirm.trim() == "") {
+    if (password.trim() == "" || passwordConfirm.trim() == "" || passwordAntigua.trim() == "") {
         // alert('Ambos campos son obligatorios');
         error.innerHTML = "";
         error.innerHTML = "Los campos son obligatorios";
@@ -20,8 +26,9 @@ function submitFormContraseña() {
         error.onmouseover = () => {
             $('#msgError').hide(1000);
         }
-    } else {
+    } else{
         document.getElementById('formContraseña').submit();
+
     }
 }
 

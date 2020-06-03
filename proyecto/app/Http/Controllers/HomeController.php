@@ -30,7 +30,7 @@ class HomeController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->paginate(3);
 
         $postMostViewed = Post::orderBy('visitas', 'desc')->first();
-
+    
         return view('home', compact('posts', 'postMostViewed'));
     }
 }

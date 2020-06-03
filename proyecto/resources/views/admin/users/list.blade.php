@@ -73,7 +73,7 @@ Admin | Users
                         Panel de Usuarios
                     </h2>
                     <br>
-                    <div class="responsive" style="overflow-x:auto;">
+                    <div class="responsive" style="">
                         <table id="listUsers" class="table table-hover text-center responsive ">
                             <thead class="thead-dark">
                                 <tr>
