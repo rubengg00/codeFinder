@@ -37,7 +37,7 @@ Cambio de contraseña
         <div class="row">
             <div class="col-lg-4 col-md-6 col-xs-12 ml-auto mr-auto">
                 <div class="card card-login" style="background-color:#212121">
-                    <form class="form" method="POST" action="{{ route('password.update') }}">
+                    <form class="form" method="POST" action="{{ route('password.update') }}" id="formUpdateContraseña">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -46,19 +46,6 @@ Cambio de contraseña
                             <h4 class="card-title">Cambio de contraseña</h4>
                         </div>
                         <div class="card-body mt-5">
-                            {{-- <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="material-icons">mail</i>
-                                    </span>
-                                </div>
-                                
-                                @error('email')
-                                <span class="invalid-feedback text-center" role="alert">
-                                    <strong class="text-center">{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div> --}}
                             <div class="container">
                                 <p class="text-center font-italic">
                                     <div class="input-group-prepend">
@@ -69,6 +56,7 @@ Cambio de contraseña
                                     </div>
                                 </p>
                             </div>
+                            <p class="text-center text-danger" id="msgPassword"></p>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -94,7 +82,7 @@ Cambio de contraseña
                                 <input id="password-confirm" type="password" placeholder="Confirma contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-info">Cambiar</button>
+                                <a href="javascript:submitPasswords();" id="crear" type="submit" class="btn btn-info">Cambiar</a>
                                 <a href="{{route('login') }}" class="btn">Volver</a>
                             </div>
                         </div>

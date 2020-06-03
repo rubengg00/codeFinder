@@ -346,3 +346,73 @@ function validacionCategoriaNueva(e){
     }
 
 }
+
+
+// Validacion para el formulario de solicitud de contraseña nueva
+function submitCorreo()
+{
+    let email = document.getElementById('email').value;
+    let msgError = document.getElementById('msgError');
+
+    if (email.trim()=="") {
+        msgError.innerHTML = "";
+        msgError.innerHTML += "Debes introducir un correo";
+        $('#msgError').show();
+        msgError.onmouseover = () => {
+            $('#msgError').hide(500);
+        }
+        return false;
+    }else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+        msgError.innerHTML = "";
+        msgError.innerHTML += "Correo introducido no válido";
+        $('#msgError').show();
+        msgError.onmouseover = () => {
+            $('#msgError').hide(500);
+        }
+        return false;
+    }else{
+        msgError.innerHTML = "";
+        $('#msgError').hide();
+        document.getElementById('formResetEmail').submit();
+    }
+
+}
+
+
+// Validacion para el formulario de cambio de contraseña a través de correo
+
+function submitPasswords()
+{
+    let password = document.getElementById('password').value;
+    let passwordConfirm = document.getElementById('password-confirm').value;
+    let msgPassword = document.getElementById('msgPassword');
+
+    if (password.trim()=="" || passwordConfirm.trim()=="") {
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Debes introducir ambas contraseñas";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide(500);
+        }
+    }else if(password.length<8 || passwordConfirm.length<8){
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Mínimo de caracteres permitidos: 8";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide(500);
+        }
+    }else if(!(password == passwordConfirm))
+    {
+        msgPassword.innerHTML = "";
+        msgPassword.innerHTML += "Las contraseñas no coinciden";
+        $('#msgPassword').show();
+        msgPassword.onmouseover = () => {
+            $('#msgPassword').hide(500);
+        }
+    }else{
+        msgPassword.innerHTML = "";
+        $('#msgPassword').hide();
+        document.getElementById('formUpdateContraseña').submit();
+    }
+    return true;
+}

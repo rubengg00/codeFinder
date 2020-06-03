@@ -37,7 +37,7 @@ Solicitud de contraseña
         <div class="row">
             <div class="col-lg-4 col-md-6 col-xs-12 ml-auto mr-auto">
                 <div class="card card-login" style="background-color:#212121" id="cardSolicitud">
-                    <form class="form" method="POST" action="{{ route('password.email') }}">
+                    <form class="form" method="POST" action="{{ route('password.email') }}" id="formResetEmail">
                         @csrf
                         <div class="card-header card-header-info text-center">
                             <h4 class="card-title">Solicitud de contraseña nueva</h4>
@@ -48,6 +48,7 @@ Solicitud de contraseña
                                 {{ session('status') }}
                             </p>
                             @endif
+                            <p class="text-center text-danger" id="msgError"></p>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -62,7 +63,7 @@ Solicitud de contraseña
                                 @enderror
                             </div>
                             <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-info">Solicitar</button>
+                                <a href="javascript:submitCorreo();" id="crear" type="submit" class="btn btn-info">Crear</a>
                                 <a href="{{route('login') }}" class="btn">Volver</a>
                             </div>
                         </div>

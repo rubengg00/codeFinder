@@ -115,7 +115,8 @@ Registro
                                 <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <div class="text-center mt-3">
-                                <a href="javascript:iniciar();" id="crear" type="submit" class="btn btn-info">Crear</a>                                   <a href="{{ URL::previous() }}" class="btn">Volver</a>
+                                <a href="javascript:iniciar();" id="crear" type="submit" class="btn btn-info">Crear</a>
+                                <a href="{{ URL::previous() }}" class="btn">Volver</a>
                             </div>
                         </div>
                     </form>
