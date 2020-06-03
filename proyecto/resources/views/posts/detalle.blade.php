@@ -22,7 +22,7 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                 </li>
-                <li class="nav-item mx-2 dropdown nav-item inline-block d-none d-sm-none d-md-block " >
+                <li class="nav-item mx-2 dropdown nav-item inline-block d-none d-sm-none d-md-block ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
                     <div class="dropdown-menu dropdown-menu-center">
                         <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
@@ -71,7 +71,7 @@
                         </form>
                     </div>
                 </li>
-                <li class="nav-item mx-2 dropdown nav-item inline-block d-block d-sm-block d-md-none" >
+                <li class="nav-item mx-2 dropdown nav-item inline-block d-block d-sm-block d-md-none">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
                     <div class="dropdown-menu dropdown-menu-center">
                         <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
@@ -89,6 +89,11 @@
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     @if (Auth::check() && $post->user_id == Auth::id())
+                    <div class="text-center">
+                        <h3 id="encabezadoPost" class="mx-auto font-weight-bold text-center">
+                            {{ $post->titulo }}
+                        </h3>
+                    </div>
                     <div>
                         <form name="borrar" method='post' action='{{route('posts.destroy', $post)}}'>
                             @csrf
@@ -98,19 +103,18 @@
                                     <i class="material-icons">delete</i>
                                 </button>
                             </span>
-                            <h3 id="encabezadoPost" class="mx-auto font-weight-bold text-center">
-                                {{ $post->titulo }}
-                                <span class="float-right mr-2" id="editar">
-                                    <a href="#" class="btn btn-outline-dark btn-fab btn-fab-mini btn-round">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                </span>
-                            </h3>
+                            <span class="float-right mr-2" id="editar">
+                                <a href="#" class="btn btn-outline-dark btn-fab btn-fab-mini btn-round">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </span>
                         </form>
                     </div>
+                    <br><br>
                     @else
                     <h3 id="encabezado" class="mx-auto font-weight-bold text-center">{{ $post->titulo }}</h3>
                     @endif
+                    
                     <div class="d-block d-sm-block d-md-none">
                         <br>
                         <br>
@@ -161,12 +165,11 @@
                         <p>
                             {{ $post->descripcion }}
                             <span class="float-right">
-                                <button id="copiar" class="btn btn-primary btn-fab btn-fab-mini btn-round"  data-toggle="tooltip" data-html="true" title="<em>Copiar código</em>">
+                                <button id="copiar" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Copiar código</em>">
                                     <i class="material-icons">file_copy</i>
                                 </button>
                             </span>
                         </p>
-                        <br>
                         <pre id="codigo" class="overflow-auto"><code>{{ $post->contenido }}</code></pre>
                         <br>
                     </div>
@@ -179,20 +182,20 @@
                     <br>
                     <div class="text-center" id="fav">
                         @if ($post->isFavorited())
-                            <form action="{{ route('posts.deleteFav', $post) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Post guardado como favorito</em>" onclick="return confirm('¿Deseas borrar la publicación de tus favoritos?')">
-                                    <i class="material-icons">favorite</i>
-                                </button>
-                            </form>
+                        <form action="{{ route('posts.deleteFav', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Post guardado como favorito</em>" onclick="return confirm('¿Deseas borrar la publicación de tus favoritos?')">
+                                <i class="material-icons">favorite</i>
+                            </button>
+                        </form>
                         @else
-                            <form action="{{ route('users.fav', $post) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Guardar post como favorito</em>" onclick="return confirm('¿Deseas guardar la publicación como favorita?')">
-                                    <i class="material-icons">favorite_border</i>
-                                </button>
-                            </form>
+                        <form action="{{ route('users.fav', $post) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-outline-info btn-fab btn-fab-mini btn-round" data-toggle="tooltip" data-html="true" title="<em>Guardar post como favorito</em>" onclick="return confirm('¿Deseas guardar la publicación como favorita?')">
+                                <i class="material-icons">favorite_border</i>
+                            </button>
+                        </form>
                         @endif
                     </div>
                 </div>
@@ -224,10 +227,10 @@
                         <div class="text-center">
                             <div class="input-group text-center d-none d-sm-none d-md-block">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crea Posts</a>
-                                
+
                             </div>
                             {{-- Para pantallas pequeñas --}}
-                            <div class="input-group text-center d-block d-sm-block d-md-none" >
+                            <div class="input-group text-center d-block d-sm-block d-md-none">
                                 <a href="{{ route('posts.create') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Crea tus propias publicaciones</em>">Crea Posts</a>
                             </div>
                         </div>
@@ -262,27 +265,27 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                         </ol>
                         <div class="carousel-inner my-2">
-                                <div class="carousel-item active">
-                                    <a href="{{route('categorias.posts', 20)}}">
-                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/python.png') }}" alt="First slide" height="260px">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="{{route('categorias.posts', 1)}}">
-                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="Second slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="{{route('categorias.posts', 3)}}">
-                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="{{route('categorias.posts', 2)}}">
-                                        <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
-                                    </a>
-                                </div>
+                            <div class="carousel-item active">
+                                <a href="{{route('categorias.posts', 20)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/python.png') }}" alt="First slide" height="260px">
+                                </a>
                             </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 1)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/php.png') }}" alt="Second slide">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 3)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/js.png') }}" alt="Third slide" height="250px">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{route('categorias.posts', 2)}}">
+                                    <img class="d-block w-100" src="{{ asset('img/lenguajes/java.png') }}" alt="Forth slide" height="250px">
+                                </a>
+                            </div>
+                        </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Anterior</span>
@@ -300,13 +303,14 @@
 <br><br>
 <div class="footer-main bg-dark py-5 small d-block d-sm-block">
     <div class="container">
-        Proyecto hecho con el Kit de UI 
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>
@@ -315,8 +319,7 @@
 <script>
     document.getElementById('copiar').addEventListener('click', copiarAlPortapapeles);
 
-    function copiarAlPortapapeles()
-    {
+    function copiarAlPortapapeles() {
         var codigoACopiar = document.getElementById('codigo');
         var seleccion = document.createRange();
         seleccion.selectNodeContents(codigoACopiar);
@@ -326,8 +329,9 @@
         window.getSelection().removeRange(seleccion);
 
         $('#copiar').tooltip('hide').attr('data-original-title', '<em>Código copiado</em>').tooltip('show');
-        
+
     }
+
 </script>
 
 @endsection
