@@ -193,7 +193,6 @@
     box-shadow: 0 8px 6px -6px black;
     overflow: auto;
     padding: 1em;
-    max-height: 555px;
     display: inline;
     overflow-y: scroll;
 }

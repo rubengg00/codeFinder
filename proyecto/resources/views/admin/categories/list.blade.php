@@ -25,15 +25,14 @@ Admin | Categorias
                 <li class="nav-item active mx-2">
                     <a class="nav-link" href="#">Categorias <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item mx-2 dropdown nav-item inline-block">
+                <li class="nav-item mx-2 dropdown nav-item inline-block d-none d-sm-none d-md-block " >
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
                     <div class="dropdown-menu dropdown-menu-center">
                         <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
                         <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
                     </div>
                 </li>
-
-                <li class="dropdown nav-item inline-block" id="lista">
+                <li class="dropdown nav-item inline-block d-none d-sm-none d-md-block" id="lista">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu dropdown-menu-center">
                         @role('admin')
@@ -52,6 +51,34 @@ Admin | Categorias
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                    </div>
+                </li>
+                <li class="dropdown nav-item inline-block d-block d-sm-block d-md-none" id="lista">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        @role('admin')
+                        <a href="{{ route('admin.index') }}" class="dropdown-item">
+                            Panel de Administrador
+                        </a>
+                        <hr>
+                        @endrole
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Perfil</a>
+                        <a href="{{ route('posts.fav') }}" class="dropdown-item">
+                            Posts Favoritos
+                        </a>
+                        <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar Sesión') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item mx-2 dropdown nav-item inline-block d-block d-sm-block d-md-none" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Código <span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <a href="{{ route('posts.buscador') }}" class="dropdown-item">Título</a>
+                        <a href="{{ route('categorias.listado') }}" class="dropdown-item">Categoría</a>
                     </div>
                 </li>
             </ul>
