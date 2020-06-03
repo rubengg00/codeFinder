@@ -1,25 +1,19 @@
 <div class="p-4 border-left my-3">
     <p>
         <img src="{{ asset($comment->user->fotoPerfil) }}" alt="Foto de {{ $comment->user->username }}" width="30px" height="30px" class="rounded-circle">
-        <b>{{ $comment->user->username }}:</b>
+        <b class="ml-2"><a href="{{ route('users.show', $comment->user) }}" class="text-dark">{{ $comment->user->username }}</a>:</b>
+        <span class="float-right">
+            @if (Auth::check() && $comment->user_id == Auth::id())
+                <a href="javascript:submitForm();" id="enviar" value="Borrar" class="text-danger font-weight-bold "  onclick="return confirm('¿Borrar comentario?')">
+                    Borrar
+                </a>
+            @endif
+        </span>
     </p>
-    {{-- <p class="font-weight-bold float-left mr-1">{{ $comment->user->username }}: </p> --}}
-    <div class="float-right">
-        @if (Auth::check() && $comment->user_id == Auth::id())
-        <form name="borrar" method='post' action='{{route('comments.destroy', $comment->id)}}'>
-            @csrf
-            @method('DELETE')
-            <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-none d-sm-none d-md-block float-right" onclick="return confirm('¿Borrar comentario?')">
-                <i class="material-icons">delete</i>
-            </button>
-            <div class="float-right">
-                <button type='submit' class="btn btn-danger btn-fab btn-fab-mini btn-round d-block d-sm-block d-md-none float-right" onclick="return confirm('¿Borrar comentario?')">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
-        </form>
-        @endif
-    </div>
+    <form name="borrar" method='post' action='{{route('comments.destroy', $comment->id)}}' id="formBorrar">
+        @csrf
+        @method('DELETE')
+    </form>
     <p>{{ $comment->contenido }}</p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#reply-{{$comment->id}}" aria-expanded="false" aria-controls="reply-{{$comment->id}}">
         Responder
@@ -30,7 +24,13 @@
         </div>
     </div>
     @if ($comment->replies)
-        @include('comments.list', ['comments' => $comment->replies])
+    @include('comments.list', ['comments' => $comment->replies])
     @endif
 </div>
 
+<script>
+    function submitForm()
+    {
+        document.getElementById('formBorrar').submit();
+    }
+</script>

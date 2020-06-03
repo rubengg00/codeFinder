@@ -411,3 +411,25 @@ function submitPasswords()
     }
     return true;
 }
+
+
+// Validacion para la seccion de comentarios
+function submitComment()
+{
+    let contenido = document.getElementById('contenido').value;
+    let msgError = document.getElementById('msgError');
+
+    if (contenido.trim()=="") {
+        msgError.innerHTML = "";
+        msgError.innerHTML += "Debes introducir un nombre";
+        $('#msgError').show();
+        msgError.onmouseover = () => {
+            $('#msgError').hide(500);
+        }
+    }else{
+        msgError.innerHTML = "";
+        $('#msgError').hide();
+        document.getElementById('formComment').submit();        
+    }
+
+}

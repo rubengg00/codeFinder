@@ -263,13 +263,13 @@ Posts Favoritos
                                 @empty
                                     <div class="container text-center mt-5 mr-3">
                                         <span></span>
-                                        <h5>
+                                        <h4>
                                             <em>No tienes guardado ningún post como favorito</em>
-                                        </h5>
+                                        </h4>
                                         <br>
-                                        <h6>
-                                            <em>Mira los últimos posts </em>
-                                        </h6>
+                                        <h5>
+                                            <a href="{{ route('posts.buscador') }}"><em>Mira los últimos posts </em></a>
+                                        </h5>
                                     </div>
                                 @endforelse
                             </div>
