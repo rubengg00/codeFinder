@@ -32,9 +32,8 @@ class CommentController extends Controller
             
     }
 
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        $comment = Comment::find($id);
         $comment->delete();
 
         Alert::info('Comentario borrado', 'Tu comentario ha sido borrado');

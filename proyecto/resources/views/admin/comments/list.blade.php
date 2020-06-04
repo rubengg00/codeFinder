@@ -116,7 +116,7 @@ Admin | Comments
                                     <td>{{ $comment->post->titulo }}</td>
                                     <td>{{ $comment->user->username }}</td>
                                     <td>{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y h:m:s') }}</td>
-                                    <td>*
+                                    <td>
                                         <form name="borrar" method='post' action='{{route('admin.comments.destroy', $comment)}}'>
                                             @csrf
                                             @method('DELETE')
