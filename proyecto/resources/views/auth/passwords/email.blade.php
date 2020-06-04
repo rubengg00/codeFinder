@@ -75,14 +75,27 @@ Solicitud de contraseña
 </div>
 
 <div class="footer-main bg-dark py-5 small d-block d-sm-block" id="footerAuth">
-    <div class="container">
-        Proyecto hecho con el Kit de UI 
+    <div class="container d-none d-sm-none d-md-block">
+        Proyecto hecho con el Kit de UI
         <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
         <br>
         <div class="copyright float-left">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
+
+            </script> CodeFinder, Inc.
+        </div>
+    </div>
+    <div class="container d-block d-sm-block d-md-none text-center">
+        Proyecto hecho con el Kit de UI
+        <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html">Material Kit</a>.
+        <br>
+        <div class="copyright text-center">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+
             </script> CodeFinder, Inc.
         </div>
     </div>
