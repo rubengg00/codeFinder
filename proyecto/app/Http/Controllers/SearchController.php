@@ -55,9 +55,6 @@ class SearchController extends Controller
         
         return view ('categorias.posts', compact('categoria', 'posts', 'request', 'postMostViewed'));
 
-
     }
-
-
 
 }

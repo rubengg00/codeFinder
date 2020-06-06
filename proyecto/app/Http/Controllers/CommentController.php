@@ -32,13 +32,6 @@ class CommentController extends Controller
             
     }
 
-    public function destroy(Comment $comment)
-    {
-        $comment->delete();
-
-        Alert::info('Comentario borrado', 'Tu comentario ha sido borrado');
-        return \Redirect::back();        
-    }
 
     
 }

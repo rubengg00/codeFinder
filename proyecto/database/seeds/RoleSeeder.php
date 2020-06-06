@@ -21,12 +21,3 @@ class RoleSeeder extends Seeder
     }
 }
 
-/**
-$user = User::create([
-    'name' => 'Rubén García',
-    'username' => 'rubengg_00',
-    'email' => 'rubengg_00@hotmail.com',
-    'password' => bcrypt('codeFinder1473')
-]); 
-
- */

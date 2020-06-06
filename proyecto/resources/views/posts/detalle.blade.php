@@ -203,7 +203,7 @@
 
             <div id="divMas" class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    <h5 class="m-0">{{ $post->totalComments() }} comentarios en <b>"{{ $post->titulo }}" </b> </h5>
+                    <h5 class="m-0">Comentarios en <b>"{{ $post->titulo }}" </b> </h5>
                     <hr>
                     {{-- Formulario para crear comentarios --}}
                     @include('comments.form')

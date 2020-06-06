@@ -20,15 +20,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //Devolvemos tanto los usuarios, como los posts y los comentarios
-        $users = User::orderBy('name')->paginate(6);
-        $posts = Post::orderBy('created_at','desc')->paginate(6);
-        $posts->setPageName('posts');
-        
-        $comments = Comment::orderBy('created_at','desc')->paginate(6);
-        
-        
-        return view ('admin.index',compact('users', 'posts', 'comments'));
+        return view ('admin.index');
     }
 
 
@@ -167,9 +159,7 @@ class AdminController extends Controller
     public function categoriesDestroy(Categoria $category)
     {
         $foto = $category->logo;
-        if (basename($foto)!="default.jpg") {
-            unlink($foto);
-        }
+        unlink($foto);
         
         $category->delete();
         Alert::info('Borrado', 'Categoría borrada correctamente');
