@@ -433,3 +433,27 @@ function submitComment()
     }
 
 }
+
+
+// Validación para edición de publicaciones
+function submitEditPost()
+{
+    let titulo = document.getElementById('title').value;
+    let descripcion = document.getElementById('descripcion').value;
+    let contenido = document.getElementById('contenido').value;
+    let msgError = document.getElementById('msgError');
+
+    if (titulo.trim()=="" || descripcion.trim()=="" || contenido.trim()=="") {
+        msgError.innerHTML = "";
+        msgError.innerHTML += "No puedes dejar ningún campo";
+        $('#msgError').show();
+        msgError.onmouseover = () => {
+            $('#msgError').hide(500);
+        }
+    }else{
+        msgError.innerHTML = "";
+        $('#msgError').hide();
+        document.getElementById('edicionPost').submit();        
+    }
+
+}

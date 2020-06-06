@@ -135,7 +135,7 @@
                     </div>
                     <hr>
                     <div id="editPost">
-                        <form action="{{ route('posts.update', $post) }}" method="POST">
+                        <form action="{{ route('posts.update', $post) }}" method="POST" id="edicionPost">
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="id" value="{{$post->id}}">
@@ -154,10 +154,11 @@
                                 {{ $post->contenido }}
                                 </textarea>
                             </div>
+                            <p class="text-center text-danger" id="msgError"></p>
                             <div class="form-group pt-2 text-center">
-                                <button type="submit" class="btn btn-dark btn-fab btn-fab-mini btn-round">
+                                <a href="javascript:submitEditPost();" type="submit" class="btn btn-dark btn-fab btn-fab-mini btn-round">
                                     <i class="fa fa-save"></i>
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>
