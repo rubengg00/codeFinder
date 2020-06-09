@@ -153,10 +153,10 @@ Mi Perfil
                                         </div>
                                         <div class="form-row text-center mt-3">
                                             <div class="col">
-                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
+                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña" title="Cambiar contraseña">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round" title="Guardar perfil">
                                                     <i class="material-icons">save</i>
                                                 </a>
                                             </div>
