@@ -227,8 +227,8 @@ Mi Perfil
                                     <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
                                 @endif
                                 @foreach ($posts as $item)
-                                <div class="container">
-                                    <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                                <div class="container" data-aos="fade-down">
+                                    <div id="post" class="card-body shadow mb-5">
                                         <div class="col">
                                             <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
                                             <h5>
@@ -239,7 +239,7 @@ Mi Perfil
                                             <br>
                                             <p>
                                                 <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                                <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
+                                                <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->username }}</a></span>
                                                 <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                             </p>
                                         </div>

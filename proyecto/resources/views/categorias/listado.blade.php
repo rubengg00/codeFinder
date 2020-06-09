@@ -121,7 +121,7 @@ Home | Buscador
                             @endif
                     <div class="row">
                     @forelse($categorias as $category)
-                            <div class="col-md-6 mb-5  animated fadeIn">
+                            <div class="col-md-6 mb-5" data-aos="fade-down">
                             <a href="{{ route('categorias.posts', $category) }}" data-toggle="tooltip" data-placement="top" title="Posts: {{ $category->totalPosts() }}">
                               <div class="cate" id="categoria">
                                 <img src="{{ asset($category->logo) }}" alt="" width="100px" height="100px">
@@ -146,8 +146,8 @@ Home | Buscador
                 <div class="card-body">
                         <h5 class="m-0 text-center font-weight-bold">Publicación más vista del portal</h5>
                         <hr>
-                        <div class="container">
-                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                        <div class="container" data-aos="fade-down">
+                            <div id="post" class="card-body shadow mb-5">
                                 <div class="col">
                                     <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">
                                         {{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}
@@ -166,7 +166,7 @@ Home | Buscador
                                     <br>
                                     <p>
                                         <img id="fotoPost" src="{{ asset($postMostViewed->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $postMostViewed->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                        <span><a href="{{ route('users.show', $postMostViewed->user) }}" class="text-dark">{{ $postMostViewed->user->name }}</a></span>
+                                        <span><a href="{{ route('users.show', $postMostViewed->user) }}" class="text-dark">{{ $postMostViewed->user->username }}</a></span>
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}</span>
                                     </p>
                                 </div>

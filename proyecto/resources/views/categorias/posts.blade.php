@@ -126,8 +126,8 @@ Posts de {{ $categoria->nombre }}
                         <p class="text-center">Resultados de la búsqueda <b><em>{{ $request->titulo }}</em></b></p>
                     @endif
                     @forelse ($posts as $item)
-                    <div class="container">
-                        <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                    <div class="container" data-aos="fade-down">
+                        <div id="post" class="card-body shadow mb-5">
                             <div class="col">
                                 <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</p>
                                 <h5>
@@ -138,7 +138,7 @@ Posts de {{ $categoria->nombre }}
                                 <br>
                                 <p>
                                     <img id="fotoPost" src="{{ asset($item->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $item->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                    <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->name }}</a></span>
+                                    <span><a href="{{ route('users.show', $item->user) }}" class="text-dark">{{ $item->user->username }}</a></span>
                                     <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</span>
                                 </p>
                             </div>
@@ -157,8 +157,8 @@ Posts de {{ $categoria->nombre }}
                 <div class="card-body">
                         <h5 class="m-0 text-center font-weight-bold">Publicación más vista del portal</h5>
                         <hr>
-                        <div class="container">
-                            <div id="post" class="card-body shadow mb-5 animated bounceInDown">
+                        <div class="container" data-aos="fade-down">
+                            <div id="post" class="card-body shadow mb-5">
                                 <div class="col">
                                     <p id="fecha" class="text-center d-block d-sm-block d-md-none font-italic">
                                         {{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}
@@ -177,7 +177,7 @@ Posts de {{ $categoria->nombre }}
                                     <br>
                                     <p>
                                         <img id="fotoPost" src="{{ asset($postMostViewed->user->fotoPerfil) }}" alt="Foto de Perfil de {{ $postMostViewed->user->username }}" class="img-fluid rounded-circle mr-2" width="40px" height="60px">
-                                        <span><a href="{{ route('users.show', $postMostViewed->user) }}" class="text-dark">{{ $postMostViewed->user->name }}</a></span>
+                                        <span><a href="{{ route('users.show', $postMostViewed->user) }}" class="text-dark">{{ $postMostViewed->user->username }}</a></span>
                                         <span id="fecha" class="float-right font-italic d-none d-sm-none d-md-block ">{{ \Carbon\Carbon::parse($postMostViewed->created_at)->format('d/m/Y') }}</span>
                                     </p>
                                 </div>
