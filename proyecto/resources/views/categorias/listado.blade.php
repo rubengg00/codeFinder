@@ -89,22 +89,24 @@ Home | Buscador
             <div id="divPosts" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
                     <h3 id="encabezado" class="text-center">
+                        @if ($request->nombre)
                             <span class="float-left small">
-                                    <a href="javascript:goBack();">
-                                        <i class="fa fa-caret-left text-dark"></i>
-                                    </a>
-                                </span>
+                                <a href="{{ route('categorias.listado') }}">
+                                    <i class="fa fa-caret-left text-dark"></i>
+                                </a>
+                            </span>
+                        @endif
                         Búsqueda por categorías
                     </h3>
                     <br>
                     <div class="container">
                         <form class="form ml-auto" method="GET" action="{{ route('categorias.listado') }}" id="form">
                             <div class="input-group mb-3">
-                                @if ($request)
+                                {{-- @if ($request)
                                     <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->nombre }}" id="input" name="nombre" required>  
-                                @else
+                                @else --}}
                                     <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="nombre" id="input" required>
-                                @endif
+                                {{-- @endif --}}
                                 <a href="javascript:submitFormBusqueda();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
                                 </a>
@@ -114,6 +116,9 @@ Home | Buscador
                 </div>
                 <div id="categorías">
                     <div class="container text-center">
+                            @if ($request->nombre)
+                            <p class="text-center mb-5">Resultados de la búsqueda <b><em>{{ $request->nombre }}</em></b></p>
+                            @endif
                     <div class="row">
                     @forelse($categorias as $category)
                             <div class="col-md-6 mb-5  animated fadeIn">

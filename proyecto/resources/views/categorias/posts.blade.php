@@ -90,22 +90,30 @@ Posts de {{ $categoria->nombre }}
                 <div class="shadow-lg p-3 mb-3 mt-2 bg-white rounded">
                     <h4 id="encabezado" class="text-center">{{ $categoria->nombre }}</h4>
                     <h3 id="encabezado" class="text-center">
-                        <span class="float-left small">
-                            <a href="javascript:goBack();">
-                                <i class="fa fa-caret-left text-dark"></i>
-                            </a>
-                        </span>
+                        @if ($request->titulo)
+                            <span class="float-left small">
+                                <a href="{{ route('categorias.posts', $categoria) }}">
+                                    <i class="fa fa-caret-left text-dark"></i>
+                                </a>
+                            </span>
+                        @else
+                            <span class="float-left small">
+                                <a href="{{ route('categorias.listado') }}">
+                                    <i class="fa fa-caret-left text-dark"></i>
+                                </a>
+                            </span>
+                        @endif
                         Búsqueda por título
                     </h3>
                     <br>
                     <div class="container">
                         <form class="form ml-auto" method="GET" action="{{ route('categorias.posts', $categoria) }}">
                             <div class="input-group mb-3">
-                                @if ($request)
+                                {{-- @if ($request)
                                 <input type="text" class="form-control" placeholder="Introduce palabras clave..." value="{{ $request->titulo }}" name="titulo" id="input" required>
-                                @else
+                                @else --}}
                                 <input type="text" class="form-control" placeholder="Introduce palabras clave..." name="titulo" id="input" required>
-                                @endif
+                                {{-- @endif --}}
                                 <a href="javascript:submitFormBusqueda();" type="submit" class="btn btn-white btn-just-icon btn-round ml-2">
                                     <i class="material-icons">search</i>
                                 </a>
@@ -114,6 +122,9 @@ Posts de {{ $categoria->nombre }}
                     </div>
                 </div>
                 <div id="resultados">
+                    @if ($request->titulo)
+                        <p class="text-center">Resultados de la búsqueda <b><em>{{ $request->titulo }}</em></b></p>
+                    @endif
                     @forelse ($posts as $item)
                     <div class="container">
                         <div id="post" class="card-body shadow mb-5 animated bounceInDown">

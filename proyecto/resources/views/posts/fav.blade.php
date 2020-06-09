@@ -186,6 +186,8 @@ Posts Favoritos
                                                 <input type="file" class="form-control p-1" name="fotoPerfil" accept="image/*" id="fotoPerfil">
                                             </div>
                                         </div>
+
+                                        <p class="text-center text-danger" id="msgError1"></p>
                                         <div class="form-row">
                                             <div class="col">
                                                 <label for="name" class="col-form-label">Nombre</label>
@@ -221,12 +223,60 @@ Posts Favoritos
                                         </div>
                                         <div class="form-row text-center mt-3">
                                             <div class="col">
-                                                <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
-                                                    <i class="fa fa-save"></i>
+                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
+                                                    <i class="fa fa-key"></i>
                                                 </button>
+                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                    <i class="material-icons">save</i>
+                                                </a>
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                                <div class="modal fade" id="modalContraseña" tabindex="-1" role="">
+                                    <div class="modal-dialog modal-login" role="document">
+                                        <div class="modal-content">
+                                            <div class="card card-signup card-plain">
+                                                <div class="modal-body">
+                                                    <form action="{{route('users.contraseña',$user)}}" method="POST" id="formContraseña">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$user->id}}">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Cambio de contraseña</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="text-center text-danger" id="msgError"></p>
+                                                            <div class="form-group bmd-form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="material-icons">lock_outline</i>
+                                                                    </span>
+                                                                    <input id="password" type="password" placeholder="Contraseña..." class="form-control" name="password" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group bmd-form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="material-icons">lock_outline</i>
+                                                                    </span>
+                                                                    <input id="password-confirm" type="password" placeholder="Repite Contraseña..." class="form-control" name="password_confirmation" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="float-right mt-3">
+                                                                <div class="input-group">
+                                                                    <a href="javascript:submitFormContraseña();" type="submit" class="btn btn-primary">Cambiar contraseña</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endif
                             </div>
