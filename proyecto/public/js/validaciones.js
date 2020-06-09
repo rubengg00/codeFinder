@@ -33,7 +33,9 @@ function submitFormPerfil() {
     let name = document.getElementById('name').value;
     let nickname = document.getElementById('username').value;
     let email = document.getElementById('email').value;
-    let error = document.getElementById('msgError1')
+    let fotoPerfil = document.getElementById('fotoPerfil').value;
+    let error = document.getElementById('msgError1');
+    let patron = new RegExp('^.*\.(jpg|jpeg|JPG|PNG|png|svg|SVG)$');
 
     if (name.trim() == "" || nickname.trim() == "" || email.trim() == "") {
         error.innerHTML = "";
@@ -41,6 +43,17 @@ function submitFormPerfil() {
         $('#msgError1').show();
         error.onmouseover = () => {
             $('#msgError1').hide(1000);
+        }
+    }else if(fotoPerfil.length != 0){
+        if (!(patron.test(document.getElementById('fotoPerfil').value))) {
+            error.innerHTML = "";
+            error.innerHTML += "No es un formato válido de imagen";
+            $('#msgError1').show();
+            error.onmouseover = () => {
+                $('#msgError1').hide(1000);
+            }
+        }else{
+            document.getElementById('formPerfil').submit();
         }
     } else {
         document.getElementById('formPerfil').submit();
