@@ -107,7 +107,7 @@ Admin | Posts
                                     <th scope="col">Título</th>
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Fecha de Creación</th>
-                                    <th scope="col">Creador</th>
+                                    <th scope="col">Usuario</th>
                                     <th scope="col">Comentarios</th>
                                     <th scope="col">Visitas</th>
                                     <th scope="col">Acciones</th>
@@ -119,7 +119,7 @@ Admin | Posts
                                     <td><a href="{{ route('posts.show',$post) }}" class="text-dark">{{ $post->titulo }}</a></td>
                                     <td><a href="{{ route('categorias.posts', $post->categoria) }}" class="text-dark">{{ $post->categoria->nombre }}</a> </td>
                                     <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
-                                    <td>{{ $post->user->name }}</td>
+                                    <td><a href="{{ route('users.show', $post->user) }}" class="text-dark">{{ $post->user->username }}</a></td>
                                     <td>{{ $post->totalComments() }}</td>
                                     <td>
                                         <i class="fa fa-eye"></i> {{ $post->visitas }}

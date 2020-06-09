@@ -113,9 +113,9 @@ Admin | Comments
                             <tbody>
                                 @foreach ($comments as $comment)
                                 <tr>
-                                    <td>{{ $comment->post->titulo }}</td>
-                                    <td>{{ $comment->user->username }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y h:m:s') }}</td>
+                                    <td data-toggle="tooltip" data-placement="top" title="{{ $comment->contenido }}">{{ $comment->post->titulo }}</td>
+                                    <td><a href="{{ route('users.show', $comment->user) }}" class="text-dark"> {{ $comment->user->username }}</a></td>
+                                    <td>{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <form name="borrar" method='post' action='{{route('admin.comments.destroy', $comment)}}'>
                                             @csrf
