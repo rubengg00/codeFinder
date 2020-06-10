@@ -94,76 +94,6 @@ Posts Favoritos
             <div id="card" class="card border-0 shadow mb-4">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="row">
-                        @if ($user->totalPosts() == 0)
-                        <div class="col col-lg-3 col-sm-12 float-left">
-                            <div id="perfil">
-                                <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
-                                <h3 class="mx-auto font-weight-bold text-center">{{ $user->name }}</h3>
-                                <h4 class="mx-auto font-weight-bold text-center"><small class="text-muted">{{ $user->username }}</small></h4>
-                                <p class="mx-auto text-center">Se unió el <em>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</em></p>
-                                @if (Auth::check() && $user->id == Auth::id())
-                                <div class="col text-center">
-                                    <a id="editPerfil" class="btn btn-dark btn-round text-center">Editar Perfl</a>
-                                </div>
-                                <div class="container mt-3">
-                                    <form action="{{route('users.update',$user)}}" id="formPerfil" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{$user->id}}">
-                                        <p class="text-center">Editando Perfil</p>
-                                        <div class="form-row">
-                                            <div class="col text-center">
-                                                <img src="{{asset($user->fotoPerfil)}}" width="100px" height="100px" class="rounded-circle mb-1">
-                                                <input type="file" class="form-control p-1" name="fotoPerfil" accept="image/*" id="fotoPerfil">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="name" class="col-form-label">Nombre</label>
-                                                <input type="text" class="form-control" name="name" value="{{$user->name}}" id="name" required>
-                                            </div>
-                                            @error('name')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>No puedes dejar el nombre vacío.</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="username" class="col-form-label">Nickname</label>
-                                                <input type="text" class="form-control" name="username" value="{{$user->username}}" id="username" required>
-                                            </div>
-                                            @error('username')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>Nombre de usuario inválido </strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <label for="email" class="col-form-label">E-mail</label>
-                                                <input type="email" class="form-control" name="email" value="{{$user->email}}" id="email" required>
-                                            </div>
-                                            @error('email')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>Correo inválido </strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-row text-center mt-3">
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
-                                                    <i class="fa fa-save"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                @endif
-                            </div>
-                            <br>
-                        </div>
-                        @else
                         <div class="col col-lg-3 col-sm-12 float-left">
                             <div id="perfil">
                                 <img src="{{ asset($user->fotoPerfil) }}" id="foto" alt="Foto de {{ $user->username }}" width="215px" height="215px">
@@ -223,10 +153,10 @@ Posts Favoritos
                                         </div>
                                         <div class="form-row text-center mt-3">
                                             <div class="col">
-                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña">
+                                                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#modalContraseña" title="Cambiar contraseña">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                                                <a href="javascript:submitFormPerfil();" type="submit" class="btn btn-primary btn-fab btn-fab-mini btn-round" title="Guardar perfil">
                                                     <i class="material-icons">save</i>
                                                 </a>
                                             </div>
@@ -283,6 +213,7 @@ Posts Favoritos
                             <br>
                         </div>
                         <br>
+                        {{-- Cuerpo de los posts --}}
                         <div class="col col-lg-9 mt-4">
                             <div>
                                 <h4 class="text-center" id="encabezadoUsuario">
@@ -314,17 +245,17 @@ Posts Favoritos
                                     <div class="container text-center mt-5 mr-3">
                                         <span></span>
                                         <h4>
-                                            <em>No tienes guardado ningún post como favorito</em>
+                                            <em>No tienes guardado ningún post como favorito.</em>
                                         </h4>
                                         <br>
                                         <h5>
-                                            <a href="{{ route('posts.buscador') }}"><em>Mira los últimos posts </em></a>
+                                            <a href="{{ route('posts.buscador') }}"><em>Mira los últimos posts. </em></a>
                                         </h5>
                                     </div>
                                 @endforelse
                             </div>
                         </div>
-                        @endif
+                        {{-- @endif --}}
                     </div>
                 </div>
             </div>

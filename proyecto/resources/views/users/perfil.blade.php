@@ -226,7 +226,7 @@ Mi Perfil
                                 @else
                                     <h4 class="text-center">Posts de {{ $user->name }} ({{ $user->totalPosts() }})</h4>
                                 @endif
-                                @foreach ($posts as $item)
+                                @forelse ($posts as $item)
                                 <div class="container" data-aos="fade-down">
                                     <div id="post" class="card-body shadow mb-5">
                                         <div class="col">
@@ -245,7 +245,18 @@ Mi Perfil
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                @empty
+                                    <div class="container text-center mt-5 mr-3">
+                                        <span></span>
+                                        <h4>
+                                            <em>No has creado ninguna publicación todavía.</em>
+                                        </h4>
+                                        <br>
+                                        <h5>
+                                            <a href="{{ route('posts.create') }}"><em>Crea tu propia publicación. </em></a>
+                                        </h5>
+                                    </div>
+                                @endforelse
                                 {{$posts->appends(Request::except('page'))->links()}}
                             </div>
                         </div>
